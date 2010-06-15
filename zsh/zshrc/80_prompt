@@ -1,0 +1,54 @@
+# zshrc/80_prompt
+#
+# Formats the shell prompt
+#
+# Copyright © 1994–2008 martin f. krafft <madduck@madduck.net>
+# Released under the terms of the Artistic Licence 2.0
+#
+# Source repository: git://git.madduck.net/etc/zsh.git
+#
+
+# HJM: replaced with new version of my prompt
+
+function precmd {
+	if [ $USER = 'harry' ]; then
+		hostprompt="%{$fg[blue]%}%m"
+	else
+		hostprompt="%{$fg[cyan]%}%m"
+	fi
+
+	maxlength=$(( ${COLUMNS} / 6 ))
+	path_prompt=$(print -P %~) # get the current working dir from %~
+	if (( ${#path_prompt} > ${maxlength} )); then
+		p_tchars='../'
+		p_done=${path_prompt}
+		for (( i=1 ; ; ++i )); do
+			p_temp=$(print -P %${i}~)
+			if (( ( ${#p_temp} + ${#p_tchars} ) < ${maxlength} )); then
+				p_done=${p_temp}
+			else
+				break
+			fi
+		done
+		path_prompt=${p_tchars}${p_done}
+	fi
+
+    # See if we can use colors.
+    autoload colors zsh/terminfo
+    if [[ "$terminfo[colors]" -ge 8 ]]; then
+	colors
+    fi
+    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+        eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+        eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+        (( count = $count + 1 ))
+    done
+    PR_NO_COLOUR="%{$terminfo[sgr0]%}"
+
+	export PROMPT="%{%(!.$PR_RED.$PR_GREEN)%}%n%{$PR_WHITE%}@${hostprompt}%{$PR_WHITE%}:%{$PR_YELLOW%}${path_prompt}%{$PR_RED%}%(?..[%?])%{$PR_WHITE%}%# "
+	export RPROMPT="[%{$PR_CYAN%}%t%{$PR_WHITE%}]"
+}
+
+precmd
+
+# vim:ft=zsh

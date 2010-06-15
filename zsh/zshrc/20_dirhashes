@@ -1,0 +1,14 @@
+# zshrc/20_dirhashes
+#
+# populate some hashes for commonly used directories
+#
+# Copyright © 1994–2008 martin f. krafft <madduck@madduck.net>
+# Released under the terms of the Artistic Licence 2.0
+#
+# Source repository: git://git.madduck.net/etc/zsh.git
+#
+
+hash -d doc=/usr/share/doc
+hash -d log=/var/log
+
+# vim:ft=zsh

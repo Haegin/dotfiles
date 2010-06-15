@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# func/TS
+#
+# a convenient way to create an environment for collaborative testing
+#
+# Copyright © 1994–2008 martin f. krafft <madduck@madduck.net>
+# Released under the terms of the Artistic Licence 2.0
+#
+# Source repository: git://git.madduck.net/etc/zsh.git
+#
+
+local topic filename ret
+topic="${(j:_:)@}"
+filename="${TMPDIR:-/tmp}/script.${topic:-$LOGNAME}.$$.$(date +%Y%m%d.%H%M)"
+echo "I: writing typescript to $filename ..." >&2
+PS1="%# " PS2= RPS1= script -c "zsh -f" -f -q "$filename"
+ret=$?
+echo "I: typescript is in $filename ."
+return $ret
+exit $ret

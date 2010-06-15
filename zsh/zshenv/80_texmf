@@ -1,0 +1,15 @@
+# zshenv/80_texmf
+#
+# set a number of default variables related to texmf
+#
+# Copyright © 1994–2008 martin f. krafft <madduck@madduck.net>
+# Released under the terms of the Artistic Licence 2.0
+#
+# Source repository: git://git.madduck.net/etc/zsh.git
+#
+
+export TEXMFHOME=$HOME/.texmf
+export TEXMFCONFIG=$TEXMFHOME
+export TEXMFVAR=$VARDIR/texmf
+
+# vim:ft=zsh

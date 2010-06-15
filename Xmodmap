@@ -1,0 +1,6 @@
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape
+
+! Scrolling with zoom slider
+keysym XF86ScrollUp = Prior
+keysym XF86ScrollDown = Next

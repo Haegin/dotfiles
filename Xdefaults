@@ -1,0 +1,81 @@
+! Xft stuff
+Xft.dpi:			96
+Xft.antialias:		true
+Xft.hinting:		true
+
+! X Cursor themes (don't seem to work yet)
+Xcursor.theme:		Vanilla-DMZ
+
+! Urxvt
+urxvt*font:					xft:terminus:pixelsize=8
+urxvt*boldFont				xft:terminus:bold:pixelsize=8
+urxvt*borderLess:			false
+urxvt*externalBorder:		0
+urxvt*internalBorder:		2
+urxvt*scrollBar:			false
+urxvt*jumpScroll:			true
+urxvt*scrollWithBuffer:		false
+urxvt*scrollTtyOutput:		false
+urxvt*scrollTtyKeypress:	true
+urxvt*mouseWheelScrollPage:	false
+urxvt*visualBell:			true
+urxvt*depth:				32
+urxvt*dynamicColors:		true
+!urxvt*background:		    #241601
+!urxvt*foreground:		    #eeeeec
+urxvt*cursorColor:		    #888a85
+urxvt*cursorColor2:			#555753
+urxvt*cursorBlink:			false
+urxvt*inheritPixmap:		false
+urxvt*termName:				rxvt-unicode
+urxvt*saveLines:			1000
+urxvt*cutchars:				`'",;@&*=|?()<>[]{}
+
+! Urxvt transparency stuff
+urxvt*blurRadius:			3
+urxvt*tintColor:			#8f5902
+urxvt*transparent:			false
+
+! Urxvt URL launcher
+URxvt*perl-ext-common:	default,matcher
+!URxvt*urlLauncher:		uzbl-launch.sh
+URxvt*urlLauncher:		firefox
+URxvt*colorURL:			#e9b96e
+URxvt*matcher.button:	1
+
+! Black
+*color0:  #2e2436
+*color8:  #888a85
+! Red
+*color1:  #a40000
+*color9:  #ef2929
+! Green
+*color2:  #4e9a06
+*color10: #8ae234
+! Yellow
+*color3:  #c4a000
+*color11: #fce94f
+! Blue
+*color4:  #204a87
+*color12: #729fcf
+! Purple
+*color5:  #5c3566
+*color13: #ad7fa8
+! Cyan
+*color6:  #038e82
+*color14: #05d2c1
+! White
+*color7:  #babdb6
+*color15: #eeeeec
+
+! Other colours
+*background:		#2e3436
+*foreground:		#eeeeec
+
+! Xterm
+XTerm*toolBar:			false
+XTerm*faceName:			terminus:pixelsize=8
+XTerm*dynamiccolors:	true
+XTerm*scrollTtyOutput:	false
+XTerm*scrollKey:		true
+
