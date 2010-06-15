@@ -1,0 +1,31 @@
+#ylug < daeghnao> hjmills: If you're wanting something to run with, could try playing with http://www.niallmoody.com/twindy/
+#ylug < Jc2k> hjmills: ubuntu > kubuntu
+#ylug < Jc2k> hjmills: if your interent doesnt suck you could always apt-get install kubuntu-desktop
+#ylug < Jc2k> hjmills: well with that intertube pipe remove gtk and then put the gtk progrs u want back xD
+#ylug < lisa> hjmills: whats up ?
+#ylug < RobHu> hjmills: What Ruby were you doing btw?
+#ylug < daeghnao> hjmills: You need to be able to play a green deck against a blue deck, and play a black deck against a red deck.
+#ylug < Alex> hjmills: screengrab of vim with :syn on
+#ylug < RobHu> hjmills: No, it has always been understood that Yahweh is male
+#ylug < RobHu> hjmills: That's where the trinity is supposed to come in
+#ylug < RobHu> hjmills: Maybe, that's a separate issue to what it says about God's gender thoguh.
+#ylug < RobHu> hjmills: Yeah, everyone uses science when they /have/ to
+#ylug < RobHu> hjmills: Lots of people cope without religion
+#ylug < st537> hjmills: you mean a commune?
+#ylug < daeghnao> hjmills: Be at my office at 4?
+#ylug < Alex> hjmills: Read the wikipedia page on 'load'. It's really quite enlighting.
+#ylug < Alex> hjmills: look at htop/top, what's the load high for, is it memory/disk activity/CPU/etc
+#ylug < Alex> hjmills: :( I agree.
+#ylug < ^Tom> hjmills: you haz parcel
+#ylug < daeghnao> hjmills: Probably, yes.
+#ylug < daeghnao> hjmills: Not for the games meeting no.
+#ylug < Alex> hjmills: Use ssh keys and an ssh agent manager.
+#ylug < liam2> hjmills: You were manually sending and receiving chunks with netcat?
+#ylug < astinus> hjmills: A lot of ISPs are getting around the encryption issue by just adversely QoS'ing anything outside "normal" port ranges of 22, 80, 443 and similar
+#ylug < st537> hjmills, in any particular langauge, or like as a shell thing? not sure of how you;d do that in a compiled language, but might be a way of doing it with awk or sumthin in a shell script... although am not that great with that sorta thing :/
+#ylug < astinus> hjmills: sure you can
+#ylug < astinus> hjmills: it just requires more work ;)
+#ylug < astinus> hjmills: I just used an offsite box throughout University to torrent and then grabbed down the files over HTTPS
+#ylug < RobHu> hjmills: Why do you ask?
+#ylug < daeghnao> hjmills: Nope.  It's usually the weekend at the end of week 2, but it's been known to move.
+#ylug < RobHu> hjmills: Some people needed it in 10.4

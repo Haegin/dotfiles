@@ -1,0 +1,25 @@
+#!/bin/zsh
+#
+# func/p
+#
+# function to publish to a pastebin (using pastebinit)
+#
+# Copyright © 1994–2008 martin f. krafft <madduck@madduck.net>
+# Released under the terms of the Artistic Licence 2.0
+#
+# Source repository: git://git.madduck.net/etc/zsh.git
+#
+
+if [[ $# -gt 1 ]]; then
+  echo E: only one argument can be passed. >&2
+  exit 1
+fi
+
+PERMATAG=$USER
+PB=http://slexy.org
+PBIT="pastebinit -b $PB -a $USER"
+
+FILE=-
+[[ -n "$1" ]] && FILE="$1"
+
+eval $PBIT -i $FILE

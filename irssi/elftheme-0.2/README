@@ -1,0 +1,19 @@
+This is a sample config for Irssi. It includes a theme, but that's really only
+a small part. The spiffiest stuff is done via scripts :) This means that Perl
+support is mandatory. If your Irssi is compiled with Perl support as a module,
+add a line to ~/.irssi/startup, which is: "/load perl".
+
+I have included some sample hilights. They'll hilight everything that would
+normally be aimed at me. It does catch false positives, occasionally. You can
+remove them with the /HILIGHT command. They're pretty nasty. If anybody wants
+to give a go at rewriting them for me, I'd be grateful :)
+
+The subdirectory elf-theme/irssi/ is the stuff that would normally be in
+~/.irssi
+
+Special thanks go to cras, aka Timo Sirainen <tss@iki.fi> for creating an
+*AMAZING* communications client. I pity those who can't use IRC because so
+many of their friends are on other "chat" networks - they're missing out on a
+great client.
+
+Enjoy, and report any bugs or suggestions or praise to eelf@sympatico.ca :)

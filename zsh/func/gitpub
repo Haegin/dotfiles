@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# func/gitpub
+#
+# a convenient way to publicise a Git repository
+#
+# Copyright © 2008–2009 martin f. krafft <madduck@madduck.net>
+# Released under the terms of the Artistic Licence 2.0
+#
+# Source repository: git://git.madduck.net/etc/zsh.git
+#
+
+local oldpwd gitdir dest description tmpdir
+oldpwd="$PWD"
+gitdir="$(git rev-parse --git-dir)"
+dest="$1"; shift
+description="$@"
+tmpdir="$(mktemp -d ${0##*/}.XXXXXX)"
+trap "rm -rf $PWD/$tmpdir" EXIT
+
+cp -lr "$gitdir" "$tmpdir/gitdir"
+
+builtin cd "$tmpdir/gitdir"
+
+chmod -R a+rX .
+
+git config core.bare true
+git config core.sharedrepository 2
+git config receive.denyNonFastforwards true
+
+echo "$description" >| description
+
+cd "$oldpwd"
+
+scp -r "$tmpdir/gitdir" "$dest"

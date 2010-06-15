@@ -1,0 +1,5 @@
+# fix until #480889 is fixed
+
+# remove the compiled file before it gets sourced
+rm -f $ZDOTDIR/zshrc/30_aliases.zwc
+. $ZDOTDIR/zshrc/30_aliases

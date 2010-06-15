@@ -1,0 +1,8 @@
+# This file should contain all your protected nicks
+# with the corresponding ircnet tag and password.
+#
+# Nick and IrcNet Tag are case insensitive
+#
+# Nick          IrcNet Tag      Password
+# --------      ----------      --------
+examplenick	opn		foobarbaz

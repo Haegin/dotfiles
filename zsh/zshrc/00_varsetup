@@ -1,0 +1,31 @@
+# zshrc/00_varsetup
+#
+# set up global variables used by the shell
+#
+# Copyright © 1994–2008 martin f. krafft <madduck@madduck.net>
+# Released under the terms of the Artistic Licence 2.0
+#
+# Source repository: git://git.madduck.net/etc/zsh.git
+#
+
+# automatically remove duplicates from these arrays
+typeset -gU path cdpath fpath manpath fignore
+
+# http://xanana.ucsc.edu/~wgscott/wordpress_new/wordpress/?p=12
+typeset -ga preexec_functions
+typeset -ga precmd_functions
+typeset -ga chpwd_functions
+
+__chpwd_run_first()
+{
+  [[ -n $__CHPWD_RUN_FIRST ]] || return
+  eval "$__CHPWD_RUN_FIRST"
+}
+chpwd_functions+=__chpwd_run_first
+
+# warn on accidental creation of global variables
+# unset for now until we work out the corner cases, like warning about $reply
+# and $HISTFILE or $REPORTTIME.
+#setopt warn_create_global
+
+# vim:ft=zsh
