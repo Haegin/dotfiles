@@ -143,6 +143,8 @@ aliases = {
   str = "msg -cable TVGuide ENTER #sharetheremote Haegin thisismyirckey";
   ratio = "msg -cable TVGuide !user Haegin";
   afk = "/away AFK";
+  depart = "/me departs twixt the ether and the entropy;/away Departed";
+  return = "/away;/me returns from beyond the cascade";
 };
 settings = {
   core = {
@@ -230,20 +232,6 @@ statusbar = {
       items = {
         barstart = { priority = "100"; };
         awl_0 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_1 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_1 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_2 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_2 = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };

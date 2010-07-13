@@ -61,11 +61,15 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 if has('gui_running')
-	colorscheme inkpot
+	colorscheme molokai
 	set guifont=Terminus\ 8
 else
-	colorscheme inkpot
+	colorscheme molokai
 endif
+
+" Use the original molokai background color (dark brownish grey instead of
+" almost black)
+let g:molokai_original = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype settings
