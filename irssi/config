@@ -30,7 +30,7 @@ servers = (
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
-    autoconnect = "yes";
+    autoconnect = "no";
   },
   {
     address = "irc.sharetheremote.org";
@@ -38,21 +38,20 @@ servers = (
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
-    autoconnect = "yes";
-  },
-  {
-    address = "irc.what-network.net";
-    chatnet = "What.CD";
-    port = "6667";
-    use_ssl = "no";
-    ssl_verify = "no";
-    autoconnect = "yes";
+    autoconnect = "no";
   },
   {
     address = "10.0.0.1";
     chatnet = "TIRCd";
     port = "6667";
     password = "s0meth1ng";
+    use_ssl = "no";
+    ssl_verify = "no";
+  },
+  {
+    address = "irc.what.cd";
+    chatnet = "What.CD";
+    port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
   }
@@ -131,8 +130,7 @@ aliases = {
   citation = "/say http://wiki.xkcd.com/geohashing/Citation_Needed";
   tumbleweed = "/say *the tumbleweed rolls past*";
   music = "/me is listening to music";
-  foimb = "/say http://www.foimb.com";
-  SSM = "/say SSM = Shadowsoul's Mum";
+  gaimb = "/say http://www.gaimb.com";
   x = "/kick x5315 ";
   listening = "/me is listening to music";
   kcs = "msg ChanServ op #cs-york; wait 3000; kick $0 $1-";
@@ -193,7 +191,6 @@ settings = {
 logs = { };
 hilights = (
   { text = "Haegin.*"; nick = "yes"; word = "yes"; regexp = "yes"; },
-  { text = "hacksoc"; nick = "yes"; word = "yes"; },
   { text = "#cs-york anyone"; nick = "yes"; word = "yes"; },
   { text = "[Hh]eygin"; nick = "yes"; word = "yes"; regexp = "yes"; }
 );
@@ -235,6 +232,20 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_2 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_2 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 
 };
@@ -247,7 +258,6 @@ ignores = (
   { level = "JOINS PARTS QUITS"; channels = ( "#ubuntu" ); },
   { level = "JOINS PARTS QUITS"; channels = ( "#pulseaudio" ); },
   { level = "JOINS PARTS QUITS"; channels = ( "#php" ); },
-  { mask = "cyth"; level = "ALL"; },
   { level = "JOINS PARTS QUITS"; channels = ( "#git" ); },
   { level = "JOINS PARTS QUITS"; channels = ( "#java" ); },
   { level = "SNOTES"; channels = ( "TIRCd" ); }
@@ -265,19 +275,8 @@ keyboard = (
   { key = "meta-r"; id = "change_window"; data = "19"; }
 );
 windows = {
-  1 = { sticky = "yes"; parent = "3"; };
-  2 = { name = "hilight"; sticky = "yes"; };
-  3 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "&bitlbee";
-        tag = "bitlbee";
-      }
-    );
-  };
-  4 = {
+  1 = { name = "hilight"; sticky = "yes"; };
+  2 = {
     items = (
       {
         type = "CHANNEL";
@@ -287,7 +286,7 @@ windows = {
       }
     );
   };
-  5 = {
+  3 = {
     items = (
       {
         type = "CHANNEL";
@@ -297,8 +296,18 @@ windows = {
       }
     );
   };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "&bitlbee";
+        tag = "bitlbee";
+      }
+    );
+  };
 };
 mainwindows = {
-  3 = { first_line = "7"; lines = "33"; };
-  2 = { first_line = "0"; lines = "7"; };
+  1 = { first_line = "0"; lines = "5"; };
+  2 = { first_line = "6"; lines = "33"; };
 };

@@ -1,9 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/harry/websites/haeg.in/_site/meta/hello-world'
-let g:netrw_dirhist_2='/home/harry/bin'
-let g:netrw_dirhist_3='/etc/mrtg'
-let g:netrw_dirhist_4='/home/harry/.vim'
-let g:netrw_dirhist_5='/var/www/umoyo/assets'
-let g:netrw_dirhist_6='/home/harry/websites/haeg.in/_layouts'
-let g:netrw_dirhist_7='/home/harry/build/yuicompressor-2.4.2/build'
+let g:netrw_dirhist_cnt =0
