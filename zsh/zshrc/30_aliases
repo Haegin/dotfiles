@@ -74,10 +74,6 @@ alias zgmv='zmv -p git-mv'
 alias cal='cal -3'
 alias ftp=ncftp
 
-# HJM: removed because I don't have bts - probably a debian thing?
-#alias mbug='bts show --mbox'
-#alias bug='BROWSER=www-browser bts show'
-
 # handy documentation lookup on Debian
 # from http://www.michael-prokop.at/computer/config/.zshrc
 doc() { cd /usr/share/doc/$1 }
@@ -162,23 +158,11 @@ unset _LANGUAGES
 
 alias dpkg-buildpackage="dpkg-buildpackage -k$DEBKEYID -rfakeroot"
 
-bugsub() { echo X-debbugs-autosubscribe: madduck | sendmail -f $DEBEMAIL ${1:?No bug number}-subscribe@bugs.debian.org }
-bugunsub() { sendmail -f $DEBEMAIL ${1:?No bug number}-unsubscribe@bugs.debian.org </dev/null }
-ptssub() { echo subscribe ${1:?E: no package name given.} | sendmail -f ${2:-$DEBEMAIL} pts@qa.debian.org }
-ptsunsub() { echo unsubscribe ${1:?E: no package name given.} | sendmail -f ${2:-$DEBEMAIL} pts@qa.debian.org }
-qasub() { echo subscribe ${1:?E: no package name given.} ${2:-unspecifed} | sendmail -f $DEBEMAIL ddpo@qa.debian.org }
-qaunsub() { echo unsubscribe ${1:?E: no package name given.} ${2:-unspecifed} | sendmail -f $DEBEMAIL ddpo@qa.debian.org }
-
 uc() { unicode --max=0 --colour=off "$@" | sensible-pager }
 
 alias ipr='ip r'
 alias ipa='ip a'
 alias ipl='ip l'
-
-# Removed by HJM
-#alias btd='btdownloadheadless'
-
-alias mdtest='swaks -s localhost -t'
 
 if whence devtodo >/dev/null; then
   _devtodo_on_chpwd() {
@@ -203,5 +187,10 @@ alias irc='ssh hobb -t "screen -D -RR -S irc irssi"'
 
 # Wake on Lan
 alias waketolkien='wakeonlan 00:22:15:45:f9:8a'
+
+# Note taking
+# http://jasonwryan.com/post/1203000683/awk-notes
+n() { $EDITOR ~/notes/"$*".txt }
+nls () { tree -CR --noreport ~/.notes | awk '{ if ((NR > 1) gsub(/.txt/,"")); if (NF==1) print $1; else if (NF==2) print $2; else if (NF==3) printf " %s\n", $3 }' ;}
 
 # vim:ft=zsh
