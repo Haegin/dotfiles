@@ -303,3 +303,6 @@ endif
 
 " vim: ts=8
 
+" Load rainbow brackets plugin as it's cleared out by turning syntax
+" hilighting on
+runtime plugin/RainbowParenthsis.vim
