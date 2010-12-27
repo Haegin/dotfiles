@@ -59,17 +59,18 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colour scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark
 if has('gui_running')
 	colorscheme molokai
 	set guifont=Terminus\ 8
 else
-	colorscheme molokai
+	colorscheme peaksea
 endif
+set background=dark
 
 " Use the original molokai background color (dark brownish grey instead of
 " almost black)
 let g:molokai_original = 1
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype settings
@@ -316,3 +317,4 @@ iab xlongdate <c-r>=strftime('%A, %e %B %Y')<cr>
 iab xname Harry Mills
 iab xcorp University of York
 iab xdept Department of Computer Science
+

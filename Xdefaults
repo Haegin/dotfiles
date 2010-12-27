@@ -39,7 +39,7 @@ urxvt*transparent:			false
 ! Urxvt URL launcher
 URxvt*perl-ext-common:	default,matcher
 !URxvt*urlLauncher:		uzbl-launch.sh
-URxvt*urlLauncher:		firefox
+URxvt*urlLauncher:		x-www-browser
 URxvt*colorURL:			#e9b96e
 URxvt*matcher.button:	1
 
