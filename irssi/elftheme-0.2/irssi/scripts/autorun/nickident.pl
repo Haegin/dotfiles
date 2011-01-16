@@ -1,1 +1,0 @@
-../nickident.pl
