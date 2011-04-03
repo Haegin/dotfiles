@@ -9,51 +9,78 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible               " do not use compatibility mode (must be 1st)
-set backspace=indent,eol,start " configure backspace behaviour
-set cmdheight=1                " Commandbar height is 1
-set expandtab		           " Expand tabs to spaces
-set foldlevel=9999             " Expand folds by default
-set history=500                " How many lines of history to remember
-set hlsearch                   " Highlight search
-set ignorecase                 " Ignore case when searching
-set incsearch                  " Incremental search
-set linebreak                  " Break at word boundaries
-set magic                      " Allow magic characters in searches or replaces
-set mat=2                      " Matching parens should blink for 2/10 sec
-set mouse=a                    " Always use mouse
-set noerrorbells               " Quiet on errors
-set number                     " Do number lines
-set novisualbell               " No visual flash
-set ruler                      " Show ruler
-set shiftwidth=4	             " Tabstop = 2 chars (autoindenting)
-set shortmess+=I               " No welcome message
-set showcmd                    " Show partial command in statusbar
-set showmatch                  " Show matching brackets
-set t_vb=                      " No visual flash (termcap)
-set tabstop=4		               " Tabstop = 2 chars
-set softtabstop=4				" Width of spaces that vim uses as a tab
-set smarttab					" Uses shiftwidth to determine amount to tab by at start of line
-set autoindent					" Automatic indenting
-set smartindent					" Indents more after certain lines (see :help smartindent)
-set textwidth=0		             " Text width = 0 == no autowrapping of text
-set wildmenu                   " Wildcard menu
-set winminheight=0             " No minimum window height
-set guioptions=aegic          " enable autoselect, tabs, grey menu items,
-"   icon, menubar, and console dialogs
+set nocompatible                " do not use compatibility mode (must be 1st)
+set backspace=indent,eol,start  " configure backspace behaviour
+set cmdheight=1                 " Commandbar height is 1
+set foldlevel=9999              " Expand folds by default
+set history=500                 " How many lines of history to remember
+set ignorecase                  " Ignore case when searching
+set smartcase                   " If you include a capital in a search it becomes case sensitive
+set incsearch                   " Incremental search
+set showmatch                   " Show matching brackets
+set hlsearch                    " Highlight search
+set linebreak                   " Break at word boundaries
+set magic                       " Allow magic characters in searches or replaces
+set mat=2                       " Matching parens should blink for 2/10 sec
+set mouse=a                     " Always use mouse
+set noerrorbells                " Quiet on errors
+set number                      " Do number lines
+set novisualbell                " No visual flash
+set ruler                       " Show ruler
+set shortmess+=I                " No welcome message
+set showcmd                     " Show partial command in statusbar
+set t_vb=                       " No visual flash (termcap)
+set tabstop=4                   " Tabstop = 4 chars
+set shiftwidth=4                " Tabstop = 4 chars (autoindenting)
+set softtabstop=4               " Width of spaces that vim uses as a tab
+set smarttab                    " Uses shiftwidth to determine amount to tab by at start of line
+set autoindent                  " Automatic indenting
+set smartindent                 " Indents more after certain lines (see :help smartindent)
+set expandtab                   " Expand tabs to spaces
+set textwidth=0                 " Text width = 0 == no autowrapping of text
+set wildmenu                    " Wildcard menu
+set winminheight=0              " No minimum window height
+set guioptions=aegic            " enable autoselect, tabs, grey menu items,
+set list
+set listchars=tab:▸\ ,eol:↵
+"set relativenumber             " number lines relative to the current line
+"position - needs vim 7.3
+"set undofile                   " creates an undo file so you can undo over
+"changes
+
+" Use , instead of \ as the leader key
+let mapleader = ","
+
+" Use PCREs instead of the vim default
+nnoremap / /\v
+vnoremap / /\v
+
+" Make j and k go up and down by screen line, not file line!
+nnoremap j gj
+nnoremap k gk
+nnoremap ; :
+
+"" Leader customisation
+
+" clear all trailing whitespace
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" open a new vsplit and switch to it
+nnoremap <leader>w <C-w>v<C-w>l
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OS-Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('win32') || has('win64')
-	" Windows-specific options
-	set guifont=Courier\ New:h10 " set a respectable looking font
-	set shellslash               " required for latex-suite
+    " Windows-specific options
+    set guifont=Courier\ New:h10 " set a respectable looking font
+    set shellslash               " required for latex-suite
 else " Assume Linux-specific options
-	" grep sometimes doesn't display file names when searching a single file,
-	" which confuses latex-suite, so let's fix that:
-	set grepprg=grep\ -nH\ $*
-	set shell=zsh
+    " grep sometimes doesn't display file names when searching a single file,
+    " which confuses latex-suite, so let's fix that:
+    set grepprg=grep\ -nH\ $*
+    set shell=zsh
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -61,20 +88,16 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 if has('gui_running')
-	colorscheme molokai
-	set guifont=Terminus\ 8
+    colorscheme inkpot
+    set guifont=Terminus\ 10
 else
-	colorscheme molokai
+    colorscheme inkpot
 endif
-
-" Use the original molokai background color (dark brownish grey instead of
-" almost black)
-let g:molokai_original = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype indent plugin on	" Indent files please, with omnicompletion
+filetype indent plugin on   " Indent files please, with omnicompletion
 syntax on
 " file formats
 map <silent> <leader>fd :set fileformat=dos<cr>:w<cr>
@@ -195,9 +218,9 @@ let NERDTreeShowBookmarks = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
-		\	if &omnifunc == "" |
-		\		setlocal omnifunc=syntaxcomplete#Complete |
-		\	endif
+        \   if &omnifunc == "" |
+        \       setlocal omnifunc=syntaxcomplete#Complete |
+        \   endif
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -230,6 +253,11 @@ noremap <silent> Q mzgqap`z
 noremap Y y$
 " remove search highlight
 map <silent> <leader>hh :let @/=''<cr>
+
+" Use tab to move between matching brackets
+nnoremap <tab> %
+vnoremap <tab> %
+
 
 "*****************************************************************************
 " Automatic Java Commands - TODO: move to ftplugin
@@ -314,5 +342,6 @@ iab xtime <c-r>=strftime("%H:%M:%S")<cr>
 iab xdatetime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 iab xlongdate <c-r>=strftime('%A, %e %B %Y')<cr>
 iab xname Harry Mills
+iab xemail harry@haeg.in
 iab xcorp University of York
 iab xdept Department of Computer Science
