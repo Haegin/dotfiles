@@ -20,20 +20,18 @@ elif [ -f $USERMODMAP ]; then
     xmodmap $USERMODMAP
 fi
 
-# Set some nice colors
-FG_COLOR='#00ff00'
-BG_COLOR='#000000'
-FONT='-*-terminus-*-*-*-*-*-80-*-*-*-*-iso8859-1'
-export FG_COLOR BG_COLOR FONT
-
 # Run some nice programs at startup.
-[ -f ~/.fehbg ] && source ~/.fehbg
+#[ -f ~/.fehbg ] && source ~/.fehbg
+setxkbmap gb dvorak                 # Because qwerty is evil and wrong
 #xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' &
-urxvtd -q -o -f
-urxvtc &
-firefox &
-setxkbmap gb dvorak
-xmodmap ~/.Xmodmap
+xmodmap ~/.Xmodmap                  # Because we have config files now
+xsetroot -cursor_name left_ptr      # Because cursors don't have to be X shaped
+numlockx on                         # Because numbers are more useful than arrow keys.
+xwpset ~/Pictures/Archie\ at\ Langside.jpg ~/Pictures/Backgrounds/getWorking.jpg        # Because a background is nice even if you never look at it
+urxvtd -q -o -f                     # Because making terminals more efficient is going to save a lot of wasted memory and we don't have enough of it...
+#boblight-X11 -t 0.1                # Because pretty lights are fracking awesome
+#urxvtc -title "IRC" -e ssh hobb -t "screen -D -RR -S irc -U irssi" &                           # Because I'll use it almost every time I boot the PC
+x-www-browser &                     # Because without the Internet, what is there?
 
 # Run xbindkeys for specific window manager
 # [ -f $XBINDKEYSRCWM ] &&  xbindkeys -f $XBINDKEYSRCWM &

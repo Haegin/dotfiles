@@ -70,7 +70,7 @@ URxvt*matcher.button:	1
 !*color7:  #babdb6
 !*color15: #eeeeec
 
-#include "/home/harry/.dotfiles/Xdefaults.c.vimbrant"
+#include "/home/harry/.Xdefaults.c.vimbrant"
 
 ! Other colours
 !*background:		#2e3436

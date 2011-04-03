@@ -68,6 +68,8 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " open a new vsplit and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 
+" retab
+nnoremap <leader>r :retab<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OS-Specific Settings
