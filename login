@@ -1,2 +1,3 @@
-svn update -q &
+cd .dotfiles && git pull
+cd ~
 . ./.env

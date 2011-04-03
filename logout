@@ -1,1 +1,1 @@
-svn commit -m "`uname -a`"
+git push origin master

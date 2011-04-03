@@ -88,13 +88,13 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colour scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark
 if has('gui_running')
     colorscheme inkpot
     set guifont=Terminus\ 10
 else
     colorscheme inkpot
 endif
+set background=dark
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype settings
@@ -347,3 +347,4 @@ iab xname Harry Mills
 iab xemail harry@haeg.in
 iab xcorp University of York
 iab xdept Department of Computer Science
+
