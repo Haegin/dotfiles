@@ -4,11 +4,11 @@ Xft.antialias:		true
 Xft.hinting:		true
 
 ! X Cursor themes (don't seem to work yet)
-Xcursor.theme:		Vanilla-DMZ
+Xcursor.theme:		DMZ-White
 
 ! Urxvt
-urxvt*font:					xft:terminus:pixelsize=8
-urxvt*boldFont				xft:terminus:bold:pixelsize=8
+urxvt*font:					xft:terminus:pixelsize=14:antialias=false
+urxvt*boldFont				xft:terminus:bold:pixelsize=14:antialias=false
 urxvt*borderLess:			false
 urxvt*externalBorder:		0
 urxvt*internalBorder:		2
@@ -23,58 +23,63 @@ urxvt*depth:				32
 urxvt*dynamicColors:		true
 !urxvt*background:		    #241601
 !urxvt*foreground:		    #eeeeec
-urxvt*cursorColor:		    #888a85
-urxvt*cursorColor2:			#555753
+!urxvt*cursorColor:		    #888a85
+!urxvt*cursorColor2:			#555753
 urxvt*cursorBlink:			false
 urxvt*inheritPixmap:		false
-urxvt*termName:				rxvt-unicode
+!urxvt*termName:				rxvt-unicode
 urxvt*saveLines:			1000
 urxvt*cutchars:				`'",;@&*=|?()<>[]{}
 
 ! Urxvt transparency stuff
 urxvt*blurRadius:			3
 urxvt*tintColor:			#8f5902
-urxvt*transparent:			false
+urxvt*transparent:			true
 
 ! Urxvt URL launcher
+!URxvt*perl-ext-common:	default,tabbed,matcher
 URxvt*perl-ext-common:	default,matcher
 !URxvt*urlLauncher:		uzbl-launch.sh
-URxvt*urlLauncher:		firefox
+URxvt*urlLauncher:		x-www-browser
 URxvt*colorURL:			#e9b96e
 URxvt*matcher.button:	1
 
-! Black
-*color0:  #2e2436
-*color8:  #888a85
-! Red
-*color1:  #a40000
-*color9:  #ef2929
-! Green
-*color2:  #4e9a06
-*color10: #8ae234
-! Yellow
-*color3:  #c4a000
-*color11: #fce94f
-! Blue
-*color4:  #204a87
-*color12: #729fcf
-! Purple
-*color5:  #5c3566
-*color13: #ad7fa8
-! Cyan
-*color6:  #038e82
-*color14: #05d2c1
-! White
-*color7:  #babdb6
-*color15: #eeeeec
+! Tango Colour Scheme
+!! Black
+!*color0:  #2e2436
+!*color8:  #888a85
+!! Red
+!*color1:  #a40000
+!*color9:  #ef2929
+!! Green
+!*color2:  #4e9a06
+!*color10: #8ae234
+!! Yellow
+!*color3:  #c4a000
+!*color11: #fce94f
+!! Blue
+!*color4:  #204a87
+!*color12: #729fcf
+!! Purple
+!*color5:  #5c3566
+!*color13: #ad7fa8
+!! Cyan
+!*color6:  #038e82
+!*color14: #05d2c1
+!! White
+!*color7:  #babdb6
+!*color15: #eeeeec
+
+#include "/home/harry/.dotfiles/Xdefaults.c.vimbrant"
 
 ! Other colours
-*background:		#2e3436
-*foreground:		#eeeeec
+!*background:		#2e3436
+!*background:		#000000
+!*foreground:		#eeeeec
 
 ! Xterm
 XTerm*toolBar:			false
-XTerm*faceName:			terminus:pixelsize=8
+XTerm*faceName:			terminus:pixelsize=12
 XTerm*dynamiccolors:	true
 XTerm*scrollTtyOutput:	false
 XTerm*scrollKey:		true
