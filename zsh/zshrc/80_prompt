@@ -7,81 +7,43 @@
 #
 # Source repository: git://git.madduck.net/etc/zsh.git
 
-# Stuff for the git information in the prompt line
-export __GIT_PROMPT_DIR=~/.zsh/git-prompt
-
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
-
-# Functions for the git stuff
-function preexec_update_git_vars() {
-    case "$2" in
-        git*)
-        __EXECUTED_GIT_COMMAND=1
-        ;;
-    esac
-}
-
-function precmd_update_git_vars() {
-    if [ -n "$__EXECUTED_GIT_COMMAND" ]; then
-        update_current_git_vars
-        unset __EXECUTED_GIT_COMMAND
-    fi
-}
-
-function chpwd_update_git_vars() {
-    update_current_git_vars
-}
-
-function update_current_git_vars() {
-    unset __CURRENT_GIT_STATUS
-
-    local gitstatus="$__GIT_PROMPT_DIR/gitstatus.py"
-    _GIT_STATUS=`python ${gitstatus}`
-    __CURRENT_GIT_STATUS=("${(f)_GIT_STATUS}")
-}
-
-function prompt_git_info() {
-    if [ -n "$__CURRENT_GIT_STATUS" ]; then
-        echo "(%{${fg[red]}%}$__CURRENT_GIT_STATUS[1]%{${fg[default]}%}$__CURRENT_GIT_STATUS[2]%{${fg[magenta]}%}$__CURRENT_GIT_STATUS[3]%{${fg[default]}%})"
-    fi
-}
 
 # HJM: replaced with new version of my prompt
 
 function precmd {
-	if [ $USER = 'harry' ]; then
-		hostprompt="%{$fg[blue]%}%m"
-	else
-		hostprompt="%{$fg[cyan]%}%m"
-	fi
+    if [ $USER = 'harry' ]; then
+        hostprompt="%{$fg[blue]%}%m"
+    else
+        hostprompt="%{$fg[cyan]%}%m"
+    fi
 
-	maxlength=$(( ${COLUMNS} / 6 ))
-	path_prompt=$(print -P %~) # get the current working dir from %~
-	if (( ${#path_prompt} > ${maxlength} )); then
-		p_tchars='../'
-		p_done=${path_prompt}
-		for (( i=1 ; ; ++i )); do
-			p_temp=$(print -P %${i}~)
-			if (( ( ${#p_temp} + ${#p_tchars} ) < ${maxlength} )); then
-				p_done=${p_temp}
-			else
-				break
-			fi
-		done
-		path_prompt=${p_tchars}${p_done}
-	fi
+    maxlength=$(( ${COLUMNS} / 6 ))
+    path_prompt=$(print -P %~) # get the current working dir from %~
+    if (( ${#path_prompt} > ${maxlength} )); then
+        p_tchars='../'
+        p_done=${path_prompt}
+        for (( i=1 ; ; ++i )); do
+            p_temp=$(print -P %${i}~)
+            if (( ( ${#p_temp} + ${#p_tchars} ) < ${maxlength} )); then
+                p_done=${p_temp}
+            else
+                break
+            fi
+        done
+        path_prompt=${p_tchars}${p_done}
+    fi
 
     # See if we can use colors.
     autoload colors zsh/terminfo
     if [[ "$terminfo[colors]" -ge 8 ]]; then
-	colors
+    colors
     fi
 
-	export PROMPT="%{%(!.$fg[red].$fg[green])%}%n%{$fg[default]%}@${hostprompt}%{$fg[default]%}:%{$fg[yellow]%}${path_prompt}${vcs_info_msg_0_}%{$fg[red]%}%(?..[%?])%{$fg[default]%}%# "
-	export RPROMPT="[%{$fg[cyan]%}%t%{$fg[white]%}]"
+    export PROMPT="%{%(!.$fg[red].$fg[green])%}%n%{$fg[default]%}@${hostprompt}%{$fg[default]%}:%{$fg[yellow]%}${path_prompt}${vcs_info_msg_0_}%{$fg[red]%}%(?..[%?])%{$fg[default]%}%# "
+    export RPROMPT="[%{$fg[cyan]%}%t%{$fg[white]%}]"
 }
-
 
 precmd
 
