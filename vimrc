@@ -29,7 +29,7 @@ set novisualbell                " No visual flash
 set ruler                       " Show ruler
 set shortmess+=I                " No welcome message
 set showcmd                     " Show partial command in statusbar
-set t_vb=                       " No visual flash (termcap)
+set vb t_vb=                       " No visual flash (termcap)
 set tabstop=4                   " Tabstop = 4 chars
 set shiftwidth=4                " Tabstop = 4 chars (autoindenting)
 set softtabstop=4               " Width of spaces that vim uses as a tab
