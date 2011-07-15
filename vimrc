@@ -89,10 +89,10 @@ endif
 " Colour scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('gui_running')
-    colorscheme inkpot
+    colorscheme cthulhian
     set guifont=Terminus\ 10
 else
-    colorscheme inkpot
+    colorscheme desert
 endif
 set background=dark
 
