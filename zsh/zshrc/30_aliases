@@ -55,9 +55,10 @@ alias aoeu='setxkbmap gb'
 alias asdf='setxkbmap gb dvorak && xmodmap ~/.Xmodmap'
 
 alias lscontext=ls
-cd () { __CHPWD_RUN_FIRST=lscontext && builtin cd "$@" && unset __CHPWD_RUN_FIRST }
-#_cd_l() { ll }
-#chpwd_functions+=_cd_l
+#cd () { __CHPWD_RUN_FIRST=lscontext && builtin cd "$@" && unset __CHPWD_RUN_FIRST }
+_cd_l() { lscontext }
+chpwd_functions+=_cd_l
+#echo $chpwd_functions
 
 # #183394
 alias w='w|cat'

@@ -14,14 +14,14 @@ typeset -gU path cdpath fpath manpath fignore
 # http://xanana.ucsc.edu/~wgscott/wordpress_new/wordpress/?p=12
 typeset -ga preexec_functions
 typeset -ga precmd_functions
-typeset -ga chpwd_functions
+typeset -gaU chpwd_functions
 
 __chpwd_run_first()
 {
   [[ -n $__CHPWD_RUN_FIRST ]] || return
   eval "$__CHPWD_RUN_FIRST"
 }
-chpwd_functions+=__chpwd_run_first
+#chpwd_functions+=__chpwd_run_first
 
 # warn on accidental creation of global variables
 # unset for now until we work out the corner cases, like warning about $reply
