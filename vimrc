@@ -348,3 +348,8 @@ iab xemail harry@haeg.in
 iab xcorp University of York
 iab xdept Department of Computer Science
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pathogen
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
