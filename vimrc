@@ -7,6 +7,12 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pathogen - this must be run before colorschemes and other plugins are loaded
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible                " do not use compatibility mode (must be 1st)
@@ -43,10 +49,35 @@ set winminheight=0              " No minimum window height
 set guioptions=aegic            " enable autoselect, tabs, grey menu items,
 set list
 set listchars=tab:▸\ ,eol:↵
-"set relativenumber             " number lines relative to the current line
+"set relativenumber              " number lines relative to the current line (NOTE: slows down scrolling)
+set formatoptions+=l            " wrap lines without breaking words part way through
+set lbr                         " needed for wrapping (NOTE: this doesn't work with list)
 "position - needs vim 7.3
 "set undofile                   " creates an undo file so you can undo over
 "changes
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Status line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2        " Turn the status line on
+
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)%P
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Leader stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use , instead of \ as the leader key
 let mapleader = ","
@@ -89,12 +120,16 @@ endif
 " Colour scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('gui_running')
-    colorscheme cthulhian
-    set guifont=Terminus\ 10
+    colorscheme solarized
+    set background=light
+    set guifont=Monaco
 else
-    colorscheme desert
+    colorscheme solarized
+    set background=dark
 endif
-set background=dark
+
+" This allows you to toggle the background between light and dark
+call togglebg#map("<F5>")
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype settings
@@ -187,6 +222,7 @@ augroup deltrailws
   autocmd BufWrite *.{cc,hh}        :call DeleteTrailingWS()
   autocmd BufWrite *.[ch]{xx,pp,++} :call DeleteTrailingWS()
   autocmd BufWrite *.{pl,php,java}  :call DeleteTrailingWS()
+  autocmd BufWrite *.py             :call DeleteTrailingWS()
   autocmd BufWrite *.txt            :call DeleteTrailingWS()
   autocmd BufWrite *.{cls,sty,tex}  :call DeleteTrailingWS()
 augroup end
@@ -348,8 +384,3 @@ iab xemail harry@haeg.in
 iab xcorp University of York
 iab xdept Department of Computer Science
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pathogen
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
