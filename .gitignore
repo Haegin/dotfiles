@@ -1,5 +1,10 @@
-*.sw[op]
+.*.sw[op]
 irssi/away.log
 *.zwc
 xmonad/history
+xmonad/*.h[is]
+xmonad/*.o
+xmonad/*.errors
+xmonad/xmonad-x86_64-linux
 vim/.netrwhist
+
