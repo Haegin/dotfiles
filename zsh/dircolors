@@ -49,6 +49,8 @@ TERM rxvt
 TERM rxvt-cygwin
 TERM rxvt-cygwin-native
 TERM rxvt-unicode
+TERM rxvt-256color
+TERM rxvt-unicode-256color
 TERM screen
 TERM screen-256color
 TERM screen-bce
@@ -143,30 +145,31 @@ EXEC 01;32
 .svg 01;35
 .mng 01;35
 .pcx 01;35
-.mov 01;35
-.mpg 01;35
-.mpeg 01;35
-.m2v 01;35
-.mkv 01;35
-.ogm 01;35
-.mp4 01;35
-.m4v 01;35
-.mp4v 01;35
-.vob 01;35
-.qt 01;35
-.nuv 01;35
-.wmv 01;35
-.asf 01;35
-.rm 01;35
-.rmvb 01;35
-.flc 01;35
-.avi 01;35
-.fli 01;35
-.gl 01;35
-.dl 01;35
-.xcf 01;35
-.xwd 01;35
-.yuv 01;35
+# Video formats
+.mov 01;34
+.mpg 01;34
+.mpeg 01;34
+.m2v 01;34
+.mkv 01;34
+.ogm 01;34
+.mp4 01;34
+.m4v 01;34
+.mp4v 01;34
+.vob 01;34
+.qt 01;34
+.nuv 01;34
+.wmv 01;34
+.asf 01;34
+.rm 01;34
+.rmvb 01;34
+.flc 01;34
+.avi 01;34
+.fli 01;34
+.gl 01;34
+.dl 01;34
+.xcf 01;34
+.xwd 01;34
+.yuv 01;34
 # audio formats
 .aac 00;36
 .au 00;36
@@ -181,96 +184,97 @@ EXEC 01;32
 .wav 00;36
 ### END dircolors --print-database output ####################################
 
-# now override stuff for those who don't take as much LSD:
-
-# Attribute codes:
-# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
-# Text color codes:
-# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
-# Background color codes:
-# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
-DIR 01;30
-LINK target
-EXEC 00;34
-
-# archives or compressed
-.tar 00;31
-.tgz 00;31
-.svgz 00;31
-.arj 00;31
-.taz 00;31
-.lzh 00;31
-.lzma 00;31
-.zip 00;31
-.z 00;31
-.Z 00;31
-.dz 00;31
-.gz 00;31
-.bz2 00;31
-.bz 00;31
-.tbz2 00;31
-.tz 00;31
-.deb 00;31
-.rpm 00;31
-.jar 00;31
-.rar 00;31
-.ace 00;31
-.zoo 00;31
-.cpio 00;31
-.7z 00;31
-.rz 00;31
-# image formats
-.jpg 00
-.jpeg 00
-.gif 00
-.bmp 00
-.pbm 00
-.pgm 00
-.ppm 00
-.tga 00
-.xbm 00
-.xpm 00
-.tif 00
-.tiff 00
-.png 00
-.svg 00
-.mng 00
-.pcx 00
-.mov 00
-.mpg 00
-.mpeg 00
-.m2v 00
-.mkv 00
-.ogm 00
-.mp4 00
-.m4v 00
-.mp4v 00
-.vob 00
-.qt 00
-.nuv 00
-.wmv 00
-.asf 00
-.rm 00
-.rmvb 00
-.flc 00
-.avi 00
-.fli 00
-.gl 00
-.dl 00
-.xcf 00
-.xwd 00
-.yuv 00
-# audio formats
-.aac 00
-.au 00
-.flac 00
-.mid 00
-.midi 00
-.mka 00
-.mp3 00
-.mpc 00
-.ogg 00
-.ra 00
-.wav 00
-
-# vim:ft=dircolors
+## now override stuff for those who don't take as much LSD:
+#
+## Attribute codes:
+## 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+## Text color codes:
+## 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+## Background color codes:
+## 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+#DIR 01;31
+#LINK target
+#EXEC 00;34
+#
+## archives or compressed
+#.tar 00;36
+#.tgz 00;36
+#.svgz 00;36
+#.arj 00;36
+#.taz 00;36
+#.lzh 00;36
+#.lzma 00;36
+#.zip 00;36
+#.z 00;36
+#.Z 00;36
+#.dz 00;36
+#.gz 00;36
+#.bz2 00;36
+#.bz 00;36
+#.tbz2 00;36
+#.tz 00;36
+#.deb 00;36
+#.rpm 00;36
+#.jar 00;36
+#.rar 00;36
+#.ace 00;36
+#.zoo 00;36
+#.cpio 00;36
+#.7z 00;36
+#.rz 00;36
+## image formats
+#.jpg 00
+#.jpeg 00
+#.gif 00
+#.bmp 00
+#.pbm 00
+#.pgm 00
+#.ppm 00
+#.tga 00
+#.xbm 00
+#.xpm 00
+#.tif 00
+#.tiff 00
+#.png 00
+#.svg 00
+#.mng 00
+#.pcx 00
+## Video formats
+#.mov 00
+#.mpg 00
+#.mpeg 00
+#.m2v 00
+#.mkv 00
+#.ogm 00
+#.mp4 00
+#.m4v 00
+#.mp4v 00
+#.vob 00
+#.qt 00
+#.nuv 00
+#.wmv 00
+#.asf 00
+#.rm 00
+#.rmvb 00
+#.flc 00
+#.avi 00
+#.fli 00
+#.gl 00
+#.dl 00
+#.xcf 00
+#.xwd 00
+#.yuv 00
+## audio formats
+#.aac 00
+#.au 00
+#.flac 00
+#.mid 00
+#.midi 00
+#.mka 00
+#.mp3 00
+#.mpc 00
+#.ogg 00
+#.ra 00
+#.wav 00
+#
+## vim:ft=dircolors
