@@ -12,7 +12,7 @@ setopt PROMPT_SUBST
 
 # HJM: replaced with new version of my prompt
 
-function precmd {
+function prompt {
     if [ $USER = 'harry' ]; then
         hostprompt="%{$fg[blue]%}%m"
     else
@@ -45,6 +45,6 @@ function precmd {
     export RPROMPT="[%{$fg[cyan]%}%t%{$fg[white]%}]"
 }
 
-precmd
+precmd_functions+=prompt
 
 # vim:ft=zsh

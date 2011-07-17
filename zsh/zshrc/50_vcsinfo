@@ -30,3 +30,4 @@ zstyle ':vcs_info:*' disable cdv cvs darcs mtn svk p4 tla
 
 #this enables vcs_info
 precmd_functions+=vcs_info
+#chpwd_functions+=vcs_info

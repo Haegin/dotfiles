@@ -34,7 +34,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 
 main = xmonad $ myBaseConfig
-	{ terminal		= "urxvtc"
+	{ terminal		= "urxvt256ccd"
 	, workspaces	= ["1:main", "2:web", "3:im"] ++ map show [4..9]
 	, modMask		= mod4Mask
 	, logHook		= ewmhDesktopsLogHook
