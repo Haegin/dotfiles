@@ -4,8 +4,9 @@ import XMonad.Actions.WindowGo
 
 --import XMonad.Config.Gnome
 
-import XMonad.Hooks.EwmhDesktops
+--import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog
 
 import XMonad.Layout
 import XMonad.Layout.Grid
@@ -33,36 +34,36 @@ import System.IO
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 
-main = xmonad $ myBaseConfig
-	{ terminal		= "urxvt256ccd"
-	, workspaces	= ["1:main", "2:web", "3:im"] ++ map show [4..9]
-	, modMask		= mod4Mask
-	, logHook		= ewmhDesktopsLogHook
-	, layoutHook	= ewmhDesktopsLayout $ avoidStruts myLayoutHook
-	, keys			= myKeys
-	, manageHook	= manageDocks <+> myManageHook
-	}
+main = xmonad =<< xmobar myBaseConfig
+    { terminal      = "urxvt256ccd"
+    , workspaces    = ["1:main", "2:web", "3:im"] ++ map show [4..9]
+    , modMask       = mod4Mask
+    , logHook       = dynamicLog
+    , layoutHook    = myLayoutHook
+    , keys          = myKeys
+    , manageHook    = manageDocks <+> myManageHook
+    }
 
 -- the config we are extending
 --myBaseConfig = gnomeConfig
 myBaseConfig = defaultConfig
 
 -- layouts
-myLayoutHook =	smartBorders $ onWorkspace "2:web" simpleTabbed $ onWorkspace "3:im" (gridIM (1%7) empathyRoster) $
-				layoutHints ( tiled ) ||| layoutHints ( Mirror tiled ) ||| layoutHints ( Grid ) ||| Full
-					where
-						tiled = Tall nmaster delta ratio
-						-- default number of windows in master pane
-						nmaster = 1
-						-- default proportion of screen for master pane
-						ratio	= toRational (2/(1+sqrt(5)::Double)) -- golden ratio
-						-- percentage of screen to increment by when resizing
-						delta	= 2/100
-						-- IM buddy list windows
-						rosters         = [skypeRoster, pidginRoster]
-						pidginRoster	= And (ClassName "Pidgin") (Role "buddy_list")
-						empathyRoster	= (Role "contact_list")
-						skypeRoster     = (ClassName "Skype") `And` (Not (Title "Options")) `And` (Not (Role "Chats")) `And` (Not (Role "CallWindowForm"))
+myLayoutHook =  smartBorders $ onWorkspace "2:web" simpleTabbed $ onWorkspace "3:im" (gridIM (1%7) empathyRoster) $
+                layoutHints ( tiled ) ||| layoutHints ( Mirror tiled ) ||| layoutHints ( Grid ) ||| Full
+                    where
+                        tiled = Tall nmaster delta ratio
+                        -- default number of windows in master pane
+                        nmaster = 1
+                        -- default proportion of screen for master pane
+                        ratio   = toRational (2/(1+sqrt(5)::Double)) -- golden ratio
+                        -- percentage of screen to increment by when resizing
+                        delta   = 2/100
+                        -- IM buddy list windows
+                        rosters         = [skypeRoster, pidginRoster]
+                        pidginRoster    = And (ClassName "Pidgin") (Role "buddy_list")
+                        empathyRoster   = (Role "contact_list")
+                        skypeRoster     = (ClassName "Skype") `And` (Not (Title "Options")) `And` (Not (Role "Chats")) `And` (Not (Role "CallWindowForm"))
 
 -- Window rules:
 -- xprop | grep WM_CLASS
@@ -70,16 +71,16 @@ myLayoutHook =	smartBorders $ onWorkspace "2:web" simpleTabbed $ onWorkspace "3:
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
-	, className =? "Do"				--> doFloat
-	, className =? "Pidgin"			--> moveToIM
-	, className =? "Skype"			--> moveToIM
-	, className =? "Uzbl"			--> moveToWeb
-	, className =? "Wine"			--> doFloat
-	, title		=? "Neverwiner Nights Client" --> doFloat
+    , className =? "Do"             --> doFloat
+    , className =? "Pidgin"         --> moveToIM
+    , className =? "Skype"          --> moveToIM
+    , className =? "Uzbl"           --> moveToWeb
+    , className =? "Wine"           --> doFloat
+    , title     =? "Neverwiner Nights Client" --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ] where
-		moveToIM	= doF $ W.shift "3:im"
-		moveToWeb = doF $ W.shift "2:web"
+        moveToIM    = doF $ W.shift "3:im"
+        moveToWeb = doF $ W.shift "2:web"
 
 
 -- keybindings
@@ -89,11 +90,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch the shell prompt
     , ((modm,               xK_l     ), shellPrompt defaultXPConfig)
     -- launch dmenu
-    , ((modm .|. shiftMask, xK_l     ), spawn "gnome-do")
-	-- open a website
-	, ((modm,				xK_slash ), spawn "uzbl --uri `sh $XDG_DATA_HOME/uzbl/scripts/list-history.sh | dmenu -nb '#006363' -nf '#00CC00' -sb '#A60000' -sf '#FF7400' -p ':>'`")
-	-- scratchpad terminal
-	, ((modm,				xK_u	 ), raiseMaybe (runInTerm "-title scratchpad" "screen") (title =? "scratchpad"))
+    , ((modm .|. shiftMask, xK_l     ), spawn "dmenu_run")
     -- close focused window
     , ((modm .|. shiftMask, xK_j     ), kill)
      -- Rotate through the available layout algorithms

@@ -88,7 +88,7 @@ STICKY_OTHER_WRITABLE 30;42 # dir that is sticky and other-writable (+t,o+w)
 OTHER_WRITABLE 34;42 # dir that is other-writable (o+w) and not sticky
 STICKY 37;44 # dir with the sticky bit set (+t) and not other-writable
 # This is for files with execute permission:
-EXEC 01;32
+EXEC 00;32
 # List any file extensions like '.gz' or '.tar' that you would like ls
 # to colorize below. Put the extension, a space, and the color init string.
 # (and any comments you want to add after a '#')
@@ -129,47 +129,47 @@ EXEC 01;32
 .7z 01;31
 .rz 01;31
 # image formats
-.jpg 01;35
-.jpeg 01;35
-.gif 01;35
-.bmp 01;35
-.pbm 01;35
-.pgm 01;35
-.ppm 01;35
-.tga 01;35
-.xbm 01;35
-.xpm 01;35
-.tif 01;35
-.tiff 01;35
-.png 01;35
-.svg 01;35
-.mng 01;35
-.pcx 01;35
+.jpg 00;35
+.jpeg 00;35
+.gif 00;35
+.bmp 00;35
+.pbm 00;35
+.pgm 00;35
+.ppm 00;35
+.tga 00;35
+.xbm 00;35
+.xpm 00;35
+.tif 00;35
+.tiff 00;35
+.png 00;35
+.svg 00;35
+.mng 00;35
+.pcx 00;35
 # Video formats
-.mov 01;34
-.mpg 01;34
-.mpeg 01;34
-.m2v 01;34
-.mkv 01;34
-.ogm 01;34
-.mp4 01;34
-.m4v 01;34
-.mp4v 01;34
-.vob 01;34
-.qt 01;34
-.nuv 01;34
-.wmv 01;34
-.asf 01;34
-.rm 01;34
-.rmvb 01;34
-.flc 01;34
-.avi 01;34
-.fli 01;34
-.gl 01;34
-.dl 01;34
-.xcf 01;34
-.xwd 01;34
-.yuv 01;34
+.mov 00;34
+.mpg 00;34
+.mpeg 00;34
+.m2v 00;34
+.mkv 00;34
+.ogm 00;34
+.mp4 00;34
+.m4v 00;34
+.mp4v 00;34
+.vob 00;34
+.qt 00;34
+.nuv 00;34
+.wmv 00;34
+.asf 00;34
+.rm 00;34
+.rmvb 00;34
+.flc 00;34
+.avi 00;34
+.fli 00;34
+.gl 00;34
+.dl 00;34
+.xcf 00;34
+.xwd 00;34
+.yuv 00;34
 # audio formats
 .aac 00;36
 .au 00;36
