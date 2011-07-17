@@ -11,7 +11,6 @@
 setopt PROMPT_SUBST
 
 # HJM: replaced with new version of my prompt
-
 function precmd {
     if [ $USER = 'harry' ]; then
         hostprompt="%{$fg[blue]%}%m"
@@ -46,5 +45,9 @@ function precmd {
 }
 
 precmd
+
+
+# The continuation prompt, now with pretty colours
+PROMPT2="$fg[grey]>$fg[cyan]>$fg[blue]>$fg[default] "
 
 # vim:ft=zsh
