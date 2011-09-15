@@ -19,3 +19,6 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/bundle/mysticpaste"]
+	path = vim/bundle/mysticpaste
+	url = https://github.com/kinabalu/mysticpaste.git
