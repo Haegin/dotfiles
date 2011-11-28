@@ -37,12 +37,15 @@ URxvt*cutchars:				`'",;@&*=|?()<>[]{}
 ! URxvt*blurRadius:			3
 ! URxvt*tintColor:			#8f5902
 ! URxvt*transparent:		true
+URxvt.colorIT:              #87af5f
+URxvt.colorBD:              #d7d7d7
+URxvt.colorUL:              #87afd7
 
 ! URxvt URL launcher
 !URxvt*perl-ext-common:	default,tabbed,matcher
 URxvt*perl-ext-common:	default,matcher
 !URxvt*urlLauncher:		uzbl-launch.sh
-URxvt*urlLauncher:		firefox
+URxvt*urlLauncher:		google-chrome
 URxvt*colorURL:			#e9b96e
 URxvt*matcher.button:	1
 

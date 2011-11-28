@@ -39,6 +39,7 @@ setopt checkjobs
 setopt bsd_echo
 
 # use full globbing powers
+setopt nullglob
 setopt extended_glob
 
 # don't bitch about bad patterns, just use them verbatim
