@@ -19,7 +19,7 @@ function prompt {
         hostprompt="%{$fg[cyan]%}%m"
     fi
 
-    maxlength=$(( ${COLUMNS} / 6 ))
+    maxlength=$(( ${COLUMNS} / 8 ))
     path_prompt=$(print -P %~) # get the current working dir from %~
     if (( ${#path_prompt} > ${maxlength} )); then
         p_tchars='../'
@@ -38,11 +38,24 @@ function prompt {
     # See if we can use colors.
     autoload colors zsh/terminfo
     if [[ "$terminfo[colors]" -ge 8 ]]; then
-    colors
+        colors
     fi
 
-    export PROMPT="%{%(!.$fg[red].$fg[green])%}%n%{$fg[default]%}@${hostprompt}%{$fg[default]%}:%{$fg[yellow]%}${path_prompt}${vcs_info_msg_0_}%{$fg[red]%}%(?..[%?])%{$fg[default]%}%# "
-    export RPROMPT="[%{$fg[cyan]%}%t%{$fg[white]%}]"
+    # Add in something for virtualenv directories
+    virtual_env_prompt=""
+    if [[ -z "$VIRTUAL_ENV_DISABLE_PROMPT" && -n $VIRTUAL_ENV ]] ; then
+        if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
+            # special case for Aspen magic directories
+            # see http://www.zetadev.com/software/aspen/
+            #PS1="[`basename \`dirname \"$VIRTUAL_ENV\"\``] $PS1"
+            virtual_env_prompt="[`basename \`dirname \"$VIRTUAL_ENV\"\``]"
+        else
+            virtual_env_prompt="(`basename \"$VIRTUAL_ENV\"`)"
+        fi
+    fi
+
+    export PROMPT="%{%(!.$fg[red].$fg[green])%}%n%{$fg[default]%}@${hostprompt}%{$fg[default]%}:%{$fg[yellow]%}${path_prompt}${vcs_info_msg_0_}%{$fg[green]%}${virtual_env_prompt}%{$fg[red]%}%(?..[%?])%{$fg[default]%}%# "
+    export RPROMPT="[%{$fg[cyan]%}%t%{$fg[default]%}]"
 }
 
 precmd_functions+=prompt

@@ -1,5 +1,12 @@
 WM=${1:-awesome}
 
+# Test for an existing dbus daemon just to be safe
+if test -s "$DBUS_SESSION_BUS_ADDRESS"; then
+	# if not found, launch a new one
+	eval `dbus-launch --sh-syntax --exit-with-session`
+	echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
+fi
+
 # System and user resources and Xmodmap files
 USERRESOURCES=$HOME/.Xresources
 USERMODMAP=$HOME/.Xmodmap
@@ -26,17 +33,23 @@ if [ -x /usr/bin/VBoxClient-all ]; then
 fi
 
 # Run some nice programs at startup.
-xscreensaver
+
+[[ -x /usr/bin/dropboxd ]] && dropboxd &
+syndaemon -t -k -i 2 -d &            # Because we like to stop our touchpads when we type
+lxpanel &                            # To get a system tray
+dbus-launch nm-applet --sm-disable & # so we can have wifi
+xscreensaver &
 [ -f ~/.fehbg ] && source ~/.fehbg
-setxkbmap gb dvorak                 # Because qwerty is evil and wrong
+setxkbmap gb dvorak                  # Because qwerty is evil and wrong
 #xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape' &
-xmodmap ~/.Xmodmap                  # Because we have config files now
+xmodmap ~/.Xmodmap                   # Because we have config files now
 #xsetroot -cursor_name left_ptr      # Because cursors don't have to be X shaped
-numlockx on                         # Because numbers are more useful than arrow keys.
+#numlockx on                          # Because numbers are more useful than arrow keys.
 #xwpset ~/Pictures/Archie\ at\ Langside.jpg ~/Pictures/Backgrounds/getWorking.jpg        # Because a background is nice even if you never look at it
-urxvt256cd -q -o -f                     # Because making terminals more efficient is going to save a lot of wasted memory and we don't have enough of it...
-#boblight-X11 -t 0.1                # Because pretty lights are fracking awesome
+#urxvt256cd -q -o -f                     # Because making terminals more efficient is going to save a lot of wasted memory and we don't have enough of it...
+#boblight-X11 -t 0.1                 # Because pretty lights are fracking awesome
 #urxvtc -title "IRC" -e ssh hobb -t "screen -D -RR -S irc -U irssi" &                           # Because I'll use it almost every time I boot the PC
-#firefox &                     # Because without the Internet, what is there?
+#firefox &                           # Because without the Internet, what is there?
+#
 
 exec ${WM}
