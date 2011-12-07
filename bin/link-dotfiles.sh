@@ -19,4 +19,7 @@ echo "Setting up the git submodules - until this is complete vim stuff probably 
 git submodule init
 git submodule update
 
+mkdir -p .var/zsh/
+touch .var/zsh/history-$(hostname)
+
 echo "\nFinished!"
