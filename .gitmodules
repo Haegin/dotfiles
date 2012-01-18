@@ -19,3 +19,6 @@
 [submodule "vim/bundle/mysticpaste"]
 	path = vim/bundle/mysticpaste
 	url = https://github.com/kinabalu/mysticpaste.git
+[submodule "vim/bundle/tComment"]
+	path = vim/bundle/tComment
+	url = https://github.com/vim-scripts/tComment.git
