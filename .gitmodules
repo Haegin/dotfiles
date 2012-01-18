@@ -7,9 +7,6 @@
 [submodule "vim/bundle/markdown"]
 	path = vim/bundle/markdown
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "vim/bundle/tComment"]
-	path = vim/bundle/tComment
-	url = https://github.com/tsaleh/vim-tcomment.git
 [submodule "vim/bundle/vividchalk"]
 	path = vim/bundle/vividchalk
 	url = https://github.com/tpope/vim-vividchalk.git
