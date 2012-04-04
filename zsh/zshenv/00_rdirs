@@ -12,7 +12,7 @@ export VARDIR_REL=.var
 export VARDIR=$HOME/$VARDIR_REL
 export ZVARDIR=$VARDIR/zsh
 
-export BINDIR_REL=.bin
+export BINDIR_REL=bin
 export BINDIR=$HOME/$BINDIR_REL
 
 export TMPDIR_REL=.tmp

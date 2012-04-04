@@ -54,6 +54,18 @@ alias vil='vi *(.om[1]^D)'
 alias aoeu='setxkbmap gb'
 alias asdf='setxkbmap gb dvorak && xmodmap ~/.Xmodmap'
 
+# Better programs if they're installed
+if [[ -x $(which dfc) ]]; then
+    if [[ $(hostname) -eq 'odin' ]]; then
+        alias df='dfc -f | grep -v export'
+    else
+        alias df='dfc'
+    fi
+fi
+if [[ -x $(which htop) ]]; then
+    alias top='htop'
+fi
+
 alias lscontext=ls
 #cd () { __CHPWD_RUN_FIRST=lscontext && builtin cd "$@" && unset __CHPWD_RUN_FIRST }
 _cd_l() { lscontext }
@@ -189,6 +201,9 @@ alias scr='screen -Udr'
 
 # Wake on Lan
 alias waketolkien='wakeonlan 00:22:15:45:f9:8a'
+
+# Download with wget
+alias dl='wget --content-disposition'
 
 # Note taking
 # http://jasonwryan.com/post/1203000683/awk-notes

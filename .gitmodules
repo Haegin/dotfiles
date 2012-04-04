@@ -22,3 +22,6 @@
 [submodule "vim/bundle/mysticpaste"]
 	path = vim/bundle/mysticpaste
 	url = https://github.com/kinabalu/mysticpaste.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
