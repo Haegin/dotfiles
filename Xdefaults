@@ -7,8 +7,8 @@ Xft.hinting:		true
 Xcursor.theme:		DMZ-White
 
 ! URxvt
-URxvt*font:					xft:terminus:pixelsize=14:antialias=false
-URxvt*boldFont				xft:terminus:bold:pixelsize=14:antialias=false
+URxvt*font:					xft:terminus:pixelsize=14:antialias=false, xft:DejaVu Sans Mono:style=Book:pixelsize=14
+urxvt*boldfont				xft:terminus:bold:pixelsize=14:antialias=false, xft:DejaVu Sans Mono:style=Book:pixelsize=14
 !URxvt*font:					xft:Monaco:pixelsize=14:antialias=true
 !URxvt*boldFont				xft:Monaco:bold:pixelsize=14:antialias=true
 URxvt*borderLess:			false
