@@ -9,8 +9,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pathogen - this must be run before colorschemes and other plugins are loaded
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
+call pathogen#infect()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
@@ -36,26 +37,56 @@ set ruler                       " Show ruler
 set shortmess+=I                " No welcome message
 set showcmd                     " Show partial command in statusbar
 set vb t_vb=                       " No visual flash (termcap)
-set tabstop=4                   " Tabstop = 4 chars
-set shiftwidth=4                " Tabstop = 4 chars (autoindenting)
-set softtabstop=4               " Width of spaces that vim uses as a tab
+set tabstop=2                   " Tabstop = 4 chars
+set shiftwidth=2                " Tabstop = 4 chars (autoindenting)
+set softtabstop=2               " Width of spaces that vim uses as a tab
 set smarttab                    " Uses shiftwidth to determine amount to tab by at start of line
+set expandtab                   " Expand tabs to spaces
 set autoindent                  " Automatic indenting
 set smartindent                 " Indents more after certain lines (see :help smartindent)
-set expandtab                   " Expand tabs to spaces
 set textwidth=0                 " Text width = 0 == no autowrapping of text
 set wildmenu                    " Wildcard menu
 set winminheight=0              " No minimum window height
 set guioptions=aegic            " enable autoselect, tabs, grey menu items,
 set list
 set listchars=tab:▸\ ,eol:↵
-"set relativenumber              " number lines relative to the current line (NOTE: slows down scrolling)
-set formatoptions+=l            " wrap lines without breaking words part way through
+set relativenumber              " number lines relative to the current line (NOTE: slows down scrolling)
 set lbr                         " needed for wrapping (NOTE: this doesn't work with list)
 "position - needs vim 7.3
-"set undofile                   " creates an undo file so you can undo over
-"changes
 
+" From http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+set encoding=utf-8
+set scrolloff=3
+set showmode
+set hidden
+set wildmenu
+set wildmode=list:longest
+set ttyfast
+set undofile                   " creates an undo file so you can undo over changes
+
+set wrap
+set textwidth=79
+set colorcolumn=85
+set formatoptions=qrn1l        " see fo-table in help for details
+
+" Forcing me to be a better vimmer
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Save everything when focus is lost
+au FocusLost * :wa
+
+" Move around split windows with Ctrl+[hjkl]
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -96,11 +127,23 @@ nnoremap ; :
 " clear all trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
+" fold tags with ,ft in html
+nnoremap <leader>ft Vatzf
+
+" sort CSS properties
+nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
+" reselect pasted text
+nnoremap <leader>v V`]
+
 " open a new vsplit and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 
 " retab
 nnoremap <leader>r :retab<CR>
+
+" clear highlight with <leader><space>
+nnoremap <leader><space> :noh<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OS-Specific Settings
