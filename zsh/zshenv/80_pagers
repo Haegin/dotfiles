@@ -13,6 +13,6 @@ LESS='--no-init --hilite-search --SILENT'
 export LESS
 
 export LESSHISTFILE=~/.var/less/history
-[[ -d ${LESSHISTFILE%/*} ]] || mkdir --parent ${LESSHISTFILE%/*}
+[[ -d ${LESSHISTFILE%/*} ]] || mkdir -p ${LESSHISTFILE%/*}
 
 # vim:ft=zsh

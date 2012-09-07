@@ -139,6 +139,9 @@ nnoremap <leader>v V`]
 " open a new vsplit and switch to it
 nnoremap <leader>w <C-w>v<C-w>l
 
+" open a hsplit in 30% of the window
+nnoremap <leader>s <C-w>v<C-w>l
+
 " retab
 nnoremap <leader>r :retab<CR>
 

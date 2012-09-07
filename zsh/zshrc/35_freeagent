@@ -1,0 +1,4 @@
+if [[ $(uname) -eq "Darwin" ]]; then
+  # Mac specific stuff goes here
+  export DEV_DASHBOARD_BASE_URL="https://staging.dev.freeagent.com:8443"
+fi;

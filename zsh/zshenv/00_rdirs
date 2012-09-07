@@ -17,6 +17,6 @@ export BINDIR=$HOME/$BINDIR_REL
 
 export TMPDIR_REL=.tmp
 export TMPDIR=$HOME/$TMPDIR_REL
-mkdir --parent "$TMPDIR"
+mkdir -p "$TMPDIR"
 
 # vim:ft=zsh

@@ -28,7 +28,10 @@ alias locate='noglob locate'
 local _USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080404 Iceweasel/2.0.0.14 (Debian-2.0.0.14-2)"
 alias swget="noglob wget --user-agent='$USER_AGENT'"
 
-typeset -a _ls_opts; _ls_opts=(-bC --color=auto)
+typeset -a _ls_opts
+# If we're using bsd style coreutils --color isn't supported and -C is slightly
+# different
+[[ $_coreutils_type = 'BSD' ]] && __ls_opts=(-bG) || ls_opts=(-bC --color=auto)
 command ls --group-directories-first >/dev/null 2>&1 \
   && _ls_opts+=--group-directories-first
 # I prefer POSIX collation for ls
@@ -209,5 +212,8 @@ alias dl='wget --content-disposition'
 # http://jasonwryan.com/post/1203000683/awk-notes
 n() { $EDITOR ~/notes/"$*".txt }
 nls () { tree -CR --noreport ~/.notes | awk '{ if ((NR > 1) gsub(/.txt/,"")); if (NF==1) print $1; else if (NF==2) print $2; else if (NF==3) printf " %s\n", $3 }' ;}
+
+# Freeagent stuff
+alias mysqlram='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://1048576` && cp -R `brew --prefix`/var/mysql/* /Volumes/ramdisk/ && mysql.server start'
 
 # vim:ft=zsh

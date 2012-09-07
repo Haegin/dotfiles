@@ -8,7 +8,10 @@
 # Source repository: git://git.madduck.net/etc/zsh.git
 #
 
-eval $(dircolors $ZDOTDIR/dircolors) 2>/dev/null || :
+DIRCOLORS_BIN=$(which dircolors)
+[[ -x $(which gdircolors) ]] && DIRCOLORS_BIN=$(which gdircolors)
+
+eval $($DIRCOLORS_BIN $ZDOTDIR/dircolors) 2>/dev/null || :
 
 if [ -n "$LS_COLORS" ]; then
   # uniquify LS_COLORS due to #479544
