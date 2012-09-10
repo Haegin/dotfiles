@@ -31,3 +31,15 @@
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/commentary"]
+	path = vim/bundle/commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "vim/bundle/repeat"]
+	path = vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "vim/bundle/surround"]
+	path = vim/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/rails"]
+	path = vim/bundle/rails
+	url = https://github.com/tpope/vim-rails.git

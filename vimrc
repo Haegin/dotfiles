@@ -50,7 +50,7 @@ set winminheight=0              " No minimum window height
 set guioptions=aegic            " enable autoselect, tabs, grey menu items,
 set list
 set listchars=tab:▸\ ,eol:↵
-set relativenumber              " number lines relative to the current line (NOTE: slows down scrolling)
+"set relativenumber              " number lines relative to the current line (NOTE: slows down scrolling)
 set lbr                         " needed for wrapping (NOTE: this doesn't work with list)
 "position - needs vim 7.3
 
@@ -148,6 +148,22 @@ nnoremap <leader>r :retab<CR>
 " clear highlight with <leader><space>
 nnoremap <leader><space> :noh<cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<c-t>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" open in a new tab by default
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
+nnoremap <leader>p :CtrlP<CR>
+" This isn't trailing whitespace, it's there so I don't have to type space when
+" using the command!
+nnoremap <leader>a :Ack 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OS-Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
