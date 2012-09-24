@@ -99,6 +99,7 @@ set statusline+=%h      "help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
 set statusline+=%y      "filetype
+set statusline+=%{fugitive#statusline()} " git branch
 set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
@@ -125,7 +126,7 @@ nnoremap ; :
 "" Leader customisation
 
 " clear all trailing whitespace
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <leader>W :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " fold tags with ,ft in html
 nnoremap <leader>ft Vatzf
@@ -137,10 +138,9 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>v V`]
 
 " open a new vsplit and switch to it
-nnoremap <leader>w <C-w>v<C-w>l
-
-" open a hsplit in 30% of the window
 nnoremap <leader>s <C-w>v<C-w>l
+nnoremap <leader>% <C-w>v<C-w>l
+nnoremap <leader>" <C-w>s<C-w>j
 
 " retab
 nnoremap <leader>r :retab<CR>
@@ -148,22 +148,75 @@ nnoremap <leader>r :retab<CR>
 " clear highlight with <leader><space>
 nnoremap <leader><space> :noh<cr>
 
+" gundo, for when undo won't cut it
+nnoremap <leader>u :GundoToggle<CR>
+
+" Fugitive mappings
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
+" Trick to save files that need root after editing readonly
+cmap w!! w !sudo tee %
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = '<c-t>'
 let g:ctrlp_cmd = 'CtrlP'
-
-" open in a new tab by default
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+let g:ctrlp_max_files = 10000
+" " open in a new tab by default
+" let g:ctrlp_prompt_mappings = {
+"     \ 'AcceptSelection("e")': ['<c-t>'],
+"     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+"     \ }
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$\|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ }
+" Multiple VCS's, don't include untracked files
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ }
 
 nnoremap <leader>p :CtrlP<CR>
 " This isn't trailing whitespace, it's there so I don't have to type space when
 " using the command!
 nnoremap <leader>a :Ack 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Buffergator settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" don't make the window wider. it's my window. I choose the size of it!
+let g:buffergator_autoexpand_on_split = 0
+" the buffer explorer appears on the right
+let g:buffergator_viewport_split_policy = "r"
+
+nnoremap <leader>b :BuffergatorToggle<CR>
+nnoremap <leader>t :BuffergatorTabsToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CamelCase and snake_case words
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " Use one of the following to define the camel characters.
+" " Stop on capital letters.
+" let g:camelchar = "A-Z"
+" " Also stop on numbers.
+" let g:camelchar += "0-9"
+" " Include '.' for class member, ',' for separator, ';' end-statement,
+" " and <[< bracket starts and "'` quotes.
+" " Also include _ for snake case
+" let g:camelchar += ".,;:{([`'\"_"
+" nnoremap <silent><C-h> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+" nnoremap <silent><C-l> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+" inoremap <silent><C-h> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+" inoremap <silent><C-l> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+" vnoremap <silent><C-h> :<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>v`>o
+" vnoremap <silent><C-l> <Esc>`>:<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>v`<o
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OS-Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -203,8 +256,25 @@ map <silent> <leader>fd :set fileformat=dos<cr>:w<cr>
 map <silent> <leader>fm :set fileformat=mac<cr>:w<cr>
 map <silent> <leader>fu :set fileformat=unix<cr>:w<cr>
 
-" Python settings
+" Space errors settings
+let python_space_errors = 1
 let python_highlight_space_errors = 1
+let c_no_tab_space_error = 1
+let c_space_errors = 1
+let c_no_trail_space_error = 1
+let ruby_space_errors = 1
+let ruby_no_trail_space_error = 1
+let ruby_no_tab_space_error = 1
+
+"" Ruby specific autocomplete stuff
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
+
+compiler ruby
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell checking
@@ -219,8 +289,12 @@ map <silent> <F10> :setlocal spell! spelllang=en_gb<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight space at end of line as error
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight WhitespaceEOL ctermbg=DarkRed guibg=Red
-match WhitespaceEOL /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Completion Stuff
@@ -302,7 +376,7 @@ augroup end
 " Keybindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 imap <C-space> <C-x><C-o>
-map tt :NERDTreeToggle<cr>
+map <leader>n :NERDTreeToggle<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -353,11 +427,6 @@ noremap <silent> Q mzgqap`z
 noremap Y y$
 " remove search highlight
 map <silent> <leader>hh :let @/=''<cr>
-
-" Use tab to move between matching brackets
-nnoremap <tab> %
-vnoremap <tab> %
-
 
 "*****************************************************************************
 " Automatic Java Commands - TODO: move to ftplugin
@@ -443,6 +512,6 @@ iab xdatetime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 iab xlongdate <c-r>=strftime('%A, %e %B %Y')<cr>
 iab xname Harry Mills
 iab xemail harry@haeg.in
-iab xcorp University of York
-iab xdept Department of Computer Science
+iab xcorp FreeAgent
+iab xdept Engineering
 

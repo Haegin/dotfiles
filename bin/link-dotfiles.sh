@@ -14,6 +14,9 @@ for item in *~bin; do
     fi
 done
 
+# Link the irssi solarized colour scheme
+ln -s ${DOTDIR}/irssi/irssi-colors-solarized/solarized-universal.theme ${HOME}/.irssi/.
+
 # Set up the submodules now we're done so vim plugins are all working
 echo "Setting up the git submodules - until this is complete vim stuff probably won't work as expected."
 git submodule init
