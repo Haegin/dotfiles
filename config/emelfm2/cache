@@ -1,4 +1,4 @@
-# emelFM2 (v 0.8.0)
+# emelFM2 (v 0.8.1)
 
 # This file stores runtime configuration data for emelFM2.
 # The file will be overwritten each time emelFM2 is shut down.
@@ -19,13 +19,13 @@ find-plugin-strings=<
 >
 window-width=679
 window-height=745
-file-pane-ratio-last=0.54881656804733725
-file-pane-ratio=0.54881656804733725
-output-pane-ratio-last=0.84913793103448276
-output-pane-ratio=0.84913793103448276
+file-pane-ratio-last=0.70562130177514792
+file-pane-ratio=0.70562130177514792
+output-pane-ratio-last=0.84813753581661888
+output-pane-ratio=0.84813753581661888
 output-pane-tabs=1
 columns-order=0,1,2,3,4,5,6,7,0,1,2,3,4,5,6,7
-columns-width=120,80,80,60,60,120,120,120,120,80,80,60,60,120,120,120
+columns-width=341,80,80,60,60,120,120,120,120,80,80,60,60,120,120,120
 pane1-sort-column=0
 pane2-sort-column=0
 pane1-sort-direction=0
@@ -56,15 +56,21 @@ pane2-filter-sizes=0
 pane2-filter-sizebase=0
 pane2-filter-sizerel=2
 pane2-filter-dirs=0
-pane1=/
+pane1=/home/harry/Dropbox/Documents/CS/PROJ/literature/mutation testing/
 pane1-history=<
-/
+/home/harry/Dropbox/Documents/CS/PROJ/literature/mutation testing/
+/home/harry/Dropbox/Documents/CS/PROJ/literature/
+/home/harry/Dropbox/Documents/CS/PROJ/
+/home/harry/Dropbox/Documents/CS/
+/home/harry/Dropbox/Documents/
+/home/harry/Dropbox/
 >
-pane1-current=0
-pane2=/
+pane1-current=5
+pane2=/home/
 pane2-history=<
+/home/
 /
 >
-pane2-current=0
+pane2-current=1
 config-width=300
 config-height=400

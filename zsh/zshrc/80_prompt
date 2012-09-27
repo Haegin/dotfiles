@@ -10,6 +10,16 @@
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
 
+function rvm_ruby_prompt {
+    if (declare -f rvm > /dev/null) {
+        command -v rvm-prompt >/dev/null 2>&1
+        if [[ $? -eq 0 ]] then
+            #ruby -v | sed 's/\([^(]*\).*/\1/'
+            rvm-prompt
+        fi
+    }
+}
+
 # HJM: replaced with new version of my prompt
 
 function prompt {
@@ -53,9 +63,11 @@ function prompt {
             virtual_env_prompt="(`basename \"$VIRTUAL_ENV\"`)"
         fi
     fi
-
     export PROMPT="%{%(!.$fg[red].$fg[green])%}%n%{$fg[default]%}@${hostprompt}%{$fg[default]%}:%{$fg[yellow]%}${path_prompt}${vcs_info_msg_0_}%{$fg[green]%}${virtual_env_prompt}%{$fg[red]%}%(?..[%?])%{$fg[default]%}%# "
-    export RPROMPT="[%{$fg[cyan]%}%t%{$fg[default]%}]"
+    TIME="[%{$fg[cyan]%}%t%{$fg[default]%}]"
+    # Rubies are red, and my rprompt is too
+    RUBY_PROMPT='%{$fg[red]%}$(rvm_ruby_prompt)%{$reset_color%}%'
+    export RPROMPT=${RUBY_PROMPT:-TIME}
 }
 
 precmd_functions+=prompt
