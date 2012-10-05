@@ -37,9 +37,9 @@ set ruler                       " Show ruler
 set shortmess+=I                " No welcome message
 set showcmd                     " Show partial command in statusbar
 set vb t_vb=                       " No visual flash (termcap)
-set tabstop=2                   " Tabstop = 4 chars
-set shiftwidth=2                " Tabstop = 4 chars (autoindenting)
-set softtabstop=2               " Width of spaces that vim uses as a tab
+set tabstop=4                   " Tabstop = 4 chars
+set shiftwidth=4                " Tabstop = 4 chars (autoindenting)
+set softtabstop=4               " Width of spaces that vim uses as a tab
 set smarttab                    " Uses shiftwidth to determine amount to tab by at start of line
 set expandtab                   " Expand tabs to spaces
 set autoindent                  " Automatic indenting
@@ -243,12 +243,10 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('gui_running')
     colorscheme solarized
-    set background=light
-    set guifont=Monaco
 else
     colorscheme solarized
-    set background=dark
 endif
+set background=dark
 
 " This allows you to toggle the background between light and dark
 call togglebg#map("<F5>")
