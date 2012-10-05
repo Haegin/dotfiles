@@ -1,4 +1,5 @@
 .*.sw[op]
+.*.un~
 irssi/away.log
 *.zwc
 xmonad/history
