@@ -201,6 +201,7 @@ fi
 # IRC & screen
 alias irc='ssh home.haeg.in -t "screen -D -RR -S irc irssi"'
 alias scr='screen -Udr'
+alias \#="tmux -u2 attach -d"
 
 # Wake on Lan
 alias waketolkien='wakeonlan 00:22:15:45:f9:8a'
