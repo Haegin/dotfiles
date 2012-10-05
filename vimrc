@@ -66,7 +66,7 @@ set undofile                   " creates an undo file so you can undo over chang
 
 set wrap
 set textwidth=79
-set colorcolumn=85
+set colorcolumn=100
 set formatoptions=qrn1l        " see fo-table in help for details
 
 " Forcing me to be a better vimmer
@@ -156,6 +156,13 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gd :Gdiff<CR>
+
+" Vimux
+nnoremap <leader>x :call VimuxPromptCommand()<CR>
+
+" underline with = or -
+nnoremap <leader>= :normal yypVr=k<CR>
+nnoremap <leader>- :normal yypVr-k<CR>
 
 " Trick to save files that need root after editing readonly
 cmap w!! w !sudo tee %

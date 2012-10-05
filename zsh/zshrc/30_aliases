@@ -216,4 +216,15 @@ nls () { tree -CR --noreport ~/.notes | awk '{ if ((NR > 1) gsub(/.txt/,"")); if
 # Freeagent stuff
 alias mysqlram='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://1048576` && cp -R `brew --prefix`/var/mysql/* /Volumes/ramdisk/ && mysql.server start'
 
+# Git aliases (https://gist.github.com/590895 from
+# http://notes.envato.com/developers/rebasing-merge-commits-in-git/)
+function git_current_branch() {
+    git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'
+}
+
+alias gpthis='git push origin HEAD:$(git_current_branch)'
+alias grb='git rebase -p'
+#alias gup='git fetch origin && grb origin/$(git_current_branch)'
+alias gm='git merge --no-ff'
+
 # vim:ft=zsh
