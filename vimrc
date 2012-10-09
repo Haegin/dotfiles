@@ -243,6 +243,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('gui_running')
     colorscheme solarized
+    set guifont=Terminus\ 10
 else
     colorscheme solarized
 endif
@@ -271,15 +272,8 @@ let ruby_space_errors = 1
 let ruby_no_trail_space_error = 1
 let ruby_no_tab_space_error = 1
 
-"" Ruby specific autocomplete stuff
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
-
-compiler ruby
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell checking

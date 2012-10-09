@@ -11,10 +11,10 @@ Xft.hintstyle:  hintfull
 Xcursor.theme:    DMZ-White
 
 ! URxvt
-URxvt*font:               xft:Monaco:pixelsize=12:antialias=true, xft:terminus:pixelsize=12:antialias=false, xft:Meslo LG S:pixelsize=10:antialias=true, xft:DejaVu Sans Mono:style=Book:pixelsize=12
-urxvt*boldfont:           xft:Monaco:pixelsize=12:antialias=true, xxft:terminus:bold:pixelsize=12:antialias=false, ft:DejaVu Sans Mono:style=Book:pixelsize=12
-!URxvt*font:              xft:Monaco:pixelsize=14:antialias=true
-!URxvt*boldFont           xft:Monaco:bold:pixelsize=14:antialias=true
+URxvt*font:               xft:terminus:pixelsize=14:antialias=false, xft:Droid Sans Fallback:pixelsize=14:antialias=false, -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-iso10646-1, xft:DejaVu Sans Mono:style=Book:pixelsize=14
+urxvt*boldfont:           xft:terminus:bold:pixelsize=14:antialias=false, xft:Droid Sans Fallback:pixelsize=14:antialias=false, -misc-fixed-medium-r-normal-*-14-*-*-*-*-*-iso10646-1, xft:DejaVu Sans Mono:style=Book:pixelsize=14
+!URxvt*font:              xft:Meslo LG S:pixelsize=10:antialias=true, xft:Monaco:pixelsize=10:antialias=true
+!URxvt*boldFont           xft:Meslo LG S:pixelsize=10:antialias=true, xft:Monaco:bold:pixelsize=10:antialias=true
 URxvt*borderLess:         false
 URxvt*externalBorder:     0
 URxvt*internalBorder:     2
