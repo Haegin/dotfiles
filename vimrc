@@ -80,7 +80,8 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " Save everything when focus is lost
-au FocusLost * :wa
+" au FocusLost * :wa " this complains on files that are read only, untitled etc.
+au FocusLost * silent! wa " this doesn't complain but you risk forgetting
 
 " Move around split windows with Ctrl+[hjkl]
 nnoremap <C-h> <C-w>h
