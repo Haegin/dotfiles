@@ -73,3 +73,9 @@
 [submodule "vim/bundle/tcomment"]
 	path = vim/bundle/tcomment
 	url = https://github.com/tomtom/tcomment_vim.git
+[submodule "rbenv"]
+	path = rbenv
+	url = git://github.com/sstephenson/rbenv.git
+[submodule "subsubmodules/rbenv_plugins_bundler"]
+	path = subsubmodules/rbenv_plugins_bundler
+	url = git://github.com/carsomyr/rbenv-bundler.git
