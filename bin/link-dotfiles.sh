@@ -6,15 +6,6 @@ SUBSUBMODULEDIR="${DOTDIR}/subsubmodules"
 
 cd "$DOTDIR"
 
-# Only want to symlink the files, not the utility scripts
-echo "Linking files into ${HOME} from ${DOTDIR}:"
-for item in *~(bin|subsubmodules); do
-    echo "- .${item}"
-    if [ ! -e "${HOME}/.${item}" ]; then
-        ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
-    fi
-done
-
 # Link the irssi solarized colour scheme
 #ln -s ${DOTDIR}/irssi/irssi-colors-solarized/solarized-universal.theme ${HOME}/.irssi/.
 
@@ -32,6 +23,15 @@ for item in ${SUBSUBMODULEDIR}/*; do
     mkdir -p "${newdir}"
     echo "- .${shortpath}"
     ln -s "${SUBSUBMODULEDIR}/${item}" "${newpath}"
+done
+
+# Only want to symlink the files, not the utility scripts
+echo "Linking files into ${HOME} from ${DOTDIR}:"
+for item in *~(bin|subsubmodules); do
+    echo "- .${item}"
+    if [ ! -e "${HOME}/.${item}" ]; then
+        ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
+    fi
 done
 
 echo "\nMaking history"
