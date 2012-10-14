@@ -11,8 +11,8 @@ Xft.hintstyle:  hintfull
 Xcursor.theme:    DMZ-White
 
 ! URxvt
-URxvt*font:                 xft:terminus:pixelsize=12:antialias=false, xft:DejaVu Sans Mono:style=Book:pixelsize=12
-urxvt*boldfont              xft:terminus:bold:pixelsize=12:antialias=false, xft:DejaVu Sans Mono:style=Book:pixelsize=12
+URxvt*font:                 xft:terminus:antialias=false:pixelsize=12, xft:ttyp0:antialias=false:pixelsize=bold, xft:DejaVu Sans Mono:style=Book:pixelsize=12
+urxvt*boldfont:             xft:terminus:bold:pixelsize=12:antialias=false, xft:DejaVu Sans Mono:style=Book:pixelsize=12
 !URxvt*font:                    xft:Monaco:pixelsize=12:antialias=true
 !URxvt*boldFont             xft:Monaco:bold:pixelsize=12:antialias=true
 URxvt*borderLess:           false
