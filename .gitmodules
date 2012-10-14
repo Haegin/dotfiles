@@ -22,9 +22,6 @@
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/bundle/tComment"]
-	path = vim/bundle/tComment
-	url = https://github.com/vim-scripts/tComment.git
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
@@ -76,3 +73,12 @@
 [submodule "vim/bundle/flake8"]
 	path = vim/bundle/flake8
 	url = https://github.com/nvie/vim-flake8.git
+[submodule "vim/bundle/tcomment"]
+	path = vim/bundle/tcomment
+	url = https://github.com/tomtom/tcomment_vim.git
+[submodule "rbenv"]
+	path = rbenv
+	url = git://github.com/sstephenson/rbenv.git
+[submodule "subsubmodules/rbenv_plugins_bundler"]
+	path = subsubmodules/rbenv_plugins_bundler
+	url = git://github.com/carsomyr/rbenv-bundler.git
