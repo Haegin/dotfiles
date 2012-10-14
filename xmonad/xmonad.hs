@@ -38,7 +38,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 
 main = xmonad =<< xmobar myBaseConfig
-    { terminal      = "urxvt256ccd"
+    { terminal      = "urxvt"
     , workspaces    = ["1:main", "2:web", "3:dev", "4:im"] ++ map show [5..9]
     , modMask       = mod4Mask
     , logHook       = dynamicLog

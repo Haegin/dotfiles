@@ -9,8 +9,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pathogen - this must be run before colorschemes and other plugins are loaded
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
+call pathogen#infect()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
@@ -40,9 +41,9 @@ set tabstop=4                   " Tabstop = 4 chars
 set shiftwidth=4                " Tabstop = 4 chars (autoindenting)
 set softtabstop=4               " Width of spaces that vim uses as a tab
 set smarttab                    " Uses shiftwidth to determine amount to tab by at start of line
+set expandtab                   " Expand tabs to spaces
 set autoindent                  " Automatic indenting
 set smartindent                 " Indents more after certain lines (see :help smartindent)
-set expandtab                   " Expand tabs to spaces
 set textwidth=0                 " Text width = 0 == no autowrapping of text
 set wildmenu                    " Wildcard menu
 set winminheight=0              " No minimum window height
@@ -50,12 +51,42 @@ set guioptions=aegic            " enable autoselect, tabs, grey menu items,
 set list
 set listchars=tab:▸\ ,eol:↵
 "set relativenumber              " number lines relative to the current line (NOTE: slows down scrolling)
-set formatoptions+=l            " wrap lines without breaking words part way through
 set lbr                         " needed for wrapping (NOTE: this doesn't work with list)
 "position - needs vim 7.3
-"set undofile                   " creates an undo file so you can undo over
-"changes
 
+" From http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+set encoding=utf-8
+set scrolloff=3
+set showmode
+set hidden
+set wildmenu
+set wildmode=list:longest
+set ttyfast
+set undofile                   " creates an undo file so you can undo over changes
+
+set wrap
+set textwidth=79
+set colorcolumn=100
+set formatoptions=qrn1l        " see fo-table in help for details
+
+" Forcing me to be a better vimmer
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Save everything when focus is lost
+au FocusLost * :wa
+
+" Move around split windows with Ctrl+[hjkl]
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,12 +99,18 @@ set statusline+=%h      "help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
 set statusline+=%y      "filetype
+set statusline+=%{fugitive#statusline()} " git branch
 set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)%P
+
+" Powerline
+" if has('gui_running')
+"     let g:Powerline_symbols = 'fancy'
+" endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader stuff
@@ -94,13 +131,103 @@ nnoremap ; :
 "" Leader customisation
 
 " clear all trailing whitespace
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <leader>W :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" fold tags with ,ft in html
+nnoremap <leader>ft Vatzf
+
+" sort CSS properties
+nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
+" reselect pasted text
+nnoremap <leader>v V`]
 
 " open a new vsplit and switch to it
-nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>s <C-w>v<C-w>l
+nnoremap <leader>% <C-w>v<C-w>l
+nnoremap <leader>" <C-w>s<C-w>j
 
 " retab
 nnoremap <leader>r :retab<CR>
+
+" clear highlight with <leader><space>
+nnoremap <leader><space> :noh<cr>
+
+" gundo, for when undo won't cut it
+nnoremap <leader>u :GundoToggle<CR>
+
+" Fugitive mappings
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
+" Vimux
+nnoremap <leader>x :call VimuxPromptCommand()<CR>
+
+" underline with = or -
+nnoremap <leader>= :normal yypVr=k<CR>
+nnoremap <leader>- :normal yypVr-k<CR>
+
+" Trick to save files that need root after editing readonly
+cmap w!! w !sudo tee %
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<c-t>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_max_files = 10000
+" " open in a new tab by default
+" let g:ctrlp_prompt_mappings = {
+"     \ 'AcceptSelection("e")': ['<c-t>'],
+"     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+"     \ }
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$\|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ }
+" Multiple VCS's, don't include untracked files
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ }
+
+nnoremap <leader>p :CtrlP<CR>
+" This isn't trailing whitespace, it's there so I don't have to type space when
+" using the command!
+nnoremap <leader>a :Ack 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Buffergator settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" don't make the window wider. it's my window. I choose the size of it!
+let g:buffergator_autoexpand_on_split = 0
+" the buffer explorer appears on the right
+let g:buffergator_viewport_split_policy = "r"
+
+nnoremap <leader>b :BuffergatorToggle<CR>
+nnoremap <leader>t :BuffergatorTabsToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CamelCase and snake_case words
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " Use one of the following to define the camel characters.
+" " Stop on capital letters.
+" let g:camelchar = "A-Z"
+" " Also stop on numbers.
+" let g:camelchar += "0-9"
+" " Include '.' for class member, ',' for separator, ';' end-statement,
+" " and <[< bracket starts and "'` quotes.
+" " Also include _ for snake case
+" let g:camelchar += ".,;:{([`'\"_"
+" nnoremap <silent><C-h> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+" nnoremap <silent><C-l> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+" inoremap <silent><C-h> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+" inoremap <silent><C-l> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+" vnoremap <silent><C-h> :<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>v`>o
+" vnoremap <silent><C-l> <Esc>`>:<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>v`<o
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OS-Specific Settings
@@ -121,12 +248,11 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('gui_running')
     colorscheme solarized
-    set background=light
-    set guifont=Monaco
+    set guifont=Terminus\ 10
 else
     colorscheme solarized
-    set background=dark
 endif
+set background=dark
 
 " This allows you to toggle the background between light and dark
 call togglebg#map("<F5>")
@@ -141,8 +267,18 @@ map <silent> <leader>fd :set fileformat=dos<cr>:w<cr>
 map <silent> <leader>fm :set fileformat=mac<cr>:w<cr>
 map <silent> <leader>fu :set fileformat=unix<cr>:w<cr>
 
-" Python settings
+" Space errors settings
+let python_space_errors = 1
 let python_highlight_space_errors = 1
+let c_no_tab_space_error = 1
+let c_space_errors = 1
+let c_no_trail_space_error = 1
+let ruby_space_errors = 1
+let ruby_no_trail_space_error = 1
+let ruby_no_tab_space_error = 1
+
+"improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell checking
@@ -157,8 +293,12 @@ map <silent> <F10> :setlocal spell! spelllang=en_gb<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight space at end of line as error
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight WhitespaceEOL ctermbg=DarkRed guibg=Red
-match WhitespaceEOL /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Completion Stuff
@@ -240,7 +380,7 @@ augroup end
 " Keybindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 imap <C-space> <C-x><C-o>
-map tt :NERDTreeToggle<cr>
+map <leader>n :NERDTreeToggle<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -291,11 +431,6 @@ noremap <silent> Q mzgqap`z
 noremap Y y$
 " remove search highlight
 map <silent> <leader>hh :let @/=''<cr>
-
-" Use tab to move between matching brackets
-nnoremap <tab> %
-vnoremap <tab> %
-
 
 "*****************************************************************************
 " Automatic Java Commands - TODO: move to ftplugin
@@ -381,6 +516,6 @@ iab xdatetime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 iab xlongdate <c-r>=strftime('%A, %e %B %Y')<cr>
 iab xname Harry Mills
 iab xemail harry@haeg.in
-iab xcorp University of York
-iab xdept Department of Computer Science
+iab xcorp FreeAgent
+iab xdept Engineering
 

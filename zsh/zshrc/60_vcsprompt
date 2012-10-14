@@ -10,6 +10,9 @@
 # Shamelessly based on http://glandium.org/blog/?p=170
 #
 
+READLINK_BIN=$(which readlink)
+[[ -x $(which greadlink) ]] && READLINK_BIN=$(which greadlink)
+
 __git_get_reporoot()
 {
   # return the full path to the root of the current git repository
@@ -17,7 +20,7 @@ __git_get_reporoot()
   local relroot
   relroot="$(git rev-parse --show-cdup 2>/dev/null)" || return 1
   if [ -n "$relroot" ]; then
-    readlink -f "$relroot"
+    $READLINK_BIN -f "$relroot"
   else
     echo $PWD
   fi
@@ -88,7 +91,7 @@ __vcs_get_repo_type()
     [ -d "$GIT_DIR" ] && echo git && break
     [ -d ${dir}.bzr ] && echo bzr && break
     [ -d ${dir}.hg ] && echo hg && break
-    [ "$(readlink -f ${dir:-.})" = / ] && echo NONE && break
+    [ "$($READLINK_BIN -f ${dir:-.})" = / ] && echo NONE && break
     dir="../$dir"
   done
 }

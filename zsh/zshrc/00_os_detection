@@ -1,0 +1,5 @@
+if [[ $"OSTYPE" =~ ^darwin ]]; then
+  typeset -ur _coreutils_type='BSD'
+else
+  typeset -ur _coreutils_type='GNU'
+fi

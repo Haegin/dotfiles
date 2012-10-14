@@ -10,9 +10,16 @@
 
 eval `lesspipe 2>/dev/null`
 LESS='--no-init --hilite-search --SILENT'
-export LESS
 
 export LESSHISTFILE=~/.var/less/history
-[[ -d ${LESSHISTFILE%/*} ]] || mkdir --parent ${LESSHISTFILE%/*}
+[[ -d ${LESSHISTFILE%/*} ]] || mkdir -p ${LESSHISTFILE%/*}
+
+# Need colour on a Mac
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  LESS="${LESS} -R"
+  export PAGER="less ${LESS}"
+fi
+
+export LESS
 
 # vim:ft=zsh

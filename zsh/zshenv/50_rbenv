@@ -1,0 +1,2 @@
+__prepend_dir_to_path ${HOME}/.rbenv/bin
+eval "$(rbenv init -)"

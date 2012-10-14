@@ -12,8 +12,8 @@
 
 autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' stagedstr '%F{4}⚫'
-zstyle ':vcs_info:*' unstagedstr '%F{1}⚫'
+zstyle ':vcs_info:*' stagedstr '%F{4}●'
+zstyle ':vcs_info:*' unstagedstr '%F{1}●'
 zstyle ':vcs_info:*' check-for-changes true
 
 zstyle ':vcs_info:hg:*'     actionformats '%F{5}[%f☿%F{3}:%F{2}%b%F{3}|%F{1}%a%F{5}]%c%u%f'
