@@ -10,7 +10,7 @@
 
 if [ -n "$ZDOTDIR" ] && [ -d "$ZDOTDIR" ]; then
   rm -f $ZDOTDIR/**/*.zwc{,.old}(D.N)
-  for f in $ZDOTDIR/*(D.,@) $ZDOTDIR/**/*(.); do
+  for f in $ZDOTDIR/*(D.,@) $ZDOTDIR/**/*~$ZDOTDIR/plugins/**/*(.); do
     case "$f:t" in
       .gitignore|.*.sw?) continue;;
     esac
