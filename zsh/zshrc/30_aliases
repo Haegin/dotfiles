@@ -31,7 +31,7 @@ alias swget="noglob wget --user-agent='$USER_AGENT'"
 typeset -a _ls_opts
 # If we're using bsd style coreutils --color isn't supported and -C is slightly
 # different
-[[ $_coreutils_type = 'BSD' ]] && __ls_opts=(-bG) || ls_opts=(-bC --color=auto)
+[[ $_coreutils_type = 'BSD' ]] && _ls_opts=(-bG) || _ls_opts=(-bC --color=auto)
 command ls --group-directories-first >/dev/null 2>&1 \
   && _ls_opts+=--group-directories-first
 # I prefer POSIX collation for ls
