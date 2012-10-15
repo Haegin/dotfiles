@@ -1,0 +1,4 @@
+# 95_syntax_highlighting
+# Uses the zsh-syntax-highlighting plugin
+
+source $ZDOTDIR/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh
