@@ -20,16 +20,22 @@ function rvm_ruby_prompt {
     }
 }
 
-# HJM: replaced with new version of my prompt
-
 function prompt {
-    if [ $USER = 'harry' ]; then
-        hostprompt="%{$fg[blue]%}%m"
-    else
-        hostprompt="%{$fg[cyan]%}%m"
+    # See if we can use colors.
+    autoload colors
+    if [[ "$terminfo[colors]" -ge 8 ]]; then
+        colors
     fi
 
-    maxlength=$(( ${COLUMNS} / 8 ))
+    user_prompt="%{%(!.$fg[red].$fg[green])%}%n%{$fg[default]%}"
+
+    if [ $USER = 'harry' ]; then
+        host_prompt="%{$fg[blue]%}%m"
+    else
+        host_prompt="%{$fg[cyan]%}%m"
+    fi
+
+    maxlength=$(( ${COLUMNS} / 2 ))
     path_prompt=$(print -P %~) # get the current working dir from %~
     if (( ${#path_prompt} > ${maxlength} )); then
         p_tchars='../'
@@ -42,13 +48,22 @@ function prompt {
                 break
             fi
         done
-        path_prompt=${p_tchars}${p_done}
+        path_prompt="${p_tchars}${p_done}"
     fi
+    path_prompt="%{$fg[yellow]%}${path_prompt}%{$fg[default]%}"
 
-    # See if we can use colors.
-    autoload colors zsh/terminfo
-    if [[ "$terminfo[colors]" -ge 8 ]]; then
-        colors
+    ret_val_prompt="%{$fg[red]%}%(?..[%?])%{$fg[default]%}"
+
+    time_prompt="[%{$fg[cyan]%}%t%{$fg[default]%}]"
+
+    rbenv_prompt="%{$fg[red]%}◆ %{$fg[default]$fg[cyan]%}$(rbenv version-name)%{$fg[default]%}"
+
+    hist_prompt="%{$fg[magenta]%}[%{$fg[default]%}%h%{$fg[magenta]%}]%{$fg[default]%}"
+
+    # TODO: work out how (!..) can do this better
+    prompt_char="%# "
+    if [[ $(id -u) -eq 0 ]]; then
+        prompt_char="${$fg[red]%}${prompt_char}${fg[default]%} "
     fi
 
     # Add in something for virtualenv directories
@@ -63,11 +78,25 @@ function prompt {
             virtual_env_prompt="(`basename \"$VIRTUAL_ENV\"`)"
         fi
     fi
-    export PROMPT="%{%(!.$fg[red].$fg[green])%}%n%{$fg[default]%}@${hostprompt}%{$fg[default]%}:%{$fg[yellow]%}${path_prompt}${vcs_info_msg_0_}%{$fg[green]%}${virtual_env_prompt}%{$fg[red]%}%(?..[%?])%{$fg[default]%}%# "
-    TIME="[%{$fg[cyan]%}%t%{$fg[default]%}]"
-    # Rubies are red, and my rprompt is too
-    RUBY_PROMPT='%{$fg[red]%}$(rvm_ruby_prompt)%{$reset_color%}%'
-    export RPROMPT=${RUBY_PROMPT:-TIME}
+
+    # From http://unix.stackexchange.com/questions/1022/display-stuff-below-the-prompt-at-a-shell-prompt
+    zmodload zsh/terminfo
+    terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
+
+    FIRST_LINE="${user_prompt}@${host_prompt}:${path_prompt}"
+    SECOND_LINE="${ret_val_prompt}${hist_prompt} ${prompt_char}"
+    #THIRD_LINE="├─┤${vcs_info_msg_0_}├─┤${rbenv_prompt}├─┤${virtualenv_prompt}├─┤"
+    THIRD_LINE="${rbenv_prompt}  ${vcs_info_msg_0_}  ${virtualenv_prompt}"
+
+    export PROMPT="${FIRST_LINE}
+${THIRD_LINE}
+${SECOND_LINE}" #${SECOND_LINE}"
+    export RPROMPT="${time_prompt}"
+
+    # export PROMPT="@${hostprompt}%{$fg[default]%}:${vcs_info_msg_0_}%{$fg[green]%}${virtual_env_prompt}"
+    # # Rubies are red, and my rprompt is too
+    # RUBY_PROMPT='%{$fg[red]%}$(rvm_ruby_prompt)%{$reset_color%}%'
+    # export RPROMPT=${RUBY_PROMPT:-TIME}
 }
 
 precmd_functions+=prompt
