@@ -1,0 +1,4 @@
+[[ -x /usr/bin/dropboxd ]] && dropboxd &
+[ -f ~/.fehbg ] && source ~/.fehbg &
+setxkbmap gb dvorak &                  # Because qwerty is evil and wrong
+xmodmap ~/.Xmodmap &                   # Because we have config files now
