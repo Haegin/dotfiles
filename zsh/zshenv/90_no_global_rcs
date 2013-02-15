@@ -3,4 +3,6 @@
 # on ArchLinux and probably other systems that do stupid
 # stuff in /etc/zsh/zprofile etc.
 
-setopt no_global_rcs
+# Turns out this is a bad idea, because some of the stuff
+# in /etc/profile is useful.
+#setopt no_global_rcs
