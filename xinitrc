@@ -42,6 +42,7 @@ fi
 # Run some nice programs at startup.
 
 xscreensaver &
+xbindkeys &
 
 #syndaemon -t -k -i 2 -d &             # Because we like to stop our touchpads when we type
 #lxpanel &                             # To get a system tray
