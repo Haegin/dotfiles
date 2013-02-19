@@ -30,8 +30,14 @@ __append_dir_to_path()
   done
 }
 
+__prepend_dir_to_path /usr/local/bin
 __prepend_dir_to_path $BINDIR
-__append_dir_to_path /usr/lib/surfraw
 __prepend_dir_to_path $HOME/.homebrew/bin
+
+__append_dir_to_path /usr/bin
+__append_dir_to_path /usr/sbin
+__append_dir_to_path /bin
+__append_dir_to_path /sbin
+__append_dir_to_path /usr/lib/surfraw
 
 # vim:ft=zsh

@@ -203,7 +203,7 @@ __vcs_print_preprompt()
 
   case "$repotype" in
     git)
-      __git_print_preprompt
+      #__git_print_preprompt
       ;;
   esac
 }
