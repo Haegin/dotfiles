@@ -119,6 +119,8 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockSt
 
 " Use , instead of \ as the leader key
 let mapleader = ","
+" Which means we should use \ instead of , for backwards f search
+noremap \ ,
 
 " Use PCREs instead of the vim default
 nnoremap / /\v
@@ -162,6 +164,11 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>g= /=======\<bar><<<<<<<\<bar>>>>>>>><CR>
+
+" Shortcut to grab the pivotal number and put it at the start of the git commit
+" message.
+nmap <leader>gm /\v\d{8}<CR>ywggPysiw]A 
 
 " Vimux
 nnoremap <leader>x :call VimuxPromptCommand()<CR>
@@ -199,6 +206,11 @@ nnoremap <leader>p :CtrlP<CR>
 " This isn't trailing whitespace, it's there so I don't have to type space when
 " using the command!
 nnoremap <leader>a :Ack 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_key_detailed_diagnostics = '<leader>dd'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffergator settings
@@ -348,7 +360,7 @@ func! DeleteTrailingWS()
   norm `z
 endfunc
 
-map <silent> <leader>ds :call DeleteTrailingWS()<cr>
+"map <silent> <leader>ds :call DeleteTrailingWS()<cr>
 
 map <F4> :let &lines=&lines-1
 map <S-F4> :let &lines=&lines+1
@@ -427,9 +439,9 @@ let use_xhtml = 1
 " Formatting/movement commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " format current paragraph and keep cursor in current position
-noremap <silent> Q mzgqap`z
+nnoremap <silent> Q mzgqap`z
 " copy to end of line
-noremap Y y$
+nnoremap Y y$
 " remove search highlight
 map <silent> <leader>hh :let @/=''<cr>
 

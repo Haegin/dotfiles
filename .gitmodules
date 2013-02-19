@@ -122,3 +122,6 @@
     path = vim/bundle/syntastic
     url = https://github.com/scrooloose/syntastic.git
     ignore = untracked
+[submodule "vim/bundle/YouCompleteMe"]
+	path = vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
