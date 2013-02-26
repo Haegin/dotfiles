@@ -125,3 +125,6 @@
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "subsubmodules/rbenv_plugins_ruby-build"]
+	path = subsubmodules/rbenv_plugins_ruby-build
+	url = https://github.com/sstephenson/ruby-build.git
