@@ -16,22 +16,26 @@ git submodule update
 
 echo "\nLinking subsubmodules inside other submodules"
 for item in ${SUBSUBMODULEDIR}/*; do
-    item=${item:t}
-    shortpath=${item//_/\/}
-    newpath="${DOTDIR}/${shortpath}"
-    newdir=${newpath:h}
+  item=${item:t}
+  shortpath=${item//_/\/}
+  newpath="${DOTDIR}/${shortpath}"
+  newdir=${newpath:h}
+  if [ ! -e "${newdir}" ]; then
     mkdir -p "${newdir}"
+  fi
+  if [ ! -e "${newpath}" ]; then
     echo "- .${shortpath}"
     ln -s "${SUBSUBMODULEDIR}/${item}" "${newpath}"
+  fi
 done
 
 # Only want to symlink the files, not the utility scripts
 echo "Linking files into ${HOME} from ${DOTDIR}:"
 for item in *~(bin|subsubmodules); do
+  if [ ! -e "${HOME}/.${item}" ]; then
     echo "- .${item}"
-    if [ ! -e "${HOME}/.${item}" ]; then
-        ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
-    fi
+    ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
+  fi
 done
 
 echo "\nMaking history"

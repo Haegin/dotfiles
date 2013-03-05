@@ -93,7 +93,6 @@
 [submodule "tmux/tmux-powerline"]
     path = tmux/tmux-powerline
     url = git@github.com:Haegin/tmux-powerline
-    ignore = untracked
 [submodule "vim/bundle/flake8"]
     path = vim/bundle/flake8
     url = https://github.com/nvie/vim-flake8.git
@@ -128,3 +127,6 @@
 [submodule "subsubmodules/rbenv_plugins_ruby-build"]
 	path = subsubmodules/rbenv_plugins_ruby-build
 	url = https://github.com/sstephenson/ruby-build.git
+[submodule "vim/bundle/VimOrganizer"]
+	path = vim/bundle/VimOrganizer
+	url = git@github.com:hsitz/VimOrganizer.git

@@ -37,9 +37,9 @@ set ruler                       " Show ruler
 set shortmess+=I                " No welcome message
 set showcmd                     " Show partial command in statusbar
 set vb t_vb=                       " No visual flash (termcap)
-set tabstop=4                   " Tabstop = 4 chars
-set shiftwidth=4                " Tabstop = 4 chars (autoindenting)
-set softtabstop=4               " Width of spaces that vim uses as a tab
+set tabstop=2                   " Tabstop = 2 chars
+set shiftwidth=2                " Tabstop = 2 chars (autoindenting)
+set softtabstop=2               " Width of spaces that vim uses as a tab
 set smarttab                    " Uses shiftwidth to determine amount to tab by at start of line
 set expandtab                   " Expand tabs to spaces
 set autoindent                  " Automatic indenting
@@ -66,7 +66,8 @@ set undofile                   " creates an undo file so you can undo over chang
 
 set wrap
 set textwidth=79
-set colorcolumn=100
+set colorcolumn=80
+set cursorline
 set formatoptions=qrn1l        " see fo-table in help for details
 
 " Forcing me to be a better vimmer
@@ -142,8 +143,13 @@ nnoremap <leader>ft Vatzf
 " sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
-" reselect pasted text
-nnoremap <leader>v V`]
+" copy and paste with c/v
+vnoremap <leader>v "*p
+nnoremap <leader>v "*p
+vnoremap <leader>c "*y
+vnoremap <leader>V "+p
+nnoremap <leader>V "+p
+vnoremap <leader>C "+y
 
 " open a new vsplit and switch to it
 nnoremap <leader>s <C-w>v<C-w>l
@@ -184,6 +190,7 @@ cmap w!! w !sudo tee %
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = '<c-t>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_regexp = 1
 let g:ctrlp_max_files = 10000
 " " open in a new tab by default
 " let g:ctrlp_prompt_mappings = {
@@ -200,6 +207,7 @@ let g:ctrlp_user_command = {
     \ 1: ['.git', 'cd %s && git ls-files'],
     \ 2: ['.hg', 'hg --cwd %s locate -I .'],
     \ },
+    \ 'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
   \ }
 
 nnoremap <leader>p :CtrlP<CR>
@@ -211,6 +219,12 @@ nnoremap <leader>a :Ack
 " YouCompleteMe settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_key_detailed_diagnostics = '<leader>dd'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffergator settings
