@@ -1,0 +1,48 @@
+[user]
+  name = Harry Mills
+  email = harry@freeagent.com
+[alias]
+  co = checkout
+  st = status -s
+  cm = commit --verbose
+  dt = difftool
+  lg1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+  lg2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+  lg = !"git lg1"
+  difflog = log -p
+[core]
+  excludesfile = /Users/harry/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+  default = current
+
+[color]
+  branch = auto
+  diff = auto
+  grep = auto
+  interactive = auto
+  ui = auto
+  status = auto
+  showbranch = auto
+[diff]
+  tool = mvimdiff
+[difftool "mvimdiff"]
+  cmd = mvim -d -f $LOCAL $REMOTE
+[difftool]
+  prompt = false
+[merge]
+  ;conflictstyle = diff3
+  ff = false
+[branch "master"]
+  mergeoptons = --no-ff
+[git-up "bundler"]
+	check = true
+[git-up "rebase"]
+	arguments = --preserve-merges
+[rerere]
+	enabled = true
