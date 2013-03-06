@@ -130,3 +130,6 @@
 [submodule "vim/bundle/VimOrganizer"]
 	path = vim/bundle/VimOrganizer
 	url = git@github.com:hsitz/VimOrganizer.git
+[submodule "vim/bundle/gitgutter"]
+	path = vim/bundle/gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
