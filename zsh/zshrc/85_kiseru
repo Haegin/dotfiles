@@ -1,0 +1,11 @@
+function flight_card() {
+  ki_pivotal --project=2953 story "$@" | ki_middleman --to trello_in_flight_card | ki_format --select desc
+}
+
+function current_story() {
+  git rev-parse --abbrev-ref HEAD | cut -d'-' -f1
+}
+
+function kfc() {
+  flight_card $(current_story) | pbcopy
+}
