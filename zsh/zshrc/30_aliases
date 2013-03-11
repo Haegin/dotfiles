@@ -151,8 +151,7 @@ alias b2h='baseconv 2 16'
 alias sendmail=/usr/sbin/sendmail
 
 _d() { dict $* }
-d() { _d $* | sensible-pager }
-the() { d -d moby-thesaurus $* }
+d() { _d $* | $PAGER }
 typeset -A _LANGUAGES
 _LANGUAGES[en]=eng
 _LANGUAGES[de]=deu
@@ -172,8 +171,6 @@ for l in ${(k)_LANGUAGES}; do
 done
 unset _LANGUAGES
 
-alias dpkg-buildpackage="dpkg-buildpackage -k$DEBKEYID -rfakeroot"
-
 uc() { unicode --max=0 --colour=off "$@" | sensible-pager }
 
 alias ipr='ip r'
@@ -190,21 +187,11 @@ fi
 
 # MPD alias
 if [ `which mpd > /dev/null 2>&1` ]; then
-	alias musicstatus='mpc status | osd_cat --pos=middle --align=center -s=1 -'
-fi
-
-# Tolkien specific
-if [ `hostname` = "tolkien" ]; then
-	alias headmplayer='mplayer -ao alsa:device=plughw=1.0'
+  alias musicstatus='mpc status | osd_cat --pos=middle --align=center -s=1 -'
 fi
 
 # IRC & screen
-alias irc='ssh home.haeg.in -t "screen -D -RR -S irc irssi"'
-alias scr='screen -Udr'
 alias \#="tmux -u2 attach -d"
-
-# Wake on Lan
-alias waketolkien='wakeonlan 00:22:15:45:f9:8a'
 
 # Download with wget
 alias dl='wget --content-disposition'
@@ -213,19 +200,4 @@ alias dl='wget --content-disposition'
 # http://jasonwryan.com/post/1203000683/awk-notes
 n() { $EDITOR ~/notes/"$*".txt }
 nls () { tree -CR --noreport ~/.notes | awk '{ if ((NR > 1) gsub(/.txt/,"")); if (NF==1) print $1; else if (NF==2) print $2; else if (NF==3) printf " %s\n", $3 }' ;}
-
-# Freeagent stuff
-alias mysqlram='diskutil erasevolume HFS+ "ramdisk" `hdiutil attach -nomount ram://1048576` && cp -R `brew --prefix`/var/mysql/* /Volumes/ramdisk/ && mysql.server start'
-
-# Git aliases (https://gist.github.com/590895 from
-# http://notes.envato.com/developers/rebasing-merge-commits-in-git/)
-function git_current_branch() {
-    git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'
-}
-
-alias gpthis='git push origin HEAD:$(git_current_branch)'
-alias grb='git rebase -p'
-#alias gup='git fetch origin && grb origin/$(git_current_branch)'
-alias gm='git merge --no-ff'
-
 # vim:ft=zsh
