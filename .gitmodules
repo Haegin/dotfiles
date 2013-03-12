@@ -1,135 +1,131 @@
 [submodule "vim/bundle/fugitive"]
-    path = vim/bundle/fugitive
-    url = http://github.com/tpope/vim-fugitive.git
-    ignore = untracked
+  path = vim/bundle/fugitive
+  url = http://github.com/tpope/vim-fugitive.git
+  ignore = untracked
 [submodule "vim/bundle/rainbowparenthesis"]
-    path = vim/bundle/rainbowparenthesis
-    url = https://github.com/vim-scripts/Rainbow-Parenthesis.git
-    ignore = untracked
+  path = vim/bundle/rainbowparenthesis
+  url = https://github.com/vim-scripts/Rainbow-Parenthesis.git
+  ignore = untracked
 [submodule "vim/bundle/markdown"]
-    path = vim/bundle/markdown
-    url = https://github.com/tpope/vim-markdown.git
-    ignore = untracked
+  path = vim/bundle/markdown
+  url = https://github.com/tpope/vim-markdown.git
+  ignore = untracked
 [submodule "vim/bundle/vividchalk"]
-    path = vim/bundle/vividchalk
-    url = https://github.com/tpope/vim-vividchalk.git
-    ignore = untracked
+  path = vim/bundle/vividchalk
+  url = https://github.com/tpope/vim-vividchalk.git
+  ignore = untracked
 [submodule "vim/bundle/blackboard"]
-    path = vim/bundle/blackboard
-    url = https://github.com/nelstrom/vim-blackboard.git
-    ignore = untracked
+  path = vim/bundle/blackboard
+  url = https://github.com/nelstrom/vim-blackboard.git
+  ignore = untracked
 [submodule "vim/bundle/solarized"]
-    path = vim/bundle/solarized
-    url = https://github.com/altercation/vim-colors-solarized.git
-    ignore = untracked
+  path = vim/bundle/solarized
+  url = https://github.com/altercation/vim-colors-solarized.git
+  ignore = untracked
 [submodule "vim/bundle/mysticpaste"]
-    path = vim/bundle/mysticpaste
-    url = https://github.com/kinabalu/mysticpaste.git
-    ignore = untracked
+  path = vim/bundle/mysticpaste
+  url = https://github.com/kinabalu/mysticpaste.git
+  ignore = untracked
 [submodule "vim/bundle/nerdtree"]
-    path = vim/bundle/nerdtree
-    url = https://github.com/scrooloose/nerdtree.git
-    ignore = untracked
+  path = vim/bundle/nerdtree
+  url = https://github.com/scrooloose/nerdtree.git
+  ignore = untracked
 [submodule "vim/bundle/ctrlp"]
-    path = vim/bundle/ctrlp
-    url = https://github.com/kien/ctrlp.vim.git
-    ignore = untracked
+  path = vim/bundle/ctrlp
+  url = https://github.com/kien/ctrlp.vim.git
+  ignore = untracked
 [submodule "vim/bundle/ack"]
-    path = vim/bundle/ack
-    url = https://github.com/mileszs/ack.vim.git
-    ignore = untracked
+  path = vim/bundle/ack
+  url = https://github.com/mileszs/ack.vim.git
+  ignore = untracked
 [submodule "vim/bundle/commentary"]
-    path = vim/bundle/commentary
-    url = https://github.com/tpope/vim-commentary.git
-    ignore = untracked
+  path = vim/bundle/commentary
+  url = https://github.com/tpope/vim-commentary.git
+  ignore = untracked
 [submodule "vim/bundle/repeat"]
-    path = vim/bundle/repeat
-    url = https://github.com/tpope/vim-repeat.git
-    ignore = untracked
+  path = vim/bundle/repeat
+  url = https://github.com/tpope/vim-repeat.git
+  ignore = untracked
 [submodule "vim/bundle/surround"]
-    path = vim/bundle/surround
-    url = https://github.com/tpope/vim-surround.git
-    ignore = untracked
+  path = vim/bundle/surround
+  url = https://github.com/tpope/vim-surround.git
+  ignore = untracked
 [submodule "vim/bundle/rails"]
-    path = vim/bundle/rails
-    url = https://github.com/tpope/vim-rails.git
-    ignore = untracked
+  path = vim/bundle/rails
+  url = https://github.com/tpope/vim-rails.git
+  ignore = untracked
 [submodule "irssi/irssi-colors-solarized"]
-    path = irssi/irssi-colors-solarized
-    url = git://github.com/huyz/irssi-colors-solarized.git
-    ignore = untracked
+  path = irssi/irssi-colors-solarized
+  url = git://github.com/huyz/irssi-colors-solarized.git
+  ignore = untracked
 [submodule "vim/bundle/vim-ruby"]
-    path = vim/bundle/vim-ruby
-    url = https://github.com/vim-ruby/vim-ruby.git
-    ignore = untracked
-[submodule "vim/bundle/supertab"]
-    path = vim/bundle/supertab
-    url = https://github.com/ervandew/supertab.git
-    ignore = untracked
+  path = vim/bundle/vim-ruby
+  url = https://github.com/vim-ruby/vim-ruby.git
+  ignore = untracked
 [submodule "vim/bundle/gundo"]
-    path = vim/bundle/gundo
-    url = https://github.com/sjl/gundo.vim.git
-    ignore = untracked
+  path = vim/bundle/gundo
+  url = https://github.com/sjl/gundo.vim.git
+  ignore = untracked
 [submodule "vim/bundle/buffergator"]
-    path = vim/bundle/buffergator
-    url = https://github.com/jeetsukumaran/vim-buffergator.git
-    ignore = untracked
+  path = vim/bundle/buffergator
+  url = https://github.com/jeetsukumaran/vim-buffergator.git
+  ignore = untracked
 [submodule "vim/bundle/endwise"]
-    path = vim/bundle/endwise
-    url = https://github.com/tpope/vim-endwise.git
-    ignore = untracked
+  path = vim/bundle/endwise
+  url = https://github.com/tpope/vim-endwise.git
+  ignore = untracked
 [submodule "vim/bundle/vimux"]
-    path = vim/bundle/vimux
-    url = https://github.com/benmills/vimux.git
-    ignore = untracked
+  path = vim/bundle/vimux
+  url = https://github.com/benmills/vimux.git
+  ignore = untracked
 [submodule "vim/bundle/indent-guides"]
-    path = vim/bundle/indent-guides
-    url = https://github.com/nathanaelkane/vim-indent-guides.git
-    ignore = untracked
+  path = vim/bundle/indent-guides
+  url = https://github.com/nathanaelkane/vim-indent-guides.git
+  ignore = untracked
 [submodule "vim/bundle/powerline"]
-    path = vim/bundle/powerline
-    url = https://github.com/Lokaltog/vim-powerline.git
-    ignore = untracked
+  path = vim/bundle/powerline
+  url = https://github.com/Lokaltog/vim-powerline.git
+  ignore = untracked
 [submodule "tmux/tmux-powerline"]
-    path = tmux/tmux-powerline
-    url = git@github.com:Haegin/tmux-powerline
+  path = tmux/tmux-powerline
+  url = git@github.com:Haegin/tmux-powerline
 [submodule "vim/bundle/flake8"]
-    path = vim/bundle/flake8
-    url = https://github.com/nvie/vim-flake8.git
-    ignore = untracked
+  path = vim/bundle/flake8
+  url = https://github.com/nvie/vim-flake8.git
+  ignore = untracked
 [submodule "vim/bundle/tcomment"]
-    path = vim/bundle/tcomment
-    url = https://github.com/tomtom/tcomment_vim.git
-    ignore = untracked
+  path = vim/bundle/tcomment
+  url = https://github.com/tomtom/tcomment_vim.git
+  ignore = untracked
 [submodule "rbenv"]
-    path = rbenv
-    url = git://github.com/sstephenson/rbenv.git
-    ignore = untracked
+  path = rbenv
+  url = git://github.com/sstephenson/rbenv.git
+  ignore = untracked
 [submodule "subsubmodules/rbenv_plugins_bundler"]
-    path = subsubmodules/rbenv_plugins_bundler
-    url = git://github.com/carsomyr/rbenv-bundler.git
-    ignore = untracked
+  path = subsubmodules/rbenv_plugins_bundler
+  url = git://github.com/carsomyr/rbenv-bundler.git
+  ignore = untracked
 [submodule "zsh/plugins/syntax-highlighting"]
-    path = zsh/plugins/syntax-highlighting
-    url = https://github.com/zsh-users/zsh-syntax-highlighting
-    ignore = untracked
+  path = zsh/plugins/syntax-highlighting
+  url = https://github.com/zsh-users/zsh-syntax-highlighting
+  ignore = untracked
 [submodule "vim/bundle/unimpaired"]
-    path = vim/bundle/unimpaired
-    url = git://github.com/tpope/vim-unimpaired.git
-    ignore = untracked
+  path = vim/bundle/unimpaired
+  url = git://github.com/tpope/vim-unimpaired.git
+  ignore = untracked
 [submodule "vim/bundle/syntastic"]
-    path = vim/bundle/syntastic
-    url = https://github.com/scrooloose/syntastic.git
-    ignore = untracked
+  path = vim/bundle/syntastic
+  url = https://github.com/scrooloose/syntastic.git
+  ignore = untracked
 [submodule "vim/bundle/YouCompleteMe"]
-	path = vim/bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe.git
+  path = vim/bundle/YouCompleteMe
+  url = https://github.com/Valloric/YouCompleteMe.git
 [submodule "subsubmodules/rbenv_plugins_ruby-build"]
-	path = subsubmodules/rbenv_plugins_ruby-build
-	url = https://github.com/sstephenson/ruby-build.git
+  path = subsubmodules/rbenv_plugins_ruby-build
+  url = https://github.com/sstephenson/ruby-build.git
 [submodule "vim/bundle/VimOrganizer"]
-	path = vim/bundle/VimOrganizer
-	url = git@github.com:hsitz/VimOrganizer.git
+  path = vim/bundle/VimOrganizer
+  url = git@github.com:hsitz/VimOrganizer.git
 [submodule "vim/bundle/copy-as-rtf"]
-	path = vim/bundle/copy-as-rtf
-	url = git@github.com:aniero/vim-copy-as-rtf.git
+  path = vim/bundle/copy-as-rtf
+  url = git@github.com:aniero/vim-copy-as-rtf.git
