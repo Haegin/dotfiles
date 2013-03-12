@@ -10,21 +10,9 @@
   path = vim/bundle/markdown
   url = https://github.com/tpope/vim-markdown.git
   ignore = untracked
-[submodule "vim/bundle/vividchalk"]
-  path = vim/bundle/vividchalk
-  url = https://github.com/tpope/vim-vividchalk.git
-  ignore = untracked
-[submodule "vim/bundle/blackboard"]
-  path = vim/bundle/blackboard
-  url = https://github.com/nelstrom/vim-blackboard.git
-  ignore = untracked
 [submodule "vim/bundle/solarized"]
   path = vim/bundle/solarized
   url = https://github.com/altercation/vim-colors-solarized.git
-  ignore = untracked
-[submodule "vim/bundle/mysticpaste"]
-  path = vim/bundle/mysticpaste
-  url = https://github.com/kinabalu/mysticpaste.git
   ignore = untracked
 [submodule "vim/bundle/nerdtree"]
   path = vim/bundle/nerdtree
@@ -93,10 +81,6 @@
   path = vim/bundle/flake8
   url = https://github.com/nvie/vim-flake8.git
   ignore = untracked
-[submodule "vim/bundle/tcomment"]
-  path = vim/bundle/tcomment
-  url = https://github.com/tomtom/tcomment_vim.git
-  ignore = untracked
 [submodule "rbenv"]
   path = rbenv
   url = git://github.com/sstephenson/rbenv.git
@@ -123,9 +107,6 @@
 [submodule "subsubmodules/rbenv_plugins_ruby-build"]
   path = subsubmodules/rbenv_plugins_ruby-build
   url = https://github.com/sstephenson/ruby-build.git
-[submodule "vim/bundle/VimOrganizer"]
-  path = vim/bundle/VimOrganizer
-  url = git@github.com:hsitz/VimOrganizer.git
 [submodule "vim/bundle/copy-as-rtf"]
   path = vim/bundle/copy-as-rtf
   url = git@github.com:aniero/vim-copy-as-rtf.git
