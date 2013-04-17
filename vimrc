@@ -151,9 +151,18 @@ vnoremap <leader>V "+p
 nnoremap <leader>V "+p
 vnoremap <leader>C "+y
 
+" finders
+vnoremap <leader>fd y:Ack 'def <C-r>"'<CR>
+nnoremap <leader>fd :Ack 'def <C-r><C-w>'<CR>
+nnoremap <leader>fw :Ack '<C-r><C-w>'<CR>
+nnoremap <leader>fW yiW:Ack '<C-r>"'<CR>
+
+" runners
+"nnoremap <leader>rt :w\|call VimuxRunCommand("clear; ruby -Itest ".expand("%:p")."\n")<CR>
+
 " open a new vsplit and switch to it
 nnoremap <leader>s <C-w>v<C-w>l
-nnoremap <leader>% <C-w>v<C-w>l
+nnoremap <leader>S <C-w>v<C-w>l:A<CR>
 nnoremap <leader>" <C-w>s<C-w>j
 
 " retab
@@ -178,6 +187,7 @@ nmap <leader>gm /\v\d{8}<CR>ywggPysiw]A
 
 " Vimux
 nnoremap <leader>x :call VimuxPromptCommand()<CR>
+nnoremap <leader>X :call VimuxRunLastCommand()<CR>
 
 " underline with = or -
 nnoremap <leader>= :normal yypVr=k<CR>
@@ -225,6 +235,20 @@ let g:ycm_key_detailed_diagnostics = '<leader>dd'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
+let g:syntastic_check_on_open=1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turbux settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:turbux_runner = 'vimux'
+let g:turbux_command_test_unit = 'change'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimux settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:VimuxHeight = '30' " percentage height/width of the new pane
+let g:VimuxOrientation = 'h' " make the pane to the right, not below
+let g:VimuxUseNearestPane = 1 " use a pane if it's already there
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffergator settings
@@ -235,7 +259,6 @@ let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy = "r"
 
 nnoremap <leader>b :BuffergatorToggle<CR>
-nnoremap <leader>t :BuffergatorTabsToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CamelCase and snake_case words
@@ -290,9 +313,9 @@ call togglebg#map("<F5>")
 filetype indent plugin on   " Indent files please, with omnicompletion
 syntax on
 " file formats
-map <silent> <leader>fd :set fileformat=dos<cr>:w<cr>
-map <silent> <leader>fm :set fileformat=mac<cr>:w<cr>
-map <silent> <leader>fu :set fileformat=unix<cr>:w<cr>
+map <silent> <leader>Fd :set fileformat=dos<cr>:w<cr>
+map <silent> <leader>Fm :set fileformat=mac<cr>:w<cr>
+map <silent> <leader>Fu :set fileformat=unix<cr>:w<cr>
 
 " Space errors settings
 let python_space_errors = 1

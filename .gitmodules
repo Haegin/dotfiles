@@ -110,3 +110,9 @@
 [submodule "vim/bundle/copy-as-rtf"]
   path = vim/bundle/copy-as-rtf
   url = git@github.com:aniero/vim-copy-as-rtf.git
+[submodule "vim/bundle/dispatch"]
+	path = vim/bundle/dispatch
+	url = git@github.com:tpope/vim-dispatch.git
+[submodule "vim/bundle/turbux"]
+	path = vim/bundle/turbux
+	url = git@github.com:jgdavey/vim-turbux.git

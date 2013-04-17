@@ -200,4 +200,7 @@ alias dl='wget --content-disposition'
 # http://jasonwryan.com/post/1203000683/awk-notes
 n() { $EDITOR ~/notes/"$*".txt }
 nls () { tree -CR --noreport ~/.notes | awk '{ if ((NR > 1) gsub(/.txt/,"")); if (NF==1) print $1; else if (NF==2) print $2; else if (NF==3) printf " %s\n", $3 }' ;}
+
+# Github
+alias ghpr="open http://github.com/fac/freeagent/pull/$(git current-branch)"
 # vim:ft=zsh
