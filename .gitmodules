@@ -113,3 +113,6 @@
 [submodule "vim/bundle/turbux"]
 	path = vim/bundle/turbux
 	url = git@github.com:jgdavey/vim-turbux.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = git@github.com:ervandew/supertab.git
