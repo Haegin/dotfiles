@@ -33,6 +33,7 @@
   showbranch = auto
 [diff]
   tool = mvimdiff
+  algorithm = patience
 [difftool "mvimdiff"]
   cmd = mvim -d -f $LOCAL $REMOTE
 [difftool]
