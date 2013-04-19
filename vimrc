@@ -228,7 +228,7 @@ nnoremap <leader>a :Ack
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_key_detailed_diagnostics = '<leader>dd'
+"let g:ycm_key_detailed_diagnostics = '<leader>dd'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic settings

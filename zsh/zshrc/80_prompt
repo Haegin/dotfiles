@@ -10,14 +10,108 @@
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
 
-function rvm_ruby_prompt {
-    if (declare -f rvm > /dev/null) {
-        command -v rvm-prompt >/dev/null 2>&1
-        if [[ $? -eq 0 ]] then
-            #ruby -v | sed 's/\([^(]*\).*/\1/'
-            rvm-prompt
-        fi
-    }
+function git_files_matching_pattern {
+  pattern=$1
+  matches=$(git ls-files "${pattern}" | head -n1)
+  if [[ $matches == '' ]]; then
+    echo 'false'
+  else
+    echo 'true'
+  fi
+}
+
+function in_ruby_project {
+  # assume we're in a git dir
+  echo $(git_files_matching_pattern '*.rb' )
+}
+
+function in_python_project {
+  echo $(git_files_matching_pattern '*.py')
+}
+
+function prog_lang {
+  if [[ $(in_ruby_project) == 'true' ]]; then
+    echo '💎 '
+  elif [[ $(in_python_project) == 'true' ]]; then
+    echo '🐍 '
+  fi
+}
+
+function separator {
+  left=$'\u2b80'
+  right=$'\u2b82'
+  direction=$1
+  fg_colour=$2
+  bg_colour=$3
+  eval symbol=\$$direction
+  echo "%{$fg[$fg_colour]$bg[$bg_colour]%}${symbol}%{$fg[black]%}"
+}
+
+# Prompt
+# harry@hoder in ~/dev/freeagent on master branch with uncached changes
+# ~/dev/freeagent > master > •                              < hoder
+# root@idunn in /usr/bin not in a git repo
+# /usr/bin >                                            < √ < idunn
+
+function user_prompt {
+  left_bg_colour=$1
+  own_bg_colour=$2
+  own_fg_colour=$3
+  right_bg_colour=$4
+
+  if [[ $USER == 'root' ]]; then
+    echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} √ $(separator 'left' $own_bg_colour $right_bg_color)"
+  elif [[ $USER != 'harry' ]]; then
+    sym="⚠ "
+    echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} ⚠ $(separator 'left' $own_bg_colour $right_bg_color)"
+  fi
+}
+
+function path_prompt {
+  left_bg_colour=$1
+  own_bg_colour=$2
+  own_fg_colour=$3
+  right_bg_colour=$4
+
+  maxlength=$(( ${COLUMNS} / 2 ))
+  path_prompt=$(print -P %~) # get the current working dir from %~
+  if (( ${#path_prompt} > ${maxlength} )); then
+    p_tchars='../'
+    p_done=${path_prompt}
+    for (( i=1 ; ; ++i )); do
+      p_temp=$(print -P %${i}~)
+      if (( ( ${#p_temp} + ${#p_tchars} ) < ${maxlength} )); then
+        p_done=${p_temp}
+      else
+        break
+      fi
+    done
+    path_prompt="${p_tchars}${p_done}"
+  fi
+
+  echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} ${path_prompt} "
+}
+
+function git_prompt {
+  left_bg_colour=$1
+  own_bg_colour=$2
+  own_fg_colour=$3
+  right_bg_colour=$4
+
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]; then
+    echo "$(separator 'left' $left_bg_colour $own_bg_colour)%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} $(git rev-parse --abbrev-ref HEAD) $(separator 'left' $own_bg_colour $right_bg_colour)"
+  else
+    echo "$(separator 'left' $left_bg_colour $right_bg_colour)"
+  fi
+}
+
+function host_prompt {
+  left_bg_colour=$1
+  own_bg_colour=$2
+  own_fg_colour=$3
+  right_bg_colour=$4
+
+  echo "$(separator 'right' $own_bg_colour $left_bg_colour)%{$fg[$own_fg_colour]$bg[$own_bg_colour]%} %m "
 }
 
 function prompt {
@@ -27,76 +121,13 @@ function prompt {
         colors
     fi
 
-    user_prompt="%{%(!.$fg[red].$fg[green])%}%n%{$fg[default]%}"
+    reset_colours="%{$fg[default]%}%{$bg[default]%}"
 
-    if [ $USER = 'harry' ]; then
-        host_prompt="%{$fg[blue]%}%m"
-    else
-        host_prompt="%{$fg[cyan]%}%m"
-    fi
+    LEFT_POWERLINE="$(user_prompt 'default' 'red' 'white' 'blue')$(path_prompt 'red' 'blue' 'white' 'cyan')$(git_prompt 'blue' 'green' 'black' 'default')${reset_colours} "
+    RIGHT_POWERLINE="$(host_prompt 'default' 'yellow' 'black' 'default')${reset_colours}"
 
-    maxlength=$(( ${COLUMNS} / 2 ))
-    path_prompt=$(print -P %~) # get the current working dir from %~
-    if (( ${#path_prompt} > ${maxlength} )); then
-        p_tchars='../'
-        p_done=${path_prompt}
-        for (( i=1 ; ; ++i )); do
-            p_temp=$(print -P %${i}~)
-            if (( ( ${#p_temp} + ${#p_tchars} ) < ${maxlength} )); then
-                p_done=${p_temp}
-            else
-                break
-            fi
-        done
-        path_prompt="${p_tchars}${p_done}"
-    fi
-    path_prompt="%{$fg[yellow]%}${path_prompt}%{$fg[default]%}"
-
-    ret_val_prompt="%{$fg[red]%}%(?..[%?])%{$fg[default]%}"
-
-    time_prompt="[%{$fg[cyan]%}%t%{$fg[default]%}]"
-
-    rbenv_prompt="%{$fg[red]%}◆ %{$fg[default]$fg[cyan]%}$(rbenv version-name)%{$fg[default]%}"
-
-    hist_prompt="%{$fg[magenta]%}[%{$fg[default]%}%h%{$fg[magenta]%}]%{$fg[default]%}"
-
-    # TODO: work out how (!..) can do this better
-    prompt_char="%# "
-    if [[ $(id -u) -eq 0 ]]; then
-        prompt_char="${$fg[red]%}${prompt_char}${fg[default]%} "
-    fi
-
-    # Add in something for virtualenv directories
-    virtual_env_prompt=""
-    if [[ -z "$VIRTUAL_ENV_DISABLE_PROMPT" && -n $VIRTUAL_ENV ]] ; then
-        if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
-            # special case for Aspen magic directories
-            # see http://www.zetadev.com/software/aspen/
-            #PS1="[`basename \`dirname \"$VIRTUAL_ENV\"\``] $PS1"
-            virtual_env_prompt="[`basename \`dirname \"$VIRTUAL_ENV\"\``]"
-        else
-            virtual_env_prompt="(`basename \"$VIRTUAL_ENV\"`)"
-        fi
-    fi
-
-    # From http://unix.stackexchange.com/questions/1022/display-stuff-below-the-prompt-at-a-shell-prompt
-    zmodload zsh/terminfo
-    terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
-
-    FIRST_LINE="${user_prompt}@${host_prompt}:${path_prompt}"
-    SECOND_LINE="${ret_val_prompt}${hist_prompt} ${prompt_char}"
-    #THIRD_LINE="├─┤${vcs_info_msg_0_}├─┤${rbenv_prompt}├─┤${virtualenv_prompt}├─┤"
-    THIRD_LINE="${rbenv_prompt}  ${vcs_info_msg_0_}  ${virtualenv_prompt}"
-
-    export PROMPT="${FIRST_LINE}
-${THIRD_LINE}
-${SECOND_LINE}" #${SECOND_LINE}"
-    export RPROMPT="${time_prompt}"
-
-    # export PROMPT="@${hostprompt}%{$fg[default]%}:${vcs_info_msg_0_}%{$fg[green]%}${virtual_env_prompt}"
-    # # Rubies are red, and my rprompt is too
-    # RUBY_PROMPT='%{$fg[red]%}$(rvm_ruby_prompt)%{$reset_color%}%'
-    # export RPROMPT=${RUBY_PROMPT:-TIME}
+    export PROMPT="${LEFT_POWERLINE}"
+    export RPROMPT="${RIGHT_POWERLINE}"
 }
 
 precmd_functions+=prompt
