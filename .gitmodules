@@ -70,9 +70,6 @@
   path = vim/bundle/indent-guides
   url = https://github.com/nathanaelkane/vim-indent-guides.git
   ignore = untracked
-[submodule "tmux/tmux-powerline"]
-  path = tmux/tmux-powerline
-  url = git@github.com:Haegin/tmux-powerline
 [submodule "vim/bundle/flake8"]
   path = vim/bundle/flake8
   url = https://github.com/nvie/vim-flake8.git
