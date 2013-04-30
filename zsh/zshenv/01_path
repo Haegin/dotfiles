@@ -33,6 +33,7 @@ __append_dir_to_path()
 __prepend_dir_to_path /usr/local/bin
 __prepend_dir_to_path $BINDIR
 __prepend_dir_to_path $HOME/.homebrew/bin
+__prepend_dir_to_path $(ruby -rubygems -e "puts Gem.user_dir")/bin
 
 __append_dir_to_path /usr/bin
 __append_dir_to_path /usr/sbin
