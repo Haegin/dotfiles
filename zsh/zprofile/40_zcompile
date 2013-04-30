@@ -12,7 +12,7 @@ if [ -n "$ZDOTDIR" ] && [ -d "$ZDOTDIR" ]; then
   rm -f $ZDOTDIR/**/*.zwc{,.old}(D.N)
   for f in $ZDOTDIR/*(D.,@) $ZDOTDIR/**/*(.); do
     case "$f:t" in
-      .gitignore|.*.sw?) continue;;
+      .gitignore|.*.sw?|*.md) continue;;
     esac
     zcompile $f
   done
@@ -22,7 +22,7 @@ if [ -n "$ZVARDIR" ] && [ -d "$ZVARDIR" ]; then
   rm -f $ZVARDIR/**/*.zwc{,.old}(.N)
   for f in $ZVARDIR/comp*(.N); do
     case "$f:t" in
-      .gitignore|.*.sw?) continue;;
+      .gitignore|.*.sw?|*.md) continue;;
     esac
     zcompile $f
   done
