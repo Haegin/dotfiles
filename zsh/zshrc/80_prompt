@@ -121,10 +121,10 @@ function prompt {
         colors
     fi
 
-    reset_colours="%{$fg[default]%}%{$bg[default]%}"
+    reset_colours="%{$fg[default]$bg[default]%}"
 
     LEFT_POWERLINE=$'\n'"$(user_prompt 'default' 'red' 'white' 'blue')$(path_prompt 'red' 'blue' 'white' 'cyan')$(git_prompt 'blue' 'green' 'black' 'default')${reset_colours} "
-    RIGHT_POWERLINE="$(host_prompt 'default' 'yellow' 'black' 'default')${reset_colours}"
+    RIGHT_POWERLINE="$(host_prompt 'default' 'cyan' 'black' 'default')${reset_colours}"
 
     export PROMPT="${LEFT_POWERLINE}"
     export RPROMPT="${RIGHT_POWERLINE}"
