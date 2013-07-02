@@ -114,6 +114,21 @@ function host_prompt {
   echo "$(separator 'right' $own_bg_colour $left_bg_colour)%{$fg[$own_fg_colour]$bg[$own_bg_colour]%} %m "
 }
 
+# function vi_mode_prompt {
+#   left_bg_colour=$1
+#   right_bg_colour=$2
+#   if [[ $VIMODE = 'CMD' ]]; then
+#     own_bg_colour='green'
+#     own_fg_colour='black'
+#     text='N'
+#   else
+#     own_bg_colour='white'
+#     own_fg_colour='blue'
+#     text='I'
+#   fi
+#   echo "$(separator 'right' $own_bg_colour $left_bg_colur)%{$fg[$own_fg_colour]$bg[$own_bg_colur]%} $VIMODE"
+# }
+
 function prompt {
     # See if we can use colors.
     autoload colors
@@ -124,7 +139,7 @@ function prompt {
     reset_colours="%{$fg[default]$bg[default]%}"
 
     LEFT_POWERLINE=$'\n'"$(user_prompt 'default' 'red' 'white' 'blue')$(path_prompt 'red' 'blue' 'white' 'cyan')$(git_prompt 'blue' 'green' 'black' 'default')${reset_colours} "
-    RIGHT_POWERLINE="$(host_prompt 'default' 'cyan' 'black' 'default')${reset_colours}"
+    RIGHT_POWERLINE="$(host_prompt 'default' 'yellow' 'black' 'default')${reset_colours}"
 
     export PROMPT="${LEFT_POWERLINE}"
     export RPROMPT="${RIGHT_POWERLINE}"
