@@ -118,3 +118,9 @@
 [submodule "vim/bundle/multiple-cursors"]
 	path = vim/bundle/multiple-cursors
 	url = git@github.com:terryma/vim-multiple-cursors.git
+[submodule "vim/bundle/vimproc"]
+	path = vim/bundle/vimproc
+	url = git@github.com:Shougo/vimproc.vim.git
+[submodule "vim/bundle/unite"]
+	path = vim/bundle/unite
+	url = git@github.com:Shougo/unite.vim.git

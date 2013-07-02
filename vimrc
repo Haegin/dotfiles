@@ -89,6 +89,12 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Relative numbers when they're useful
+autocmd FocusLost   * :set number
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+autocmd CursorMoved * :set relativenumber
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -110,10 +116,15 @@ set statusline+=\ %P    "percent through file
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)%P
 
 " Powerline
-" if has('gui_running')
-"     let g:Powerline_symbols = 'fancy'
-" endif
-
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -130,7 +141,6 @@ vnoremap / /\v
 " Make j and k go up and down by screen line, not file line!
 nnoremap j gj
 nnoremap k gk
-nnoremap ; :
 
 "" Leader customisation
 
@@ -195,6 +205,15 @@ nnoremap <leader>- :normal yypVr-k<CR>
 
 " Trick to save files that need root after editing readonly
 cmap w!! w !sudo tee %
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Unite keybindings & settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP replacement
+nnoremap <C-t> :Unite -aout-resize file_rec/async<CR>
+nnoremap <leader>a :Unite -auto-resize -buffer-name=search grep:.<CR>
+nnoremap <leader>b :Unite -quick-match buffer<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -229,6 +248,12 @@ nnoremap <leader>a :Ack
 " YouCompleteMe settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_key_detailed_diagnostics = '<leader>dd'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Supertab settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabNoCompleteBefore = ['^', ',', '{', '(', '\s']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic settings
@@ -476,7 +501,7 @@ let use_xhtml = 1
 " Formatting/movement commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " format current paragraph and keep cursor in current position
-nnoremap <silent> Q mzgqap`z
+nnoremap <silent> <leader>Q mzgqap`z
 " copy to end of line
 nnoremap Y y$
 " remove search highlight
