@@ -12,6 +12,7 @@
   lastlog = log -p -n1
   difflog = log -p
   blame = 'blame -w -M -C'
+  tf = 'track-feature'
 [core]
   excludesfile = /Users/harry/.gitignore_global
 [difftool "sourcetree"]
