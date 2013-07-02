@@ -210,39 +210,10 @@ cmap w!! w !sudo tee %
 " Unite keybindings & settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP replacement
-nnoremap <C-t> :Unite -aout-resize file_rec/async<CR>
+nnoremap <C-t> :Unite -auto-resize file_rec/async<CR>
+nnoremap <leader>p :Unite -auto-resize file_rec/async<CR>
 nnoremap <leader>a :Unite -auto-resize -buffer-name=search grep:.<CR>
 nnoremap <leader>b :Unite -quick-match buffer<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = '<c-t>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_regexp = 1
-let g:ctrlp_max_files = 10000
-" " open in a new tab by default
-" let g:ctrlp_prompt_mappings = {
-"     \ 'AcceptSelection("e")': ['<c-t>'],
-"     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-"     \ }
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$\|\.rbo$\|\.class$\|\.o$\|\~$\',
-  \ }
-" Multiple VCS's, don't include untracked files
-let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files'],
-    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-    \ 'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
-  \ }
-
-nnoremap <leader>p :CtrlP<CR>
-" This isn't trailing whitespace, it's there so I don't have to type space when
-" using the command!
-nnoremap <leader>a :Ack 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe settings

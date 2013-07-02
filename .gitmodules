@@ -18,14 +18,6 @@
   path = vim/bundle/nerdtree
   url = https://github.com/scrooloose/nerdtree.git
   ignore = untracked
-[submodule "vim/bundle/ctrlp"]
-  path = vim/bundle/ctrlp
-  url = https://github.com/kien/ctrlp.vim.git
-  ignore = untracked
-[submodule "vim/bundle/ack"]
-  path = vim/bundle/ack
-  url = https://github.com/mileszs/ack.vim.git
-  ignore = untracked
 [submodule "vim/bundle/commentary"]
   path = vim/bundle/commentary
   url = https://github.com/tpope/vim-commentary.git
