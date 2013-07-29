@@ -209,11 +209,24 @@ cmap w!! w !sudo tee %
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Unite keybindings & settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use the fuzzy matcher for everything
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+" Use the rank sorter for everything
+call unite#filters#sorter_default#use(['sorter_rank'])
+
 " CtrlP replacement
 nnoremap <C-t> :Unite -auto-resize file_rec/async<CR>
 nnoremap <leader>p :Unite -auto-resize file_rec/async<CR>
 nnoremap <leader>a :Unite -auto-resize -buffer-name=search grep:.<CR>
 nnoremap <leader>b :Unite -quick-match buffer<CR>
+
+" Start in insert mode
+let g:unite_enable_start_insert = 1
+" Open in bottom right.
+let g:unite_split_rule = "botright"
+" Update in 200ms, not 500
+let g:unite_update_time = 200
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe settings
