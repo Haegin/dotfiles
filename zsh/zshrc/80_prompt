@@ -73,7 +73,7 @@ function path_prompt {
   own_fg_colour=$3
   right_bg_colour=$4
 
-  maxlength=$(( ${COLUMNS} / 2 ))
+  maxlength=$(( ${COLUMNS} / 4 ))
   path_prompt=$(print -P %~) # get the current working dir from %~
   if (( ${#path_prompt} > ${maxlength} )); then
     p_tchars='../'
@@ -99,7 +99,8 @@ function git_prompt {
   right_bg_colour=$4
 
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]; then
-    echo "$(separator 'left' $left_bg_colour $own_bg_colour)%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} $(git rev-parse --abbrev-ref HEAD) $(separator 'left' $own_bg_colour $right_bg_colour)"
+    branch_name_for_prompt="%15>…>$(git rev-parse --abbrev-ref HEAD)%>>"
+    echo "$(separator 'left' $left_bg_colour $own_bg_colour)%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} ${branch_name_for_prompt} $(separator 'left' $own_bg_colour $right_bg_colour)"
   else
     echo "$(separator 'left' $left_bg_colour $right_bg_colour)"
   fi
@@ -113,21 +114,6 @@ function host_prompt {
 
   echo "$(separator 'right' $own_bg_colour $left_bg_colour)%{$fg[$own_fg_colour]$bg[$own_bg_colour]%} %m "
 }
-
-# function vi_mode_prompt {
-#   left_bg_colour=$1
-#   right_bg_colour=$2
-#   if [[ $VIMODE = 'CMD' ]]; then
-#     own_bg_colour='green'
-#     own_fg_colour='black'
-#     text='N'
-#   else
-#     own_bg_colour='white'
-#     own_fg_colour='blue'
-#     text='I'
-#   fi
-#   echo "$(separator 'right' $own_bg_colour $left_bg_colur)%{$fg[$own_fg_colour]$bg[$own_bg_colur]%} $VIMODE"
-# }
 
 function prompt {
     # See if we can use colors.
