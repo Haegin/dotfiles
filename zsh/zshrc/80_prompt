@@ -73,7 +73,7 @@ function path_prompt {
   own_fg_colour=$3
   right_bg_colour=$4
 
-  maxlength=$(( ${COLUMNS} / 3 ))
+  maxlength=$(( ${COLUMNS} / 4 ))
   path_prompt=$(print -P %~) # get the current working dir from %~
   if (( ${#path_prompt} > ${maxlength} )); then
     p_tchars='../'
@@ -99,7 +99,7 @@ function git_prompt {
   right_bg_colour=$4
 
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]; then
-    branch_name_for_prompt="%20>…>$(git rev-parse --abbrev-ref HEAD)%>>"
+    branch_name_for_prompt="%15>…>$(git rev-parse --abbrev-ref HEAD)%>>"
     echo "$(separator 'left' $left_bg_colour $own_bg_colour)%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} ${branch_name_for_prompt} $(separator 'left' $own_bg_colour $right_bg_colour)"
   else
     echo "$(separator 'left' $left_bg_colour $right_bg_colour)"
