@@ -114,6 +114,17 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockSt
 "     let g:Powerline_symbols = 'fancy'
 " endif
 
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_branch_prefix = '⭠'
+let g:airline_readonly_symbol = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -158,7 +169,7 @@ nnoremap <leader>fw :Ack '<C-r><C-w>'<CR>
 nnoremap <leader>fW yiW:Ack '<C-r>"'<CR>
 
 " runners
-"nnoremap <leader>rt :w\|call VimuxRunCommand("clear; ruby -Itest ".expand("%:p")."\n")<CR>
+nnoremap <leader>rt :w\|call VimuxRunCommand("clear; ruby -Itest ".expand("%:p")."\n")<CR>
 
 " open a new vsplit and switch to it
 nnoremap <leader>s <C-w>v<C-w>l
@@ -221,8 +232,15 @@ let g:ctrlp_user_command = {
   \ }
 
 nnoremap <leader>p :CtrlP<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ack settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 " This isn't trailing whitespace, it's there so I don't have to type space when
 " using the command!
+
 nnoremap <leader>a :Ack 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -241,7 +259,6 @@ let g:syntastic_check_on_open=1
 " Turbux settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:turbux_runner = 'vimux'
-let g:turbux_command_test_unit = 'change'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimux settings
@@ -297,10 +314,11 @@ endif
 " Colour scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('gui_running')
-    colorscheme solarized
+    colorscheme base16-solarized
     set guifont=Terminus\ 10
 else
-    colorscheme solarized
+    colorscheme base16-solarized
+    let base16colorspace=256         " Access colors present in 256 colorspace
 endif
 set background=dark
 
