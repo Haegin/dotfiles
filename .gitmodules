@@ -109,9 +109,13 @@
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = git@github.com:ervandew/supertab.git
-[submodule "vim/bundle/powerline"]
-	path = vim/bundle/powerline
-	url = git@github.com:Lokaltog/powerline.git
 [submodule "vim/bundle/multiple-cursors"]
 	path = vim/bundle/multiple-cursors
 	url = git@github.com:terryma/vim-multiple-cursors.git
+[submodule "tmux/tmux-powerline"]
+  path = tmux/tmux-powerline
+  url = git@github.com:erikw/tmux-powerline.git
+  ignore = untracked
+[submodule "vim/bundle/airline"]
+	path = vim/bundle/airline
+	url = git@github.com:bling/vim-airline.git
