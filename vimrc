@@ -169,7 +169,7 @@ nnoremap <leader>fw :Ack '<C-r><C-w>'<CR>
 nnoremap <leader>fW yiW:Ack '<C-r>"'<CR>
 
 " runners
-nnoremap <leader>rt :w\|call VimuxRunCommand("clear; ruby -Itest ".expand("%:p")."\n")<CR>
+nnoremap <leader>rt :VroomRunTestFile<CR>
 
 " open a new vsplit and switch to it
 nnoremap <leader>s <C-w>v<C-w>l
@@ -240,8 +240,14 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " This isn't trailing whitespace, it's there so I don't have to type space when
 " using the command!
-
 nnoremap <leader>a :Ack 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Dash settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This isn't trailing whitespace, it's there so I don't have to type space when
+" using the command!
+nnoremap <leader>d :Dash 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe settings
@@ -259,6 +265,12 @@ let g:syntastic_check_on_open=1
 " Turbux settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:turbux_runner = 'vimux'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Vroom settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vroom_map_keys = 0
+let g:vroom_use_dispatch = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimux settings
