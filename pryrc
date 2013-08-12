@@ -7,7 +7,7 @@ end
 
 require 'colored'
 require 'bond'
-require 'pry-cooline'
+require 'pry-coolline'
 
 begin
   require 'awesome_print'
