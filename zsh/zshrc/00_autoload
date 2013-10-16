@@ -20,10 +20,6 @@ autoload -U zmv
 # make color arrays available
 autoload -U colors ; colors
 
-# HJM: copied from old zshrc
-autoload -U compinit
-compinit
-
 # use shell builtins for standard file operations
 # disabled due to #479764
 #zmodload zsh/files

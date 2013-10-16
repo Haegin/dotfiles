@@ -1,6 +1,8 @@
 if [[ $RUBY_VERSION_MANAGER == 'chruby' ]]; then
   source /usr/local/share/chruby/chruby.sh
   source /usr/local/share/chruby/auto.sh
+
+  chruby 1.9.3-p327-perf
 fi
 
 # vim: set syntax=zsh:
