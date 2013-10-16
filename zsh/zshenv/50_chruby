@@ -1,2 +1,6 @@
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+if [[ $RUBY_VERSION_MANAGER == 'chruby' ]]; then
+  source /usr/local/share/chruby/chruby.sh
+  source /usr/local/share/chruby/auto.sh
+fi
+
+# vim: set syntax=zsh:

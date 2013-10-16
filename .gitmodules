@@ -125,3 +125,6 @@
 [submodule "vim/bundle/funcoo"]
 	path = vim/bundle/funcoo
 	url = https://github.com/rizzatti/funcoo.vim
+[submodule "vim/bundle/ruby-xmpfilter"]
+	path = vim/bundle/ruby-xmpfilter
+	url = git@github.com:t9md/vim-ruby-xmpfilter

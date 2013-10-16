@@ -1,2 +1,4 @@
-__prepend_dir_to_path ${HOME}/.rbenv/bin
-eval "$(rbenv init -)"
+if [[ $RUBY_VERSION_MANAGER == 'rbenv' ]]; then
+  __prepend_dir_to_path ${HOME}/.rbenv/bin
+  eval "$(rbenv init -)"
+fi
