@@ -17,4 +17,4 @@ export RUBY_FREE_MIN=200000
 
 alias fa="cd ~/dev/freeagent"
 
-alias prod='DB_VARIANT="production" DB_HOST="192.168.56.101"'
+alias prod='DB_VARIANT="production"'
