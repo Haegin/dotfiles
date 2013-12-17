@@ -49,10 +49,6 @@ alias lart='ls -lart'
 # List only directories and symbolic links that point to directories
 alias lsd='ll -d *(-/DN)'
 
-# HJM: some vim aliases
-alias vmore='vim -u ~/.vimrc-more'
-alias vil='vi *(.om[1]^D)'
-
 # HJM: Dvorak aliases
 alias aoeu='setxkbmap gb'
 alias asdf='setxkbmap gb dvorak && xmodmap ~/.Xmodmap'
@@ -75,27 +71,11 @@ _cd_l() { lscontext }
 chpwd_functions+=_cd_l
 #echo $chpwd_functions
 
-# #183394
-alias w='w|cat'
-
 alias egrep='egrep --color=auto -d skip'
 alias fgrep='fgrep --color=auto -d skip'
 alias grep='grep --color=auto -d skip'
 
-alias mmv='noglob zmv -W'
-alias zcp='zmv -C'
-alias zln='zmv -L'
-alias zgmv='zmv -p git-mv'
-
 alias cal='cal -3'
-alias ftp=ncftp
-
-# handy documentation lookup on Debian
-# from http://www.michael-prokop.at/computer/config/.zshrc
-doc() { cd /usr/share/doc/$1 }
-compdef '_files -W /usr/share/doc -/' doc
-
-alias giti='git init && git add . && git commit -minitial\ checkin && git tag orig'
 
 if whence mtail >/dev/null; then
   alias t=mtail
@@ -112,22 +92,6 @@ compdef '_files -W ~log' ltail
 function lless() { sensible-pager ~log/$1 }
 compdef '_files -W ~log' lless
 
-alias tsl='ltail syslog'
-alias lsl='lless syslog'
-alias tml='ltail mail.log'
-alias lml='lless mail.log'
-alias tal='ltail auth.log'
-alias lal='lless auth.log'
-alias tdl='ltail daemon.log'
-alias ldl='lless daemon.log'
-alias tkl='ltail kern.log'
-alias lkl='lless kern.log'
-
-function lgrep() {
-  local pattern="$1"; shift
-  eval egrep "'$pattern'" "~log/${(j: ~log/:)@}"
-}
-
 alias px='ps afux'
 alias mps='ps -ao user,pcpu,start,command'
 
@@ -135,8 +99,6 @@ function of() { lsof -np "$1" }
 compdef _pids of
 
 function psgrep() { ps aux | grep "[${1[1]}]${1[2,-1]}" }
-
-alias bofh='fortune bofh-excuses'
 
 autoload -U baseconv
 alias b2d='baseconv 2 10'
@@ -147,29 +109,6 @@ alias d2o='baseconv 10 8'
 alias d2o='baseconv 10 8'
 alias h2b='baseconv 16 2'
 alias b2h='baseconv 2 16'
-
-alias sendmail=/usr/sbin/sendmail
-
-_d() { dict $* }
-d() { _d $* | $PAGER }
-typeset -A _LANGUAGES
-_LANGUAGES[en]=eng
-_LANGUAGES[de]=deu
-_LANGUAGES[es]=spa
-_LANGUAGES[fr]=fra
-_LANGUAGES[it]=ita
-_LANGUAGES[tn]=lat
-for l0 in ${(k)_LANGUAGES}; do
-  for l1 in ${(k)_LANGUAGES}; do
-    eval "function _${l0}-${l1}() { _d -d fd-${_LANGUAGES[$l0]}-${_LANGUAGES[$l1]} \$* }"
-    eval "function ${l0}-${l1}() { d -d fd-${_LANGUAGES[$l0]}-${_LANGUAGES[$l1]} \$* }"
-  done
-done
-unset '_LANGUAGES[en]'
-for l in ${(k)_LANGUAGES}; do
-  eval "function ${l}() { (_${l}-en \$*; _en-${l} \$*) | more }"
-done
-unset _LANGUAGES
 
 uc() { unicode --max=0 --colour=off "$@" | sensible-pager }
 
@@ -183,11 +122,6 @@ if whence devtodo >/dev/null; then
     [[ -n $out ]] && print "todo:\n$out"
   }
   [[ -z ${(M)chpwd_functions:#_devtodo_on_chpwd} ]] && chpwd_functions+=_devtodo_on_chpwd
-fi
-
-# MPD alias
-if [ `which mpd > /dev/null 2>&1` ]; then
-  alias musicstatus='mpc status | osd_cat --pos=middle --align=center -s=1 -'
 fi
 
 # IRC & screen

@@ -1,8 +1,8 @@
 if [[ $RUBY_VERSION_MANAGER == 'chruby' ]]; then
-  source $(brew --prefix chruby)/share/chruby/chruby.sh
-  source $(brew --prefix chruby)/share/chruby/auto.sh
-
-  chruby 1.9.3-p327-perf
+  if $(brew --version > /dev/null 2>&1 ); then
+    source $(brew --prefix chruby)/share/chruby/chruby.sh
+    source $(brew --prefix chruby)/share/chruby/auto.sh
+  fi
 fi
 
 # vim: set syntax=zsh:
