@@ -74,14 +74,6 @@
   path = vim/bundle/flake8
   url = https://github.com/nvie/vim-flake8.git
   ignore = untracked
-[submodule "rbenv"]
-  path = rbenv
-  url = git://github.com/sstephenson/rbenv.git
-  ignore = untracked
-[submodule "subsubmodules/rbenv_plugins_bundler"]
-  path = subsubmodules/rbenv_plugins_bundler
-  url = git://github.com/carsomyr/rbenv-bundler.git
-  ignore = untracked
 [submodule "zsh/plugins/syntax-highlighting"]
 	path = zsh/plugins/syntax-highlighting
 	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
@@ -94,9 +86,6 @@
   path = vim/bundle/syntastic
   url = https://github.com/scrooloose/syntastic.git
   ignore = untracked
-[submodule "subsubmodules/rbenv_plugins_ruby-build"]
-  path = subsubmodules/rbenv_plugins_ruby-build
-  url = https://github.com/sstephenson/ruby-build.git
 [submodule "vim/bundle/copy-as-rtf"]
   path = vim/bundle/copy-as-rtf
   url = git@github.com:aniero/vim-copy-as-rtf.git
