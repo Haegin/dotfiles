@@ -13,8 +13,11 @@
   difflog = log -p
   blame = 'blame -w -M -C'
   tf = 'track-feature'
+  ctags = !.git/hooks/ctags
+  conflicts = diff --name-only --diff-filter=U
 [core]
   excludesfile = /Users/harry/.gitignore_global
+  trustctime = false
 [push]
   default = current
 
@@ -36,11 +39,13 @@
 [merge]
   ;conflictstyle = diff3
   ff = false
-[branch "master"]
+  [branch "master"]
   mergeoptons = --no-ff
-[git-up "bundler"]
-	check = true
-[git-up "rebase"]
-	arguments = --preserve-merges
-[rerere]
-	enabled = true
+  [git-up "bundler"]
+  check = true
+  [git-up "rebase"]
+  arguments = --preserve-merges
+  [rerere]
+  enabled = true
+  [init]
+  templatedir = ~/.git_template
