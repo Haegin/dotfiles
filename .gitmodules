@@ -75,8 +75,8 @@
   url = https://github.com/nvie/vim-flake8.git
   ignore = untracked
 [submodule "zsh/plugins/syntax-highlighting"]
-	path = zsh/plugins/syntax-highlighting
-	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
+  path = zsh/plugins/syntax-highlighting
+  url = git@github.com:zsh-users/zsh-syntax-highlighting.git
   ignore = untracked
 [submodule "vim/bundle/unimpaired"]
   path = vim/bundle/unimpaired
@@ -90,33 +90,33 @@
   path = vim/bundle/copy-as-rtf
   url = git@github.com:aniero/vim-copy-as-rtf.git
 [submodule "vim/bundle/dispatch"]
-	path = vim/bundle/dispatch
-	url = git@github.com:tpope/vim-dispatch.git
+  path = vim/bundle/dispatch
+  url = git@github.com:tpope/vim-dispatch.git
 [submodule "vim/bundle/turbux"]
-	path = vim/bundle/turbux
-	url = git@github.com:jgdavey/vim-turbux.git
+  path = vim/bundle/turbux
+  url = git@github.com:jgdavey/vim-turbux.git
 [submodule "vim/bundle/supertab"]
-	path = vim/bundle/supertab
-	url = git@github.com:ervandew/supertab.git
+  path = vim/bundle/supertab
+  url = git@github.com:ervandew/supertab.git
 [submodule "vim/bundle/multiple-cursors"]
-	path = vim/bundle/multiple-cursors
-	url = git@github.com:terryma/vim-multiple-cursors.git
+  path = vim/bundle/multiple-cursors
+  url = git@github.com:terryma/vim-multiple-cursors.git
 [submodule "tmux/tmux-powerline"]
   path = tmux/tmux-powerline
   url = git@github.com:erikw/tmux-powerline.git
   ignore = untracked
 [submodule "vim/bundle/airline"]
-	path = vim/bundle/airline
-	url = git@github.com:bling/vim-airline.git
+  path = vim/bundle/airline
+  url = git@github.com:bling/vim-airline.git
 [submodule "vim/bundle/vroom"]
-	path = vim/bundle/vroom
-	url = git@github.com:skalnik/vim-vroom.git
+  path = vim/bundle/vroom
+  url = git@github.com:skalnik/vim-vroom.git
 [submodule "vim/bundle/funcoo"]
-	path = vim/bundle/funcoo
-	url = https://github.com/rizzatti/funcoo.vim
+  path = vim/bundle/funcoo
+  url = https://github.com/rizzatti/funcoo.vim
 [submodule "vim/bundle/ruby-xmpfilter"]
-	path = vim/bundle/ruby-xmpfilter
-	url = git@github.com:t9md/vim-ruby-xmpfilter
+  path = vim/bundle/ruby-xmpfilter
+  url = git@github.com:t9md/vim-ruby-xmpfilter
 [submodule "config/base16-shell"]
-	path = config/base16-shell
-	url = git@github.com:chriskempson/base16-shell
+  path = config/base16-shell
+  url = git@github.com:chriskempson/base16-shell
