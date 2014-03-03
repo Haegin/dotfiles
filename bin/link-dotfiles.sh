@@ -14,20 +14,20 @@ echo "\nSetting up the git submodules - until this is complete vim stuff probabl
 git submodule init
 git submodule update
 
-echo "\nLinking subsubmodules inside other submodules"
-for item in ${SUBSUBMODULEDIR}/*; do
-  item=${item:t}
-  shortpath=${item//_/\/}
-  newpath="${DOTDIR}/${shortpath}"
-  newdir=${newpath:h}
-  if [ ! -e "${newdir}" ]; then
-    mkdir -p "${newdir}"
-  fi
-  if [ ! -e "${newpath}" ]; then
-    echo "- .${shortpath}"
-    ln -s "${SUBSUBMODULEDIR}/${item}" "${newpath}"
-  fi
-done
+#echo "\nLinking subsubmodules inside other submodules"
+#for item in ${SUBSUBMODULEDIR}/*; do
+#  item=${item:t}
+#  shortpath=${item//_/\/}
+#  newpath="${DOTDIR}/${shortpath}"
+#  newdir=${newpath:h}
+#  if [ ! -e "${newdir}" ]; then
+#    mkdir -p "${newdir}"
+#  fi
+#  if [ ! -e "${newpath}" ]; then
+#    echo "- .${shortpath}"
+#    ln -s "${SUBSUBMODULEDIR}/${item}" "${newpath}"
+#  fi
+#done
 
 # Only want to symlink the files, not the utility scripts
 echo "Linking files into ${HOME} from ${DOTDIR}:"
