@@ -6,8 +6,8 @@
   st = status -s
   cm = commit --verbose
   dt = difftool
-  lg1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
-  lg2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+  lg1 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+  lg2 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
   lg = !"git lg1"
   lastlog = log -p -n1
   difflog = log -p
@@ -15,6 +15,7 @@
   tf = 'track-feature'
   ctags = !.git/hooks/ctags
   conflicts = diff --name-only --diff-filter=U
+  sha = rev-parse --verify HEAD
 [core]
   excludesfile = /Users/harry/.gitignore_global
   trustctime = false
@@ -49,3 +50,6 @@
   enabled = true
   [init]
   templatedir = ~/.git_template
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
