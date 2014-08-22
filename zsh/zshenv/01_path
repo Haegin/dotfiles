@@ -31,6 +31,7 @@ __append_dir_to_path()
 }
 
 __prepend_dir_to_path /usr/local/bin
+__prepend_dir_to_path /usr/local/sbin
 __prepend_dir_to_path $BINDIR
 __prepend_dir_to_path $HOME/.homebrew/bin
 
