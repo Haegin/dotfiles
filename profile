@@ -1,4 +1,4 @@
-. ./.login
+[[ -e ./.login ]] && . ./.login
 
 #stty erase 
 
