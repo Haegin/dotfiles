@@ -6,7 +6,7 @@
   st = status -s
   cm = commit --verbose
   dt = difftool
-  lg1 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+  lg1 = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
   lg2 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
   lg = !"git lg1"
   lastlog = log -p -n1
@@ -15,9 +15,26 @@
   tf = 'track-feature'
   ctags = !.git/hooks/ctags
   conflicts = diff --name-only --diff-filter=U
+  unstaged = ls-files -dm
   sha = rev-parse --verify HEAD
+  # From durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples
+  ls = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --numstat
+  lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+  ld = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=relative
+  lds = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=short
+  le = log --oneline --decorate
+  filelog = log -u
+  fl = log -u
+  dl = "!git ll -1"
+  dlc = diff --cached HEAD^
+  # Full content of a diff given a revision
+  dr = "!f() { git diff "$1"^.."$1"; }; f"
+  lc  = "!f() { git ll "$1"^.."$1"; }; f"
+  diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+  dc = diff --cached
 [core]
-  excludesfile = /Users/harry/.gitignore_global
+	excludesfile = /Users/harry/.gitignore_global
   trustctime = false
 [push]
   default = current
@@ -51,5 +68,5 @@
   [init]
   templatedir = ~/.git_template
 [filter "media"]
-  clean = git-media-clean %f
-  smudge = git-media-smudge %f
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

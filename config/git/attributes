@@ -1,0 +1,10 @@
+*.rb     diff=ruby
+*.html   diff=html
+*.htm    diff=html
+*.java   diff=java
+*.cpp    diff=cpp
+*.php    diff=php
+*.python diff=python
+*.m      diff=objc
+*.adb    diff=ada
+*.ads    diff=ada
