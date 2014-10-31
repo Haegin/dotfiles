@@ -19,7 +19,7 @@
   sha = rev-parse --verify HEAD
   # From durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples
   ls = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate
-  ll = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --numstat
+  ll = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --stat
   lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
   ld = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=relative
   lds = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=short
@@ -34,7 +34,7 @@
   diffr  = "!f() { git diff "$1"^.."$1"; }; f"
   dc = diff --cached
 [core]
-	excludesfile = /Users/harry/.gitignore_global
+  excludesfile = /Users/harry/.gitignore_global
   trustctime = false
 [push]
   default = current
