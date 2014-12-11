@@ -55,14 +55,14 @@ alias asdf='setxkbmap gb dvorak && xmodmap ~/.Xmodmap'
 
 # Better programs if they're installed
 if [[ -x $(which dfc) ]]; then
-    if [[ $(hostname) -eq 'odin' ]]; then
-        alias df='dfc -f | grep -v export'
-    else
-        alias df='dfc'
-    fi
+  if [[ $(hostname) -eq 'odin' ]]; then
+    alias df='dfc -f | grep -v export'
+  else
+    alias df='dfc'
+  fi
 fi
 if [[ -x $(which htop) ]]; then
-    alias top='htop'
+  alias top='htop'
 fi
 
 alias lscontext=ls
@@ -129,6 +129,9 @@ alias \#="tmux -u2 attach -d"
 
 # Download with wget
 alias dl='wget --content-disposition'
+
+# Ruby related aliases
+alias rt='rtest'
 
 # Note taking
 # http://jasonwryan.com/post/1203000683/awk-notes
