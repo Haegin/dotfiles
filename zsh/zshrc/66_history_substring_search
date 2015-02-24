@@ -1,0 +1,4 @@
+# 96_syntax_highlighting
+# Uses the zsh-history-substring-search plugin
+
+source $ZDOTDIR/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh

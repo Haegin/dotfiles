@@ -120,3 +120,6 @@
 [submodule "config/base16-shell"]
   path = config/base16-shell
   url = git@github.com:chriskempson/base16-shell
+[submodule "zsh/plugins/zsh-history-substring-search"]
+	path = zsh/plugins/zsh-history-substring-search
+	url = git@github.com:zsh-users/zsh-history-substring-search
