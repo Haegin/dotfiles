@@ -56,7 +56,7 @@ setopt c_bases
 
 [ "$(umask)" = 022 ] && umask 0077
 
-# remove '/' from WORDCHARS
+# # remove '/' from WORDCHARS
 WORDCHARS="${WORDCHARS//\/}"
 
 # report time stats when command takes longer than 5 seconds

@@ -133,9 +133,13 @@ alias dl='wget --content-disposition'
 # Git spelling mistakes
 alias it=git
 
+# Neovim and editor aliases
+alias nv=nvim
+function e() { $EDITOR "$@" }
+
 # Ruby related aliases
 alias rt=rtest
-alias rc="spring rails console"
+alias rc="spring rails c" # "bundle exec rails c"
 
 # Note taking
 # http://jasonwryan.com/post/1203000683/awk-notes

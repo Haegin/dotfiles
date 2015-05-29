@@ -1,0 +1,12 @@
+case "`uname`" in
+Darwin) # Mac OS X
+  export NUMBER_CPUS=`sysctl -n hw.ncpu`
+  export CC=clang
+  export CXX=clang++
+  export CFLAGS="-march=native -O3 -pipe -fomit-frame-pointer"
+  ;;
+Linux)
+  export NUMBER_CPUS=`grep processor /proc/cpuinfo | wc -l`
+  export CFLAGS="-march=native -O3 -pipe -fomit-frame-pointer"
+  ;;
+esac

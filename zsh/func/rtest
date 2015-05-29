@@ -8,7 +8,7 @@
 if [[ -n "$(whence -p spring)" && (-f "config/application.rb" || -f "config/spring.rb" ) && -z $NOSPRING ]]; then
   command spring test $*
 else
-  bundle exec ruby -I'.:test' -e 'args = ARGV.dup
+  bundle exec ruby -I'.:test:test/support' -e 'args = ARGV.dup
     finish = (( e = args.find {|e| e[/^-/] } )) && args.index(e) || 0
     requires = args[0..finish - 1]
     args -= requires

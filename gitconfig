@@ -1,6 +1,6 @@
 [user]
   name = Harry Mills
-  email = harry@haeg.in
+  email = harry@freeagent.com
 [alias]
   co = checkout
   st = status -s
@@ -16,10 +16,12 @@
   ctags = !.git/hooks/ctags
   conflicts = diff --name-only --diff-filter=U
   unstaged = ls-files -dm
+  staged = diff --cached
   sha = rev-parse --verify HEAD
   # From durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples
   ls = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate
   ll = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --stat
+  lb = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)" --decorate master..HEAD
   lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
   ld = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=relative
   lds = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=short
@@ -70,3 +72,5 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[help]
+	autocorrect = 1

@@ -12,8 +12,6 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 # export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 # export RUBY_HEAP_FREE_MIN=500000
 
-export NOSPRING="true"
-
 alias fa="cd ~/dev/freeagent"
 alias cs='bundle exec rails c'
 alias dk='devkit'
