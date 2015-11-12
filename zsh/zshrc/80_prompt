@@ -10,33 +10,6 @@
 # Allow for functions in the prompt.
 setopt PROMPT_SUBST
 
-function git_files_matching_pattern {
-  pattern=$1
-  matches=$(git ls-files "${pattern}" | head -n1)
-  if [[ $matches == '' ]]; then
-    echo 'false'
-  else
-    echo 'true'
-  fi
-}
-
-function in_ruby_project {
-  # assume we're in a git dir
-  echo $(git_files_matching_pattern '*.rb' )
-}
-
-function in_python_project {
-  echo $(git_files_matching_pattern '*.py')
-}
-
-function prog_lang {
-  if [[ $(in_ruby_project) == 'true' ]]; then
-    echo '💎 '
-  elif [[ $(in_python_project) == 'true' ]]; then
-    echo '🐍 '
-  fi
-}
-
 function separator {
   left=''
   right=''
