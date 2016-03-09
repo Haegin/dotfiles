@@ -15,3 +15,11 @@ config/Trolltech.conf
 config/lxpanel
 config/anjuta
 config/menus
+config/learnyounode
+config/hubiC
+config/javascripting
+config/workshopper
+config/keybase
+config/.mono
+config/configstore
+.var/zsh/history-*
