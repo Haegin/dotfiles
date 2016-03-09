@@ -32,9 +32,9 @@ __append_dir_to_path()
 
 __prepend_dir_to_path /usr/local/bin
 __prepend_dir_to_path /usr/local/sbin
-__prepend_dir_to_path $BINDIR
 __prepend_dir_to_path $HOME/.homebrew/sbin
 __prepend_dir_to_path $HOME/.homebrew/bin
+__prepend_dir_to_path $BINDIR
 
 # rubygem_dir=$(ruby -rubygems -e "puts Gem.user_dir")
 # if [[ -d $rubygem_dir ]]; then
@@ -46,5 +46,7 @@ __append_dir_to_path /usr/sbin
 __append_dir_to_path /bin
 __append_dir_to_path /sbin
 __append_dir_to_path /usr/lib/surfraw
+
+export FUCK_OFF_PATH_HELPER="oh god just please die"
 
 # vim:ft=zsh
