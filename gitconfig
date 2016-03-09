@@ -35,6 +35,8 @@
   lc  = "!f() { git ll "$1"^.."$1"; }; f"
   diffr  = "!f() { git diff "$1"^.."$1"; }; f"
   dc = diff --cached
+  pr = pull-request
+  current-branch = name-rev --name-only HEAD
 [core]
   excludesfile = /Users/harry/.gitignore_global
   trustctime = false
@@ -50,10 +52,10 @@
   status = auto
   showbranch = auto
 [diff]
-  tool = mvimdiff
+  tool = nvimdiff
   algorithm = patience
-[difftool "mvimdiff"]
-  cmd = mvim -d -f $LOCAL $REMOTE
+[difftool "nvimdiff"]
+  cmd = nvim -d -f $LOCAL $REMOTE
 [difftool]
   prompt = false
 [merge]
