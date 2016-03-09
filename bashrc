@@ -98,4 +98,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$HOME/.homebrew/bin:$PATH
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
