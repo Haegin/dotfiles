@@ -54,6 +54,7 @@
 [diff]
   tool = nvimdiff
   algorithm = patience
+  compactionHeuristic = true
 [difftool "nvimdiff"]
   cmd = nvim -d -f $LOCAL $REMOTE
 [difftool]
@@ -76,3 +77,5 @@
 	smudge = git-media-smudge %f
 [help]
 	autocorrect = 1
+[commit]
+	gpgsign = true

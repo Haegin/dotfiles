@@ -8,18 +8,18 @@
 # Source repository: https://github.com/Haegin/dotfiles
 #
 
-__append_dir_to_path $HOME/.fzf/bin
+__append_dir_to_path $(brew --prefix fzf)/bin
 
 # Add man directory to man path
-if [[ ! "$MANPATH" == */Users/harry/.fzf/man* && -d "/Users/harry/.fzf/man" ]]; then
-  export MANPATH="$MANPATH:/Users/harry/.fzf/man"
+if [[ ! "$MANPATH" == *$(brew --prefix fzf)/share/man* && -d "$(brew --prefix fzf)/share/man" ]]; then
+  export MANPATH="$MANPATH:$(brew --prefix fzf)/share/man"
 fi
 
 # Auto-completion
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$(brew --prefix fzf)/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
-source $HOME/.fzf/shell/key-bindings.zsh
+source $(brew --prefix fzf)/shell/key-bindings.zsh
 
 # Solarized colours
 export FZF_DEFAULT_OPTS='

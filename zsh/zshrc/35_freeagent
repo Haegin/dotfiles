@@ -8,24 +8,8 @@ export RUBY_GC_HEAP_INIT_SLOTS=1000000
 export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_GC_HEAP_FREE_SLOTS=200000
 
-# export RUBY_HEAP_SLOTS_INCREMENT=1000000
-# export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-# export RUBY_HEAP_FREE_MIN=500000
-
-alias fa="cd ~/dev/freeagent"
-alias cs='bundle exec rails c'
+alias be="bundle exec"
 alias dk='devkit'
-alias ghpr='devkit pulls open'
-gnd () {devkit server grab $1 && devkit deploy -s int}
+gnd () {devkit server grab $1 && devkit deploy -s int && echo "Deployed to $1"}
 
-# Pipeline
-# This adds a card to the FreeAgent deployment pipeline by merging in the given
-# sha.
-# It would be nice if it remembers the current head so you can unpipeline later
-# if necessary. Alas, tis not the case currently...
-pipeline() {
-  merge_sha=$1
-  current_head=$(git sha)
-  echo "merging ${merge_sha} into ${current_head}"
-  git merge --no-ff --no-edit "${merge_sha}"
-}
+export BUILDZONE_ENDPOINT=http://10.8.100.238
