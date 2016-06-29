@@ -52,17 +52,6 @@ begin
 
   # AwesomePrint.defaults={:theme=>:solorized}
 
-  begin
-    require 'pry-clipboard'
-    # aliases
-    Pry.config.commands.alias_command 'ch', 'copy-history'
-    Pry.config.commands.alias_command 'cr', 'copy-result'
-  rescue LoadError => e
-    warn "can't load pry-clipboard"
-    #       end'
-  end
-
-
   # The following line enables awesome_print for all pry output,
   # and it also enables paging
   Pry.config.print = proc {|output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)}
@@ -73,4 +62,4 @@ rescue LoadError => err
   puts "gem install awesome_print  # <-- highly recommended"
 end
 
-%w(c n s).each { |command| Pry::Commands.delete(command) }
+#%w(c n s).each { |command| Pry::Commands.delete(command) }
