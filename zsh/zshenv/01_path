@@ -1,4 +1,4 @@
-# zprofile/00_path
+# zshenv/01_path
 #
 # Adds custom directories to the $PATH
 #
@@ -45,6 +45,7 @@ __append_dir_to_path /usr/bin
 __append_dir_to_path /usr/sbin
 __append_dir_to_path /bin
 __append_dir_to_path /sbin
+__append_dir_to_path $(yarn global bin)
 __append_dir_to_path /usr/lib/surfraw
 
 export FUCK_OFF_PATH_HELPER="oh god just please die"

@@ -1,0 +1,7 @@
+alias shelleybash="docker run -it -h frankenstein -v $(pwd):/home/victor haegin/shell"
+alias shelleyzsh="docker run -it -h frankenstein -v $(pwd):/home/victor haegin/shell zsh"
+
+alias shelleyreset="git checkout slides/1"
+function shelley() {
+  git checkout "slides/$((${$(git name-rev --name-only HEAD):t}+1))"
+}

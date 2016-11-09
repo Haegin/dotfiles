@@ -10,6 +10,12 @@ export RUBY_GC_HEAP_FREE_SLOTS=200000
 
 alias be="bundle exec"
 alias dk='devkit'
+startfa () { foreman start -c $(awk -F: '$1 !~ /tomcat|queue|elasticsearch|memcached/ { printf $1 "=1," }' Procfile) }
 gnd () {devkit server grab $1 && devkit deploy -s int && echo "Deployed to $1"}
 
 export BUILDZONE_ENDPOINT=http://10.8.100.238
+
+export DB_HOST=127.0.0.1
+export FREEAGENT_CACHE_STORE=memcached
+export STATSD_HOST=localhost
+export GRAPHITE_HOST=localhost

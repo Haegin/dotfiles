@@ -14,6 +14,9 @@ if [ -n "$ZDOTDIR" ] && [ -d "$ZDOTDIR" ]; then
     case "$f:t" in
       .gitignore|.*.sw?|*.md) continue;;
     esac
+    if [[ "$f" =~ /plugins/ ]]; then
+      continue;
+    fi
     zcompile $f
   done
 fi

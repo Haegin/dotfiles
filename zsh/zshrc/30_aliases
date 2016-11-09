@@ -49,10 +49,6 @@ alias lart='ls -lart'
 # List only directories and symbolic links that point to directories
 alias lsd='ll -d *(-/DN)'
 
-# HJM: Dvorak aliases
-alias aoeu='setxkbmap gb'
-alias asdf='setxkbmap gb dvorak && xmodmap ~/.Xmodmap'
-
 # Better programs if they're installed
 if [[ -x $(which dfc) ]]; then
   if [[ $(hostname) -eq 'odin' ]]; then
@@ -126,6 +122,7 @@ fi
 
 # IRC & screen
 alias \#="tmux -u2 attach -d"
+alias mux=tmuxinator
 
 # Download with wget
 alias dl='wget --content-disposition'
@@ -148,5 +145,6 @@ nls () { tree -CR --noreport ~/.notes | awk '{ if ((NR > 1) gsub(/.txt/,"")); if
 
 # Easier to remember way to disable overcommit
 alias undercommit="OVERCOMMIT_DISABLE=1"
+alias gup="OVERCOMMIT_DISABLE=1 git up"
 
 # vim:ft=zsh
