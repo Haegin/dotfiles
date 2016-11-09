@@ -1,8 +1,0 @@
-if [[ $RUBY_VERSION_MANAGER == 'rbenv' ]]; then
-  function rbenv() {
-    unset -f rbenv
-    __prepend_dir_to_path ${HOME}/.rbenv/bin
-    eval "$(rbenv init -)"
-    rbenv "$@"
-  }
-fi
