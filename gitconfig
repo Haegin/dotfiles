@@ -12,7 +12,6 @@
   lastlog = log -p -n1
   difflog = log -p
   blame = 'blame -w -M -C'
-  tf = 'track-feature'
   ctags = !.git/hooks/ctags
   conflicts = diff --name-only --diff-filter=U
   unstaged = ls-files -dm
@@ -37,6 +36,12 @@
   dc = diff --cached
   pr = pull-request
   current-branch = name-rev --name-only HEAD
+  please = push --force-with-lease
+  expunge = !"git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d"
+
+[url "git@github.com:"]
+  insteadOf = gh:
+
 [core]
   excludesfile = /Users/harry/.gitignore_global
   trustctime = false
@@ -79,3 +84,6 @@
 	autocorrect = 1
 [commit]
 	gpgsign = true
+[color "diff"]
+	old = red strike
+	new = green
