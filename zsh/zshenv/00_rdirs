@@ -8,8 +8,6 @@
 # Source repository: git://git.madduck.net/etc/zsh.git
 #
 
-zmodload zsh/zprof  && echo profiling
-
 export VARDIR_REL=.var
 export VARDIR=$HOME/$VARDIR_REL
 export ZVARDIR=$VARDIR/zsh
