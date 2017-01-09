@@ -38,6 +38,7 @@
   current-branch = name-rev --name-only HEAD
   please = push --force-with-lease
   expunge = !"git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d"
+  shove = !"git push && auto-build-in-the-afternoon.sh"
 
 [url "git@github.com:"]
   insteadOf = gh:
