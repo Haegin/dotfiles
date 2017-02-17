@@ -31,12 +31,19 @@ git submodule update
 
 # Only want to symlink the files, not the utility scripts
 echo "Linking files into ${HOME} from ${DOTDIR}:"
-for item in *~(bin|subsubmodules); do
+for item in *~(bin|subsubmodules|Brewfile); do
   if [ ! -e "${HOME}/.${item}" ]; then
     echo "- .${item}"
     ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
   fi
 done
+
+if [[ $OSTYPE -eq "Darwin"]]; then
+  echo "Installing Homebrew"
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew tap Homebrew/bundle
+  brew bundle
+fi
 
 echo "\nMaking history"
 mkdir -p .var/zsh/
