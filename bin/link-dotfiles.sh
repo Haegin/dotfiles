@@ -38,7 +38,7 @@ for item in *~(bin|subsubmodules|Brewfile); do
   fi
 done
 
-if [[ $OSTYPE -eq "Darwin"]]; then
+if [[ $OSTYPE = "Darwin" ]]; then
   echo "Installing Homebrew"
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew tap Homebrew/bundle
