@@ -46,7 +46,6 @@ if [[ $OSTYPE = "Darwin" ]]; then
 fi
 
 echo "\nMaking history"
-mkdir -p .var/zsh/
-touch .var/zsh/history-$(hostname)
+mkdir -p ${ZVARDIR:-${HOME}/.var/zsh}
 
 echo "\nFinished!"
