@@ -1,4 +1,7 @@
 tap 'caskroom/cask'
+tap 'caskroom/fonts'
+tap 'homebrew/versions'
+tap 'caskroom/versions'
 
 tap 'neovim/neovim'
 
@@ -13,14 +16,33 @@ brew 'tmux'
 brew 'tmate'
 brew 'chruby'
 brew 'ruby-install'
+brew 'nvm'
 brew 'elixir'
 brew 'wget'
 brew 'gpg'
 brew 'fzf'
+brew 'coreutils'
+brew 'findutils'
+brew 'gnu-tar'
+brew 'gnu-sed'
+brew 'gawk'
+brew 'gnutls'
+brew 'gnu-indent', args: ['with-default-names']
+brew 'gnu-getopt', args: ['with-default-names']
+
 
 cask 'google-chrome'
-cask 'iterm2'
+cask 'iterm2-beta'
 cask 'megasync'
 cask 'telegram'
 cask 'slack'
 cask 'skype'
+cask '1password'
+cask 'lastpass'
+cask 'keybase'
+cask 'adobe-acrobat-reader'
+cask 'bartender'
+cask 'box-sync'
+cask 'licecap'
+
+cask 'font-firacode-nerd-font'
