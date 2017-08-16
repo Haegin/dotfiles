@@ -7,7 +7,7 @@
 #
 # Source repository: https://github.com/Haegin/dotfiles
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*"'
 
 # __append_dir_to_path ${BREW_PREFIX}/opt/fzf/bin
 

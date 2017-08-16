@@ -1,0 +1,3 @@
+function vssh() {
+  (cd ~/dev/neuranet/provisioning && vagrant ssh)
+}

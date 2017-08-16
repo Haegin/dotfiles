@@ -18,10 +18,13 @@ LISTMAX=1000
 # append to the history as line are executed in the shell
 setopt inc_append_history
 
+# update the history from other shells as commands are run
+setopt share_history
+
 # treat ! specially like csh did
 setopt bang_hist
 
-# ignore all duplicates in the history
+# ignore all duplicates in the history (keeping the most recent)
 setopt hist_ignore_all_dups
 
 # save timestamp and duration with each event

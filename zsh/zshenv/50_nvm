@@ -4,4 +4,8 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
     source "$NVM_DIR/nvm.sh" # This loads nvm
     nvm "$@"
   }
+else
+  if [ -s "$(brew --prefix nvm)/nvm.sh" ]; then
+    source "$(brew --prefix nvm)/nvm.sh" # This loads nvm
+  fi
 fi
