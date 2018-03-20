@@ -1,6 +1,6 @@
 [user]
   name = Harry Mills
-  email = harry.mills@neuranet.com
+
 [alias]
   co = checkout
   st = status -s
@@ -38,7 +38,8 @@
   current-branch = name-rev --name-only HEAD
   please = push --force-with-lease
   expunge = !"git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d"
-  fix = cm --amend --no-edit
+  fix = !"git cm --amend --no-edit"
+  git = !"exec git"
 
 [url "git@github.com:"]
   insteadOf = gh:
@@ -49,6 +50,7 @@
 [core]
   excludesfile = /Users/harry/.gitignore_global
   trustctime = false
+
 [push]
   default = current
 
@@ -60,31 +62,38 @@
   ui = auto
   status = auto
   showbranch = auto
+
 [diff]
   tool = nvimdiff
   algorithm = patience
   compactionHeuristic = true
+
 [difftool "nvimdiff"]
   cmd = nvim -d -f $LOCAL $REMOTE
+
 [difftool]
   prompt = false
+
 [merge]
-  ;conflictstyle = diff3
   ff = false
-  [branch "master"]
+
+[branch "master"]
   mergeoptons = --no-ff
-  [git-up "bundler"]
+
+[git-up "bundler"]
   check = true
-  [git-up "rebase"]
+
+[git-up "rebase"]
   arguments = --preserve-merges
-  [rerere]
+
+[rerere]
   enabled = true
-  [init]
+
+[init]
   templatedir = ~/.git_template
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+
 [help]
-	autocorrect = 1
+  autocorrect = 1
+
 ; [commit]
-; 	; gpgsign = true
+;   gpgsign = true
