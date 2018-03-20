@@ -101,6 +101,7 @@ alias gs='git status -s'
 
 # Neovim and editor aliases
 alias nv=nvim
+alias vim=nvim
 function e() { $EDITOR "$@" }
 
 # vim:ft=zsh

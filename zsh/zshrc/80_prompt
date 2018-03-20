@@ -7,106 +7,106 @@
 #
 # Source repository: git://git.madduck.net/etc/zsh.git
 
-autoload -U promptinit; promptinit
-prompt pure
+# autoload -U promptinit; promptinit
+# prompt pure
 
-# # Allow for functions in the prompt.
-# setopt PROMPT_SUBST
+# Allow for functions in the prompt.
+setopt PROMPT_SUBST
 
-# function separator {
-#   left=''
-#   right=''
-#   direction=$1
-#   fg_colour=$2
-#   bg_colour=$3
-#   eval symbol=\$$direction
-#   echo "%{$fg[$fg_colour]$bg[$bg_colour]%}${symbol}%{$fg[black]%}"
-# }
+function separator {
+  left=''
+  right=''
+  direction=$1
+  fg_colour=$2
+  bg_colour=$3
+  eval symbol=\$$direction
+  echo "%{$fg[$fg_colour]$bg[$bg_colour]%}${symbol}%{$fg[black]%}"
+}
 
-# # Prompt
-# # harry@hoder in ~/dev/freeagent on master branch with uncached changes
-# # ~/dev/freeagent > master > •                              < hoder
-# # root@idunn in /usr/bin not in a git repo
-# # /usr/bin >                                            < √ < idunn
+# Prompt
+# harry@hoder in ~/dev/freeagent on master branch with uncached changes
+# ~/dev/freeagent > master > •                              < hoder
+# root@idunn in /usr/bin not in a git repo
+# /usr/bin >                                            < √ < idunn
 
-# function user_prompt {
-#   left_bg_colour=$1
-#   own_bg_colour=$2
-#   own_fg_colour=$3
-#   right_bg_colour=$4
+function user_prompt {
+  left_bg_colour=$1
+  own_bg_colour=$2
+  own_fg_colour=$3
+  right_bg_colour=$4
 
-#   if [[ $USER == 'root' ]]; then
-#     echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} √ $(separator 'left' $own_bg_colour $right_bg_color)"
-#   elif [[ $USER != 'harry' ]]; then
-#     sym="⚠ "
-#     echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} ⚠ $(separator 'left' $own_bg_colour $right_bg_color)"
-#   fi
-# }
+  if [[ $USER == 'root' ]]; then
+    echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} √ $(separator 'left' $own_bg_colour $right_bg_color)"
+  elif [[ $USER != 'harry' ]]; then
+    sym="⚠ "
+    echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} ⚠ $(separator 'left' $own_bg_colour $right_bg_color)"
+  fi
+}
 
-# function path_prompt {
-#   left_bg_colour=$1
-#   own_bg_colour=$2
-#   own_fg_colour=$3
-#   right_bg_colour=$4
+function path_prompt {
+  left_bg_colour=$1
+  own_bg_colour=$2
+  own_fg_colour=$3
+  right_bg_colour=$4
 
-#   maxlength=$(( ${COLUMNS} / 4 ))
-#   path_prompt=$(print -P %~) # get the current working dir from %~
-#   if (( ${#path_prompt} > ${maxlength} )); then
-#     p_tchars='../'
-#     p_done=${path_prompt}
-#     for (( i=1 ; ; ++i )); do
-#       p_temp=$(print -P %${i}~)
-#       if (( ( ${#p_temp} + ${#p_tchars} ) < ${maxlength} )); then
-#         p_done=${p_temp}
-#       else
-#         break
-#       fi
-#     done
-#     path_prompt="${p_tchars}${p_done}"
-#   fi
+  maxlength=$(( ${COLUMNS} / 4 ))
+  path_prompt=$(print -P %~) # get the current working dir from %~
+  if (( ${#path_prompt} > ${maxlength} )); then
+    p_tchars='../'
+    p_done=${path_prompt}
+    for (( i=1 ; ; ++i )); do
+      p_temp=$(print -P %${i}~)
+      if (( ( ${#p_temp} + ${#p_tchars} ) < ${maxlength} )); then
+        p_done=${p_temp}
+      else
+        break
+      fi
+    done
+    path_prompt="${p_tchars}${p_done}"
+  fi
 
-#   echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} ${path_prompt} "
-# }
+  echo "%{$bg[$own_bg_colour]$fg[$own_fg_colour]%} ${path_prompt} "
+}
 
-# function git_prompt {
-#   left_bg_colour=$1
-#   own_bg_colour=$2
-#   own_fg_colour=$3
-#   right_bg_colour=$4
+function git_prompt {
+  left_bg_colour=$1
+  own_bg_colour=$2
+  own_fg_colour=$3
+  right_bg_colour=$4
 
-#   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]; then
-#     branch_name_for_prompt="%25>…>$(git rev-parse --abbrev-ref HEAD)%>>"
-#     echo "$(separator 'left' $left_bg_colour $own_bg_colour)%{$bg[$own_bg_colour]$fg[$own_fg_colour]%}  ${branch_name_for_prompt} $(separator 'left' $own_bg_colour $right_bg_colour)"
-#   else
-#     echo "$(separator 'left' $left_bg_colour $right_bg_colour)"
-#   fi
-# }
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]; then
+    branch_name_for_prompt="%25>…>$(git rev-parse --abbrev-ref HEAD)%>>"
+    echo "$(separator 'left' $left_bg_colour $own_bg_colour)%{$bg[$own_bg_colour]$fg[$own_fg_colour]%}  ${branch_name_for_prompt} $(separator 'left' $own_bg_colour $right_bg_colour)"
+  else
+    echo "$(separator 'left' $left_bg_colour $right_bg_colour)"
+  fi
+}
 
-# function host_prompt {
-#   left_bg_colour=$1
-#   own_bg_colour=$2
-#   own_fg_colour=$3
-#   right_bg_colour=$4
+function host_prompt {
+  left_bg_colour=$1
+  own_bg_colour=$2
+  own_fg_colour=$3
+  right_bg_colour=$4
 
-#   echo "$(separator 'right' $own_bg_colour $left_bg_colour)%{$fg[$own_fg_colour]$bg[$own_bg_colour]%} %m "
-# }
+  echo "$(separator 'right' $own_bg_colour $left_bg_colour)%{$fg[$own_fg_colour]$bg[$own_bg_colour]%} %m "
+}
 
-# function prompt {
-#     # See if we can use colors.
-#     autoload colors
-#     if [[ "$terminfo[colors]" -ge 8 ]]; then
-#         colors
-#     fi
+function prompt {
+    # See if we can use colors.
+    autoload colors
+    if [[ "$terminfo[colors]" -ge 8 ]]; then
+        colors
+    fi
 
-#     reset_colours="%{$fg[default]$bg[default]%}"
+    reset_colours="%{$fg[default]$bg[default]%}"
 
-#     LEFT_POWERLINE=$'\n'"$(user_prompt 'default' 'yellow' 'black' 'blue')$(path_prompt 'red' 'blue' 'black' 'cyan')$(git_prompt 'blue' 'green' 'black' 'default')${reset_colours} "
-#     RIGHT_POWERLINE="$(host_prompt 'default' 'yellow' 'black' 'default')${reset_colours}"
+    LEFT_POWERLINE=$'\n'"$(user_prompt 'default' 'yellow' 'black' 'blue')$(path_prompt 'red' 'blue' 'black' 'cyan')$(git_prompt 'blue' 'green' 'black' 'default')${reset_colours} "
+    RIGHT_POWERLINE="$(host_prompt 'default' 'yellow' 'black' 'default')${reset_colours}"
 
-#     export PROMPT="${LEFT_POWERLINE}"
-#     export RPROMPT="${RIGHT_POWERLINE}"
-# }
+    export PROMPT="${LEFT_POWERLINE}"
+    export RPROMPT="${RIGHT_POWERLINE}"
+}
 
-# precmd_functions+=prompt
+precmd_functions+=prompt
 
-# # vim:ft=zsh
+# vim:ft=zsh
