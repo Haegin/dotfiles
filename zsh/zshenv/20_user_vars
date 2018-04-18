@@ -1,3 +1,0 @@
-# Set any variables that are needed for user level configuration of these scripts
-
-export RUBY_VERSION_MANAGER='chruby'

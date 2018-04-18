@@ -1,6 +1,0 @@
-# Created by HJM for global aliases
-# pipe commands
-alias -g H='| head'
-alias -g T='| tail'
-alias -g G='| grep'
-alias -g L='| less'

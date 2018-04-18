@@ -1,6 +1,0 @@
-# 70_notes
-# If any notes are in ~/.notes, print the last 10 on zsh startup
-
-NOTESFILE=${HOME}/.notes
-
-[[ -r $NOTESFILE && -s $NOTESFILE ]] && echo "Notes:"; tail $NOTESFILE; echo

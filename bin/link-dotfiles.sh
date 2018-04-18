@@ -38,12 +38,10 @@ for item in *~(bin|subsubmodules|Brewfile); do
   fi
 done
 
-if [[ $OSTYPE = "Darwin" ]]; then
-  echo "Installing Homebrew"
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  brew tap Homebrew/bundle
-  brew bundle
-fi
+echo "Installing Homebrew"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew tap Homebrew/bundle
+brew bundle
 
 echo "\nMaking history"
 mkdir -p ${ZVARDIR:-${HOME}/.var/zsh}

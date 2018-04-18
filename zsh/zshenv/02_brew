@@ -1,9 +1,0 @@
-# zshenv/02_brew
-# Harry Mills
-
-export BREW_PREFIX=$(brew --prefix)
-
-# Add man directory to man path
-if [[ ! "$MANPATH" == *${BREW_PREFIX}/share/man* && -d "${BREW_PREFIX}/share/man" ]]; then
-  export MANPATH="$MANPATH:${BREW_PREFIX}/share/man"
-fi

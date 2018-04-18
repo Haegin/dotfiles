@@ -1,8 +1,0 @@
-if [[ $RUBY_VERSION_MANAGER == 'chruby' ]]; then
-  if $(brew --version > /dev/null 2>&1); then
-    source ${BREW_PREFIX}/share/chruby/chruby.sh
-    source ${BREW_PREFIX}/share/chruby/auto.sh
-  fi
-fi
-
-# vim: set syntax=zsh:

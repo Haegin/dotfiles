@@ -1,1 +1,1 @@
-rcsstub
+zshrc

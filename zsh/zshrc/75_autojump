@@ -1,8 +1,0 @@
-if [[ -s ${BREW_PREFIX}/etc/autojump.sh ]]; then
-  function j() {
-    source ${BREW_PREFIX}/etc/autojump.sh
-    j "$@"
-  }
-fi
-
-. /usr/local/etc/profile.d/z.sh

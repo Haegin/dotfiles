@@ -48,7 +48,6 @@
   insteadOf = bb:
 
 [core]
-  excludesfile = /Users/harry/.gitignore_global
   trustctime = false
 
 [push]

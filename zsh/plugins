@@ -1,0 +1,16 @@
+rupa/z
+
+joshuarubin/zsh-direnv
+
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+
+haegin/zsh-magic-history
+haegin/zsh-magic-completion
+haegin/zsh-fzf
+haegin/zsh-asdf
+haegin/zsh-rationalise-dot
+
+mafredri/zsh-async
+sindresorhus/pure

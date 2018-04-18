@@ -1,8 +1,0 @@
-# This stops zsh reading in any files in /etc other than
-# zshenv (which has already been read). Prevents the crazy
-# on ArchLinux and probably other systems that do stupid
-# stuff in /etc/zsh/zprofile etc.
-
-# Turns out this is a bad idea, because some of the stuff
-# in /etc/profile is useful.
-#setopt no_global_rcs

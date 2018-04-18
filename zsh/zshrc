@@ -1,0 +1,38 @@
+bindkey -e
+
+source <(antibody init)
+antibody bundle < $ZDOTDIR/plugins
+
+# Base 16 colour schemes {{{
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# }}}
+
+source $ZDOTDIR/aliases
+
+setopt dvorak
+setopt noclobber
+setopt autopushd pushdminus pushdsilent pushdtohome
+
+setopt braceccl
+
+setopt notify
+setopt no_bgnice
+setopt nohup
+setopt checkjobs
+
+setopt bsd_echo
+
+setopt nullglob
+setopt extended_glob
+setopt no_nomatch
+
+setopt no_beep
+
+setopt c_bases
+
+WORDCHARS="${WORDCHARS//\/}"
+
+export EDITOR="nvim"
+
+export ERL_AFLAGS="-kernel shell_history enabled"

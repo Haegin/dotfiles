@@ -1,0 +1,51 @@
+function trace() { eval "set -x; $@" }
+
+alias l='ls --time-style=+%Y%m%d.%H%M -gG'
+alias ll='ls -l'
+alias la='ls -al'
+alias lh='ls -lh'
+alias lt='ls -lt'
+alias lah='ls -hal'
+alias lrt='ls -lrt'
+alias lat='ls -lat'
+alias lart='ls -lart'
+
+if [[ -x $(which exa) ]]; then
+  alias ls='exa'
+  alias ll='exa -la --git'
+  alias tree='exa -T'
+  alias lt='exa -l --sort newest'
+  alias lrt='exa -lr --sort newest'
+  alias lat='exa -la --git --sort newest'
+  alias lart='exa -lra --git --sort newest'
+fi
+
+# Better programs if they're installed
+if [[ -x $(which dfc) ]]; then
+  alias df='dfc'
+fi
+if [[ -x $(which htop) ]]; then
+  alias top='htop'
+fi
+
+# Git spelling mistakes and shortcuts
+if [[ -x $(which hub) ]]; then
+  alias git=hub
+fi
+alias it=git
+alias gap='git add -p'
+alias gs='git status -s'
+
+# Neovim and editor aliases
+alias nv=nvim
+alias vim=nvim
+function e() { $EDITOR "$@" }
+
+# Global aliases
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+if [[ -x $(which rg) ]]; then
+  alias -g G='| rg'
+fi
+alias -g L='| less'
