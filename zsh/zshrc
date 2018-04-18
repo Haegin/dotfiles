@@ -31,8 +31,7 @@ setopt no_beep
 
 setopt c_bases
 
-WORDCHARS="${WORDCHARS//\/}"
-
+export WORDCHARS="${WORDCHARS//\/}"
 export EDITOR="nvim"
-
 export ERL_AFLAGS="-kernel shell_history enabled"
+export PURE_PROMPT_SYMBOL="|>"
