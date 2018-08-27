@@ -1,5 +1,7 @@
 bindkey -e
 
+export ZVARDIR=~/var
+
 source <(antibody init)
 antibody bundle < $ZDOTDIR/plugins
 
@@ -9,6 +11,8 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # }}}
 
 source $ZDOTDIR/aliases
+
+source $HOME/.cargo/env
 
 setopt dvorak
 setopt noclobber
