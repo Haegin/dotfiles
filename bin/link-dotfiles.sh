@@ -20,9 +20,7 @@ for item in *~(bin|Brewfile); do
 done
 
 echo "Installing Homebrew"
-if [[ ! -x $(which brew) ]]; then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+command -v brew > /dev/null 2&>1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap Homebrew/bundle
 brew bundle
 if [[ $(uname -s) = "Darwin" ]]; then
