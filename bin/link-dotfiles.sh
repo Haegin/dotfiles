@@ -25,6 +25,11 @@ if [[ ! -x $(which brew) ]]; then
 fi
 brew tap Homebrew/bundle
 brew bundle
+if [[ $(uname -s) = "Darwin" ]]; then
+  [[ -e Brewfile.mac ]] && brew bundle --file=Brewfile.mac
+else
+  [[ -e Brewfile.linux ]] && brew bundle --file=Brewfile.linux
+fi
 
 echo "\nMaking history"
 mkdir -p ${ZVARDIR:-${HOME}/.var/zsh}
