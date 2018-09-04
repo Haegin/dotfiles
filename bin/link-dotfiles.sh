@@ -19,14 +19,14 @@ for item in *~(bin|Brewfile); do
   fi
 done
 
-echo "Installing Homebrew"
-command -v brew > /dev/null 2&>1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew tap Homebrew/bundle
-brew bundle
 if [[ $(uname -s) = "Darwin" ]]; then
+  echo "Installing Homebrew"
+  command -v brew > /dev/null 2&>1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew tap Homebrew/bundle
+  brew bundle
   [[ -e Brewfile.mac ]] && brew bundle --file=Brewfile.mac
 else
-  [[ -e Brewfile.linux ]] && brew bundle --file=Brewfile.linux
+  # [[ -e Brewfile.linux ]] && brew bundle --file=Brewfile.linux
 fi
 
 echo "\nMaking history"
