@@ -30,7 +30,13 @@ fi
 
 # Git spelling mistakes and shortcuts
 if [[ -x $(which hub) ]]; then
-  alias git=hub
+  git () {
+  if [ "pr" = "$1" ]; then
+    hub pull-request
+  else
+    hub "$@"
+  fi
+}
 fi
 alias it=git
 alias gap='git add -p'
