@@ -1,1 +1,2 @@
 export PATH=$HOME/bin:$PATH
+export TZ=/usr/share/zoneinfo/America/Toronto

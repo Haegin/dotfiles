@@ -1,6 +1,7 @@
 [user]
   name = Harry Mills
-	email = harry.mills@highlinebeta.com
+  email = harry.mills@highlinebeta.com
+	signingkey = 72B033EFBAF362B8
 
 [alias]
   co = checkout
