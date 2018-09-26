@@ -1,16 +1,6 @@
 [submodule "config/base16-shell"]
-  path = config/base16-shell
-  url = git@github.com:chriskempson/base16-shell
-[submodule "zsh/plugins/syntax-highlighting"]
-  path = zsh/plugins/syntax-highlighting
-  url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-  ignore = untracked
-[submodule "config/base16-shell"]
-  path = config/base16-shell
-  url = https://github.com/chriskempson/base16-shell
-[submodule "zsh/plugins/zsh-history-substring-search"]
-  path = zsh/plugins/zsh-history-substring-search
-  url = https://github.com/zsh-users/zsh-history-substring-search
-[submodule "zsh/func/pure"]
-  path = zsh/func/pure
-  url = https://github.com/sindresorhus/pure
+	path = config/base16-shell
+	url = https://github.com/chriskempson/base16-shell
+[submodule "asdf"]
+	path = asdf
+	url = https://github.com/asdf-vm/asdf
