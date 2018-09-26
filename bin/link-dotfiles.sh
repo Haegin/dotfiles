@@ -29,6 +29,10 @@ else
   # [[ -e Brewfile.linux ]] && brew bundle --file=Brewfile.linux
 fi
 
+if [[ -x $(command -v zsh) ]]; then
+  chsh -s $(command -v zsh)
+fi
+
 echo "\nMaking history"
 mkdir -p ${ZVARDIR:-${HOME}/.var/zsh}
 
