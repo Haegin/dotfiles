@@ -1,8 +1,5 @@
 [user]
-  name = Harry Mills
-  email = harry.mills@highlinebeta.com
-	signingkey = 72B033EFBAF362B8
-
+  signingkey = 72B033EFBAF362B8
 [alias]
   co = checkout
   st = status -s
@@ -79,6 +76,9 @@
 [difftool "nvimdiff"]
   cmd = nvim -d -f $LOCAL $REMOTE
 
+  algorithm = patience
+  compactionHeuristic = true
+
 [difftool]
   prompt = false
 
@@ -99,6 +99,7 @@
 
 [commit]
   gpgsign = true
+
 [pull]
 	rebase = true
 [rebase]

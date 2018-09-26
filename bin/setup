@@ -1,42 +1,9 @@
-#!/bin/zsh -e -u
-setopt extendedglob
+#!/bin/bash
 
-DOTDIR="${HOME}/.dotfiles"
-
-cd "$DOTDIR"
-
-OS="$(uname -s)"
-
-function setup_submodules() {
-  # Set up the submodules now we're done so vim plugins are all working
-  echo "Setting up the git submodules."
-  git submodule init
-  git submodule update
-}
-
-function link_dotfiles() {
-  # Only want to symlink the files, not the utility scripts
-  echo "Linking files into ${HOME} from ${DOTDIR}:"
-  for item in *~(bin|utils); do
-    if [ ! -e "${HOME}/.${item}" ]; then
-      echo "- .${item}"
-      ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
-    fi
-  done
-}
-
-function setup_history() {
-  echo "Making history"
-  mkdir -p "${ZVARDIR:-${HOME}/.var/zsh}"
-}
-
-echo "Setting up your machine...\n"
-setup_submodules
-link_dotfiles
-setup_history
-if [[ -e "${DOTDIR}/bin/setup.${OS}" ]]; then
-  echo "Running OS specific setup"
-  "${DOTDIR}/bin/setup.${OS}"
+if [[ -d "$HOME/.dotfiles" ]]; then
+  $HOME/.dotfiles/bin/link-dotfiles.sh
+  $HOME/.dotfiles/bin/setup-vscode
+else
+  echo "Dotfiles don't seem to be correctly set up."
+  echo "Ensure you've cloned github.com/HighlineBETA/ptah into $HOME/.dotfiles."
 fi
-
-echo "\nFinished!"

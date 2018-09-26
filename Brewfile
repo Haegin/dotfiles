@@ -1,0 +1,12 @@
+tap 'getantibody/tap'
+
+brew 'zsh'
+brew 'git'
+brew 'ripgrep'
+brew 'exa'
+brew 'fd'
+brew 'wget'
+brew 'fzf'
+brew 'z'
+brew 'direnv'
+brew 'antibody'

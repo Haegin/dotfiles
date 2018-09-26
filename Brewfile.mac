@@ -1,0 +1,22 @@
+tap 'caskroom/cask'
+tap 'caskroom/fonts'
+
+brew 'reattach-to-user-namespace'
+brew 'coreutils'
+brew 'findutils'
+brew 'gnu-tar'
+brew 'gnu-sed'
+brew 'gawk'
+brew 'gnutls'
+brew 'gnu-indent', args: ['with-default-names']
+brew 'gnu-getopt', args: ['with-default-names']
+
+cask 'google-chrome'
+cask 'iterm2'
+cask 'slack'
+cask 'keybase'
+cask 'adobe-acrobat-reader'
+cask 'gpg-suite'
+cask 'visual-studio-code'
+
+cask 'font-firacode-nerd-font'
