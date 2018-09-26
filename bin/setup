@@ -1,8 +1,19 @@
 #!/bin/bash
 
+install_js () {
+  if [[ -x $(command -v asdf) ]]; then
+    asdf plugin-add nodejs
+    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+    asdf install nodejs 8.12.0
+  else
+    echo 'Could not install JS as ASDF is not installed.'
+  fi
+}
+
 if [[ -d "$HOME/.dotfiles" ]]; then
   $HOME/.dotfiles/bin/link-dotfiles.sh
   $HOME/.dotfiles/bin/setup-vscode
+  install_js
 else
   echo "Dotfiles don't seem to be correctly set up."
   echo "Ensure you've cloned github.com/HighlineBETA/ptah into $HOME/.dotfiles."
