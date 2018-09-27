@@ -6,7 +6,7 @@ function setup_homebrew() {
   command -v brew > /dev/null 2&>1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew tap Homebrew/bundle
   brew bundle --file=utils/Brewfile
-  [[ -e Brewfile.mac ]] && brew bundle --file=utils/Brewfile.mac
+  [[ -e utils/Brewfile.mac ]] && brew bundle --file=utils/Brewfile.mac
 }
 
 function configure_sane_defaults() {
