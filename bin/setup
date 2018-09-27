@@ -1,19 +1,54 @@
-#!/bin/bash
+#!/usr/bin/zsh
+setopt extendedglob
 
-install_js () {
-  if [[ -x $(command -v asdf) ]]; then
-    asdf plugin-add nodejs
-    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-    asdf install nodejs 8.12.0
-  else
-    echo 'Could not install JS as ASDF is not installed.'
-  fi
+DOTDIR="${HOME}/.dotfiles"
+
+cd "$DOTDIR"
+
+OS="$(uname -s)"
+
+function setup_submodules() {
+  # Set up the submodules now we're done so vim plugins are all working
+  echo "Setting up the git submodules."
+  git submodule init
+  git submodule update
+}
+
+function link_dotfiles() {
+  # Only want to symlink the files, not the utility scripts
+  echo "Linking files into ${HOME} from ${DOTDIR}:"
+  for item in *~(bin|utils); do
+    if [ ! -e "${HOME}/.${item}" ]; then
+      echo "- .${item}"
+      ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
+    fi
+  done
+}
+
+function setup_history() {
+  echo "Making history"
+  mkdir -p "${ZVARDIR:-${HOME}/.var/zsh}"
+}
+
+function install_vscode_extensions() {
+  echo "Setting up VSCode"
+  code --install-extension 'dbaeumer.vscode-eslint'
+  code --install-extension 'ecmel.vscode-html-css'
+  code --install-extension 'esbenp.prettier-vscode'
 }
 
 if [[ -d "$HOME/.dotfiles" ]]; then
-  $HOME/.dotfiles/bin/link-dotfiles.sh
-  $HOME/.dotfiles/bin/setup-vscode
+  echo "Setting up your machine...\n"
+  setup_submodules
+  link_dotfiles
+  setup_history
+  if [[ -e "${DOTDIR}/bin/setup.${OS}" ]]; then
+    echo "Running OS specific setup"
+    "${DOTDIR}/bin/setup.${OS}"
+  fi
+  install_vscode_extensions
   install_js
+  echo "\nFinished!"
 else
   echo "Dotfiles don't seem to be correctly set up."
   echo "Ensure you've cloned github.com/HighlineBETA/ptah into $HOME/.dotfiles."
