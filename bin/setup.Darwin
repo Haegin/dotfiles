@@ -127,6 +127,7 @@ EOD
   defaults write com.apple.Terminal ShowLineMarks -int 0
   # Don’t display the annoying prompt when quitting iTerm
   defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+  [[ -e "$HOME/.dotfiles/utils/dracula-iterm-theme" ]] && open $HOME/.dotfiles/utils/dracula-iterm-theme/Dracula.itermcolors
 }
 
 function configure_activity_monitor(){
