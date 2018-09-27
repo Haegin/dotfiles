@@ -11,3 +11,4 @@ config/google-chrome
 config/dotenv/allow
 config/configstore
 .var/zsh/history-*
+zsh/zshrc.local
