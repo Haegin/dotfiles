@@ -1,10 +1,7 @@
-#!/bin/zsh
+#!/bin/zsh -e -u
 setopt extendedglob
 
-set -o errexit
-set -o nounset
-
-setup_homebrew() {
+function setup_homebrew() {
   echo "Installing Homebrew"
   command -v brew > /dev/null 2&>1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew tap Homebrew/bundle
@@ -12,7 +9,7 @@ setup_homebrew() {
   [[ -e Brewfile.mac ]] && brew bundle --file=utils/Brewfile.mac
 }
 
-configure_sane_defaults() {
+function configure_sane_defaults() {
   # Close any open System Preferences panes, to prevent them from overriding
   # settings we’re about to change
   osascript -e 'tell application "System Preferences" to quit'
@@ -52,7 +49,7 @@ configure_sane_defaults() {
   defaults write com.apple.dock autohide -bool true
 }
 
-configure_spotlight() {
+function configure_spotlight() {
   # Change indexing order and disable some search results
   # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
   # 	MENU_DEFINITION
@@ -132,7 +129,7 @@ EOD
   defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 }
 
-configure_activity_monitor(){
+function configure_activity_monitor(){
   # Show the main window when launching Activity Monitor
   defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
   # Visualize CPU usage in the Activity Monitor Dock icon
@@ -145,9 +142,9 @@ configure_activity_monitor(){
 }
 
 echo "Setting up Mac specific configuration"
-setup_homebrew()
-configure_sane_defaults()
-configure_spotlight()
-prettify_terminal()
-configure_activity_monitor()
+setup_homebrew
+configure_sane_defaults
+configure_spotlight
+prettify_terminal
+configure_activity_monitor
 echo "Done!"
