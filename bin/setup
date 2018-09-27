@@ -37,6 +37,18 @@ function install_vscode_extensions() {
   code --install-extension 'esbenp.prettier-vscode'
 }
 
+function install_js() {
+  echo "Installing Node using ASDF"
+  if [[ -x $(command -v asdf) ]]; then
+    asdf plugin-add nodejs
+    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+    asdf install nodejs 8.12.0
+  else
+    echo 'Could not install JS as ASDF is not installed.'
+  fi
+}
+
+
 if [[ -d "$HOME/.dotfiles" ]]; then
   echo "Setting up your machine...\n"
   setup_submodules
