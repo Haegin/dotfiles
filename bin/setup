@@ -35,6 +35,7 @@ function install_vscode_extensions() {
   code --install-extension 'dbaeumer.vscode-eslint'
   code --install-extension 'ecmel.vscode-html-css'
   code --install-extension 'esbenp.prettier-vscode'
+  code --install-extension 'dracula-theme.theme-dracula'
 }
 
 function install_js() {
