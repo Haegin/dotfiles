@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 setopt extendedglob
 
 DOTDIR="${HOME}/.dotfiles"
