@@ -17,7 +17,7 @@ function setup_submodules() {
 function link_dotfiles() {
   # Only want to symlink the files, not the utility scripts
   echo "Linking files into ${HOME} from ${DOTDIR}:"
-  for item in *~(bin|utils); do
+  for item in *~(bin|utils|docs); do
     if [ ! -e "${HOME}/.${item}" ]; then
       echo "- .${item}"
       ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
