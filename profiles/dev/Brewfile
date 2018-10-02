@@ -1,0 +1,14 @@
+tap 'neovim/neovim'
+
+brew 'textql'
+brew 'jq'
+brew 'overmind'
+brew 'pwgen'
+brew 'tmux'
+brew 'tmate'
+brew 'gpg'
+brew 'htop'
+
+cask 'docker'
+cask 'postman'
+cask 'ngrok'

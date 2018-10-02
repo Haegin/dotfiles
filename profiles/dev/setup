@@ -1,0 +1,29 @@
+#!/bin/zsh
+setopt extendedglob
+
+cd $HOME/.dotfiles/profiles/dev
+
+function command_exists() {
+  command -v "$@" > /dev/null 2>&1
+}
+
+function install_lang() {
+  lang=$1
+  version=$2
+  echo "Installing $lang using ASDF"
+  if [[ -e $HOME/.asdf ]]; then
+    source $HOME/.asdf/asdf.sh
+    asdf plugin-add $lang
+    latest=$(asdf list-all $lang | rg "^[0-9.]+$" | sort -n | tail -n 1)
+    asdf install $lang ${version:-$latest}
+  else
+    echo 'Could not install ${lang} as ASDF is not installed.'
+  fi
+}
+
+install_lang "elixir"
+install_lang "ruby"
+
+if command_exists "brew"; then
+  brew bundle --file=Brewfile
+fi

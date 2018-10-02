@@ -17,7 +17,7 @@ function setup_submodules() {
 function link_dotfiles() {
   # Only want to symlink the files, not the utility scripts
   echo "Linking files into ${HOME} from ${DOTDIR}:"
-  for item in *~(bin|utils|docs); do
+  for item in *~(bin|utils|docs|profiles); do
     if [ ! -e "${HOME}/.${item}" ]; then
       echo "- .${item}"
       ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
@@ -50,6 +50,21 @@ function install_js() {
   fi
 }
 
+function run_custom_setup() {
+  if [[ -x ./profiles/$USER ]]; then
+    profile=$USER
+  else
+    profile=$(ls profiles | fzf --height=10% --prompt="Select a profile to further customise your install or press Ctrl+C to cancel > ")
+  fi
+  if [[ -v profile ]]; then
+    echo "Running ${profile}'s custom setup script'"
+    if [[ -d ./profiles/$profile ]]; then
+      ./profiles/$profile/setup
+    else
+      ./profiles/$profile
+    fi
+  fi
+}
 
 if [[ -d "$HOME/.dotfiles" ]]; then
   echo "Setting up your machine...\n"
@@ -66,6 +81,7 @@ if [[ -d "$HOME/.dotfiles" ]]; then
   fi
   install_vscode_extensions
   install_js
+  run_custom_setup
   echo "\nFinished!"
 else
   echo "Dotfiles don't seem to be correctly set up."
