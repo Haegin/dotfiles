@@ -48,6 +48,9 @@
 [url "git@github.com:"]
   insteadOf = gh:
 
+[url "git@github.com:HighlineBETA/"]
+  insteadOf = hlb:
+
 [url "git@bitbucket.org:"]
   insteadOf = bb:
 
