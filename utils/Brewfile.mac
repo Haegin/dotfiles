@@ -11,7 +11,7 @@ brew 'gnutls'
 brew 'gnu-indent', args: ['with-default-names']
 brew 'gnu-getopt', args: ['with-default-names']
 
-cask 'google-chrome'
+cask 'firefox'
 cask 'iterm2'
 cask 'slack'
 cask 'keybase'

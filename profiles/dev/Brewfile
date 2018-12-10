@@ -7,6 +7,8 @@ brew 'tmate'
 brew 'gpg'
 brew 'htop'
 
+cask 'google-chrome'
 cask 'docker'
 cask 'postman'
 cask 'ngrok'
+cask 'zeplin'

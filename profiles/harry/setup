@@ -26,5 +26,6 @@ install_lang "elixir"
 install_lang "ruby"
 
 if command_exists "brew"; then
+  brew bundle --file=../dev/Brewfile
   brew bundle --file=Brewfile
 fi
