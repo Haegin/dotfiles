@@ -21,6 +21,7 @@ function install_lang() {
   fi
 }
 
+install_lang "erlang"
 install_lang "elixir"
 install_lang "ruby"
 
