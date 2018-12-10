@@ -1,5 +1,3 @@
-tap 'neovim/neovim'
-
 brew 'textql'
 brew 'jq'
 brew 'overmind'
