@@ -28,3 +28,5 @@ Temporary Items
 .projections.json
 
 .tern-port
+
+terraform.tfvars

@@ -55,3 +55,8 @@ if [[ -x $(which rg) ]]; then
   alias -g G='| rg'
 fi
 alias -g L='| less'
+
+alias \#='tmux attach'
+alias a='tmux attach'
+
+alias be='bundle exec'

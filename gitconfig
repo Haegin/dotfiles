@@ -44,6 +44,8 @@
   git = !"exec git"
   up = pull --rebase --autostash
   ap = add --patch
+  prs = !"hub pr list -f '%Cmagenta%i%Creset : [%Cyellow%au%Creset] %sC%t%Creset (%Cblue%U%Creset)\n'"
+  pr-url = !"hub pr list -h $(git name-rev --name-only HEAD) -f '%U\n'"
 
 [url "git@github.com:"]
   insteadOf = gh:
