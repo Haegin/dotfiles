@@ -4,5 +4,7 @@ brew 'neovim'
 brew 'icdiff'
 
 cask 'skype'
-cask 'lastpass'
 cask 'bartender'
+cask 'arq'
+cask 'notion'
+cask 'amphetamine'

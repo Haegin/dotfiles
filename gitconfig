@@ -104,3 +104,5 @@
 	rebase = true
 [rebase]
 	autoStash = true
+[user]
+	name = Harry Mills
