@@ -49,4 +49,4 @@ fzf-loc-widget() {
 zle     -N    fzf-loc-widget
 bindkey '\eL' fzf-loc-widget
 
-source ~/.zsh/zshrc.local
+[ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
