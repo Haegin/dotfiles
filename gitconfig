@@ -1,5 +1,5 @@
 [user]
-  signingkey = 72B033EFBAF362B8
+  signingkey = 4DA0A34D
 [alias]
   co = checkout
   st = status -s
@@ -44,6 +44,9 @@
   prs = !"hub pr list -f '%Cmagenta%i%Creset : [%Cyellow%au%Creset] %sC%t%Creset (%Cblue%U%Creset)\n'"
   pr-url = !"hub pr list -h $(git name-rev --name-only HEAD) -f '%U\n'"
   recent = !"git lg1 -n 5"
+  work-email = "config user.email harry.mills@highlinebeta.com"
+  my-email = "config user.email harry@portermills.net"
+  recent-branches = !"git reflog | sed -E -e \"/checkout/!d\" -e \"/rebase/d\" -e \"s/.*moving from (.*) to .*/\\1/\" | head -n 5 | sort -u"
 
 [url "git@github.com:"]
   insteadOf = gh:
@@ -51,14 +54,21 @@
 [url "git@github.com:HighlineBETA/"]
   insteadOf = hlb:
 
+[url "git@github.com:relayplatform/"]
+  insteadOf = relay:
+
 [url "git@bitbucket.org:"]
   insteadOf = bb:
 
 [core]
   trustctime = false
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [push]
   default = current
+
+[pull]
+  rebase = true
 
 [color]
   branch = auto
@@ -85,6 +95,7 @@
 
 [merge]
   ff = false
+  log = true
 
 [branch "master"]
   mergeoptons = --no-ff
@@ -101,9 +112,9 @@
 [commit]
   gpgsign = true
 
-[pull]
-	rebase = true
 [rebase]
-	autoStash = true
+ autoStash = true
+  autosquash = true
+
 [user]
-	name = Harry Mills
+ name = Harry Mills

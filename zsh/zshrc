@@ -50,3 +50,6 @@ zle     -N    fzf-loc-widget
 bindkey '\eL' fzf-loc-widget
 
 [ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
+
+gpgconf --launch gpg-agent
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

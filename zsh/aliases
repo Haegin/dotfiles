@@ -60,3 +60,6 @@ alias \#='tmux attach'
 alias a='tmux attach'
 
 alias be='bundle exec'
+
+alias agenda='gcalcli --default-calendar harry.mills@highlinebeta.com agenda --details length --details description'
+alias week='gcalcli --default-calendar harry.mills@highlinebeta.com calw'
