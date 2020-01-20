@@ -14,3 +14,9 @@ config/keybase
 config/yarn
 .var/zsh/history-*
 zsh/zshrc.local
+
+node_modules
+coc-tabnine-data
+config/coc/extensions/coc-yank-data/yank
+config/coc/history.json
+config/coc/mru

@@ -53,3 +53,5 @@ bindkey '\eL' fzf-loc-widget
 
 gpgconf --launch gpg-agent
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+eval "$(starship init zsh)"

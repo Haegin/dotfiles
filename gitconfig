@@ -19,7 +19,8 @@
   # From durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples
   ls = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate
   ll = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --stat
-  lb = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative master..HEAD
+  lb = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative develop..HEAD
+  lbm = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative master..HEAD
   lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
   ld = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=relative
   lds = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=short
@@ -44,9 +45,14 @@
   prs = !"hub pr list -f '%Cmagenta%i%Creset : [%Cyellow%au%Creset] %sC%t%Creset (%Cblue%U%Creset)\n'"
   pr-url = !"hub pr list -h $(git name-rev --name-only HEAD) -f '%U\n'"
   recent = !"git lg1 -n 5"
-  work-email = "config user.email harry.mills@highlinebeta.com"
+  work-email = "config user.email harry.mills@relayplatform.com"
   my-email = "config user.email harry@portermills.net"
-  recent-branches = !"git reflog | sed -E -e \"/checkout/!d\" -e \"/rebase/d\" -e \"s/.*moving from (.*) to .*/\\1/\" | head -n 5 | sort -u"
+  ; recent-branches = !"git reflog | sed -E -e \"/checkout/!d\" -e \"/rebase/d\" -e \"s/.*moving from (.*) to .*/\\1/\" | head -n 5 | sort -u"
+  recent-branches = !"git branch --sort=-committerdate | head -n 5"
+  info = "show --quiet --pretty=short"
+  sc = "switch -c"
+  sw = "switch"
+  resolve = "!$EDITOR $(git diff --name-only --diff-filter=U)"
 
 [url "git@github.com:"]
   insteadOf = gh:
@@ -80,14 +86,14 @@
   showbranch = auto
 
 [diff]
-  tool = nvimdiff
-  algorithm = patience
+  algorithm = histogram
   compactionHeuristic = true
+  tool = nvimdiff
 
 [difftool "nvimdiff"]
   cmd = nvim -d -f $LOCAL $REMOTE
 
-  algorithm = patience
+  algorithm = histogram
   compactionHeuristic = true
 
 [difftool]
@@ -118,3 +124,4 @@
 
 [user]
  name = Harry Mills
+	email = harry@portermills.net
