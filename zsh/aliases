@@ -63,3 +63,11 @@ alias be='bundle exec'
 
 alias agenda='gcalcli --default-calendar harry.mills@highlinebeta.com agenda --details length --details description'
 alias week='gcalcli --default-calendar harry.mills@highlinebeta.com calw'
+
+if [[ ! -x $(which pbcopy) ]]; then
+  alias pbcopy="xclip -selection clipboard"
+  alias pbpaste="xclip -selection clippboard -o"
+fi
+
+
+alias mkctl="microk8s kubectl"

@@ -1,13 +1,15 @@
-[user]
-  signingkey = 4DA0A34D
+; [user]
+;   signingkey = 4DA0A34D
 [alias]
   co = checkout
+  cob = !"git branch -l --format '%(refname:short)' --sort=-committerdate | fzf --preview 'git log --oneline --decorate --color {}' | xargs -n1 git co"
   st = status -s
   cm = commit --verbose
   dt = difftool
-  lg1 = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(white)— %C(bold cyan)%an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+  lg1 = log --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(white)— %C(bold cyan)%an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+  lgraph = lg1 --graph
   lg2 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
-  lg = !"git lg1"
+  lg = !"git lg1 --color | fzf --ansi | cut -d' ' -f 1 | xargs git show --quiet --pretty=medium"
   lastlog = log -p -n1
   difflog = log -p
   blame = 'blame -w -M -C'
@@ -20,11 +22,13 @@
   ls = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate
   ll = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --stat
   lb = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative develop..HEAD
-  lbm = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative master..HEAD
+  lr = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative release..HEAD
+  lm = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative main..HEAD
   lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
   ld = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=relative
   lds = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=short
   le = log --oneline --decorate
+  l5 = lg -n 5
   filelog = log -u
   fl = log -u
   dl = "!git ll -1"
@@ -35,24 +39,29 @@
   diffr  = "!f() { git diff "$1"^.."$1"; }; f"
   dc = diff --cached
   pr = pull-request
-  current-branch = name-rev --name-only HEAD
+  current-branch = git rev-parse --abbrev-ref HEAD
   please = push --force-with-lease
-  expunge = !"git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d"
+  expunge = !"git branch --merged | egrep -v \"(^\\*|master|main|dev)\" | xargs git branch -d"
   fix = !"git cm --amend --no-edit"
   git = !"exec git"
   up = pull --rebase --autostash
   ap = add --patch
   prs = !"hub pr list -f '%Cmagenta%i%Creset : [%Cyellow%au%Creset] %sC%t%Creset (%Cblue%U%Creset)\n'"
-  pr-url = !"hub pr list -h $(git name-rev --name-only HEAD) -f '%U\n'"
-  recent = !"git lg1 -n 5"
+  pr-url = !"hub pr list -h $(git rev-parse --abbrev-ref HEAD) -f '%U\n'"
   work-email = "config user.email harry.mills@relayplatform.com"
   my-email = "config user.email harry@portermills.net"
   ; recent-branches = !"git reflog | sed -E -e \"/checkout/!d\" -e \"/rebase/d\" -e \"s/.*moving from (.*) to .*/\\1/\" | head -n 5 | sort -u"
-  recent-branches = !"git branch --sort=-committerdate | head -n 5"
+  recent = !"git branch --sort=-committerdate | head -n 5"
+  recent-branches = !"git branch -l --format '%(refname:short)' --sort=-committerdate | fzf --preview 'git le --color {}'"
   info = "show --quiet --pretty=short"
   sc = "switch -c"
   sw = "switch"
   resolve = "!$EDITOR $(git diff --name-only --diff-filter=U)"
+  gcd = "checkout develop"
+  dpr="pull-request -b develop -r relayplatform/engineers -p"
+  mpr="pull-request -b main -r relayplatform/engineers -p"
+  rpr="pull-request -b release -r relayplatform/engineers -p"
+  hotfix="pull-request -b main -r relayplatform/engineers -p -l Hotfix"
 
 [url "git@github.com:"]
   insteadOf = gh:
@@ -69,6 +78,7 @@
 [core]
   trustctime = false
 	pager = diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = ~/.config/git/ignore
 
 [push]
   default = current
@@ -81,7 +91,7 @@
   diff = auto
   grep = auto
   interactive = auto
-  ui = auto
+	ui = true
   status = auto
   showbranch = auto
 
@@ -103,7 +113,7 @@
   ff = false
   log = true
 
-[branch "master"]
+[branch "main"]
   mergeoptons = --no-ff
 
 [rerere]
@@ -111,12 +121,13 @@
 
 [init]
   templatedir = ~/.git_template
+  defaultBranch = main
 
 [help]
   autocorrect = 1
 
-[commit]
-  gpgsign = true
+; [commit]
+;   gpgsign = true
 
 [rebase]
  autoStash = true
@@ -125,3 +136,16 @@
 [user]
  name = Harry Mills
 	email = harry@portermills.net
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
