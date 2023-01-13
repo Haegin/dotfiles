@@ -21,8 +21,7 @@
   # From durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples
   ls = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate
   ll = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --stat
-  lb = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative develop..HEAD
-  lr = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative release..HEAD
+  lb = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative main..HEAD
   lm = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative main..HEAD
   lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
   ld = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=relative
@@ -41,6 +40,7 @@
   pr = pull-request
   current-branch = git rev-parse --abbrev-ref HEAD
   please = push --force-with-lease
+  shove = push --no-verify
   expunge = !"git branch --merged | egrep -v \"(^\\*|master|main|dev)\" | xargs git branch -d"
   fix = !"git cm --amend --no-edit"
   git = !"exec git"
@@ -48,7 +48,7 @@
   ap = add --patch
   prs = !"hub pr list -f '%Cmagenta%i%Creset : [%Cyellow%au%Creset] %sC%t%Creset (%Cblue%U%Creset)\n'"
   pr-url = !"hub pr list -h $(git rev-parse --abbrev-ref HEAD) -f '%U\n'"
-  work-email = "config user.email harry.mills@relayplatform.com"
+  work-email = "config user.email harry.porter-mills@relayplatform.com"
   my-email = "config user.email harry@portermills.net"
   ; recent-branches = !"git reflog | sed -E -e \"/checkout/!d\" -e \"/rebase/d\" -e \"s/.*moving from (.*) to .*/\\1/\" | head -n 5 | sort -u"
   recent = !"git branch --sort=-committerdate | head -n 5"
@@ -59,9 +59,12 @@
   resolve = "!$EDITOR $(git diff --name-only --diff-filter=U)"
   gcd = "checkout develop"
   dpr="pull-request -b develop -r relayplatform/engineers -p"
-  mpr="pull-request -b main -r relayplatform/engineers -p"
-  rpr="pull-request -b release -r relayplatform/engineers -p"
-  hotfix="pull-request -b main -r relayplatform/engineers -p -l Hotfix"
+  mpr="pull-request -b main -p"
+  rpr="pull-request -b release -p"
+  hotfix="pull-request -b main -p -l Hotfix"
+
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
 
 [url "git@github.com:"]
   insteadOf = gh:
@@ -76,9 +79,18 @@
   insteadOf = bb:
 
 [core]
+  pager = delta
   trustctime = false
-	pager = diff-so-fancy | less --tabs=4 -RFX
   excludesfile = ~/.config/git/ignore
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  side-by-side = true
+  line-numbers = true
+  syntax-theme = "Monokai Extended"
 
 [push]
   default = current
@@ -91,25 +103,27 @@
   diff = auto
   grep = auto
   interactive = auto
-	ui = true
+  ui = true
   status = auto
   showbranch = auto
 
 [diff]
+  colorMoved = default
   algorithm = histogram
   compactionHeuristic = true
-  tool = nvimdiff
+  ; tool = nvimdiff
 
-[difftool "nvimdiff"]
-  cmd = nvim -d -f $LOCAL $REMOTE
+; [difftool "nvimdiff"]
+;   cmd = nvim -d -f $LOCAL $REMOTE
 
-  algorithm = histogram
-  compactionHeuristic = true
+;   algorithm = histogram
+;   compactionHeuristic = true
 
 [difftool]
   prompt = false
 
 [merge]
+  conflictStyle = diff3
   ff = false
   log = true
 
@@ -126,26 +140,27 @@
 [help]
   autocorrect = 1
 
-; [commit]
-;   gpgsign = true
+[commit]
+  gpgsign = true
 
 [rebase]
- autoStash = true
+  autoStash = true
   autosquash = true
 
 [user]
- name = Harry Mills
-	email = harry@portermills.net
+  name = Harry Porter-Mills
+  signingkey = DE31544B9C530DD8
+
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = 11
+  frag = magenta bold
+  func = 146 bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse

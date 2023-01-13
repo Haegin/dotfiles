@@ -64,3 +64,5 @@
 # end
 
 # %w(c n s).each { |command| Pry::Commands.delete(command) }
+
+Pry.config.pager = false if defined?(PryByeBug)
