@@ -39,6 +39,7 @@ if [[ -x $(which hub) ]]; then
 }
 fi
 alias it=git
+alias ggit=git
 alias gap='git add -p'
 alias gs='git status -s'
 
@@ -69,5 +70,16 @@ if [[ ! -x $(which pbcopy) ]]; then
   alias pbpaste="xclip -selection clippboard -o"
 fi
 
+# Commented until I can get tab completion based on .ssh/config working with kitty
+#/* if [ $TERM = "xterm-kitty" ]; then */
+#/*   alias ssh="kitty +kitten ssh" */
+#/* fi */
 
-alias mkctl="microk8s kubectl"
+function zettle {
+  pushd ~/dev/haegin/zettlekasten
+  nvim $1.md
+  popd
+}
+
+alias cssh="tmux-xpanes --ssh -ss"
+alias tf=terraform

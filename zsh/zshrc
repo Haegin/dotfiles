@@ -57,3 +57,5 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 eval "$(starship init zsh)"
 
 export SSH_ASKPASS="/usr/bin/ksshaskpass"
+
+autoload -Uz compinit && compinit
