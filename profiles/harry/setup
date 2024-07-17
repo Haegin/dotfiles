@@ -7,23 +7,6 @@ function command_exists() {
   command -v "$@" > /dev/null 2>&1
 }
 
-function install_lang() {
-  lang=$1
-  version=$2
-  echo "Installing $lang using ASDF"
-  if [ -x "$(command -v asdf)" ]; then
-    asdf plugin-add $lang
-    latest=$(asdf latest $lang)
-    asdf install $lang ${version:-$latest}
-  else
-    echo 'Could not install ${lang} as ASDF is not installed.'
-  fi
-}
-
-install_lang "erlang"
-install_lang "elixir"
-install_lang "ruby"
-
 if command_exists "brew"; then
   brew bundle --file=../dev/Brewfile
   brew bundle --file=Brewfile

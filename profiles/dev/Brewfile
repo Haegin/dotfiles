@@ -1,4 +1,3 @@
-brew 'textql'
 brew 'jq'
 brew 'overmind'
 brew 'pwgen'
@@ -7,4 +6,7 @@ brew 'tmate'
 brew 'gpg'
 brew 'htop'
 
-cask 'ngrok'
+cask 'google-chrome'
+cask 'docker'
+cask 'postman'
+cask 'keybase'

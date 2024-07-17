@@ -1,7 +1,7 @@
 brew 'zsh'
 brew 'git'
 brew 'ripgrep'
-brew 'exa'
+brew 'eza'
 brew 'fd'
 brew 'dust'
 brew 'bat'

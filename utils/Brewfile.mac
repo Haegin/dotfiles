@@ -7,3 +7,13 @@ brew 'gawk'
 brew 'gnutls'
 brew 'gnu-indent'
 brew 'gnu-getopt'
+
+cask 'firefox'
+cask 'iterm2'
+cask 'slack'
+cask 'keybase'
+cask 'adobe-acrobat-reader'
+cask 'gpg-suite'
+cask 'visual-studio-code'
+
+cask 'font-fira-code-nerd-font'

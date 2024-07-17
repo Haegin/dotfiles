@@ -1,5 +1,5 @@
+brew 'neovim'
 brew 'icdiff'
 brew 'hub'
 
-# amphetamine
-#mas '937984704'
+cask 'tailscale'
