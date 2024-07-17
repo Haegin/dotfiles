@@ -11,10 +11,9 @@ function install_lang() {
   lang=$1
   version=$2
   echo "Installing $lang using ASDF"
-  if [[ -e $HOME/.asdf ]]; then
-    source $HOME/.asdf/asdf.sh
+  if [ -x "$(command -v asdf)" ]; then
     asdf plugin-add $lang
-    latest=$(asdf list-all $lang | rg "^[0-9.]+$" | sort -n | tail -n 1)
+    latest=$(asdf latest $lang)
     asdf install $lang ${version:-$latest}
   else
     echo 'Could not install ${lang} as ASDF is not installed.'

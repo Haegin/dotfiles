@@ -38,18 +38,6 @@ function install_vscode_extensions() {
   code --install-extension 'dracula-theme.theme-dracula'
 }
 
-function install_js() {
-  echo "Installing Node using ASDF"
-  if [[ -e $HOME/.asdf ]]; then
-    source $HOME/.asdf/asdf.sh
-    asdf plugin-add nodejs
-    bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-    asdf install nodejs 8.12.0
-  else
-    echo 'Could not install JS as ASDF is not installed.'
-  fi
-}
-
 function run_custom_setup() {
   if [[ -x ./profiles/$USER ]]; then
     profile=$USER
@@ -85,5 +73,5 @@ if [[ -d "$HOME/.dotfiles" ]]; then
   echo "\nFinished!"
 else
   echo "Dotfiles don't seem to be correctly set up."
-  echo "Ensure you've cloned github.com/HighlineBETA/ptah into $HOME/.dotfiles."
+  echo "Ensure you've cloned github.com/haegin/dotfiles into $HOME/.dotfiles."
 fi

@@ -1,13 +1,5 @@
-tap 'neovim/neovim'
-
-brew 'neovim'
 brew 'icdiff'
 brew 'hub'
 
-cask 'skype'
-cask 'bartender'
-cask 'arq'
-cask 'notion'
-cask 'logitech-options'
-
-mas 'amphetamine'
+# amphetamine
+#mas '937984704'

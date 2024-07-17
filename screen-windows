@@ -1,2 +1,0 @@
-# Windows to launch when running screen
-screen -t Shell 0 motd+shell

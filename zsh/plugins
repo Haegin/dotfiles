@@ -9,7 +9,10 @@ zsh-users/zsh-history-substring-search
 haegin/zsh-magic-history
 haegin/zsh-magic-completion
 haegin/zsh-fzf
-haegin/zsh-asdf
+# haegin/zsh-asdf
+wintermi/zsh-mise
 haegin/zsh-rationalise-dot
 
 mafredri/zsh-async branch:main
+
+reegnz/jq-zsh-plugin

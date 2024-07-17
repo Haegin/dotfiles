@@ -101,3 +101,5 @@ fi
 PATH=$HOME/.homebrew/bin:$PATH
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+source /Users/harry/.docker/init-bash.sh || true # Added by Docker Desktop

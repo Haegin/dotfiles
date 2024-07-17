@@ -48,7 +48,7 @@
   ap = add --patch
   prs = !"hub pr list -f '%Cmagenta%i%Creset : [%Cyellow%au%Creset] %sC%t%Creset (%Cblue%U%Creset)\n'"
   pr-url = !"hub pr list -h $(git rev-parse --abbrev-ref HEAD) -f '%U\n'"
-  work-email = "config user.email harry.porter-mills@relayplatform.com"
+  work-email = !"git config user.email harry.porter-mills@relayplatform.com && git commit --amend --no-edit --reset-author"
   my-email = "config user.email harry@portermills.net"
   ; recent-branches = !"git reflog | sed -E -e \"/checkout/!d\" -e \"/rebase/d\" -e \"s/.*moving from (.*) to .*/\\1/\" | head -n 5 | sort -u"
   recent = !"git branch --sort=-committerdate | head -n 5"
@@ -90,10 +90,11 @@
   navigate = true
   side-by-side = true
   line-numbers = true
-  syntax-theme = "Monokai Extended"
+  ;syntax-theme = "Monokai Extended"
 
 [push]
   default = current
+  autoSetupRemote = true
 
 [pull]
   rebase = true
@@ -123,7 +124,7 @@
   prompt = false
 
 [merge]
-  conflictStyle = diff3
+  conflictStyle = zdiff3
   ff = false
   log = true
 
@@ -144,12 +145,14 @@
   gpgsign = true
 
 [rebase]
+  updateRefs = true
   autoStash = true
   autosquash = true
 
 [user]
-  name = Harry Porter-Mills
-  signingkey = DE31544B9C530DD8
+	name = Harry Porter-Mills
+	signingkey = DE31544B9C530DD8
+	email = harry@portermills.net
 
 [color "diff-highlight"]
   oldNormal = red bold
@@ -164,3 +167,5 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+[diff "rails_credentials"]
+	textconv = bin/rails credentials:diff

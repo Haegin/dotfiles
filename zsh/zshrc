@@ -2,8 +2,17 @@ bindkey -e
 
 export ZVARDIR=~/.var/zsh
 
-source <(antibody init)
-antibody bundle < $ZDOTDIR/plugins
+eval $(brew shellenv)
+
+export FLYCTL_INSTALL="/home/harry/.fly"
+if [ -x /usr/libexec/path_helper ]; then
+  PATH=""
+  eval $(/usr/libexec/path_helper -s)
+fi
+export PATH=$HOME/bin:/opt/homebrew/bin:$FLYCTL_INSTALL/bin:$PATH
+
+source /opt/homebrew/Cellar/antidote/1.9.4/share/antidote/antidote.zsh
+antidote load $ZDOTDIR/plugins
 
 # Base 16 colour schemes {{{
 BASE16_SHELL=$HOME/.config/base16-shell/
@@ -38,6 +47,7 @@ export EDITOR="nvim"
 export ERL_AFLAGS="-kernel shell_history enabled"
 export PURE_PROMPT_SYMBOL="|>"
 export GPG_TTY=$(tty)
+export GOBIN="${HOME}/bin"
 
 fzf-loc-widget() {
   local selected
@@ -55,7 +65,5 @@ gpgconf --launch gpg-agent
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 eval "$(starship init zsh)"
-
-export SSH_ASKPASS="/usr/bin/ksshaskpass"
 
 autoload -Uz compinit && compinit

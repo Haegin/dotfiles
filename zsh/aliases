@@ -10,14 +10,16 @@ alias lrt='ls -lrt'
 alias lat='ls -lat'
 alias lart='ls -lart'
 
-if [[ -x $(which exa) ]]; then
-  alias ls='exa'
-  alias ll='exa -la --git'
-  alias tree='exa -T'
-  alias lt='exa -l --sort newest'
-  alias lrt='exa -lr --sort newest'
-  alias lat='exa -la --git --sort newest'
-  alias lart='exa -lra --git --sort newest'
+export LS_REPLACEMENT="eza"
+
+if [[ -x $(which $LS_REPLACEMENT) ]]; then
+  alias ls='$LS_REPLACEMENT --icons '
+  alias ll='ls -la --git'
+  alias tree='ls -T'
+  alias lt='ls -l --sort newest'
+  alias lrt='ls -lr --sort newest'
+  alias lat='ll --sort newest'
+  alias lart='lat -r'
 fi
 
 # Better programs if they're installed
@@ -83,3 +85,5 @@ function zettle {
 
 alias cssh="tmux-xpanes --ssh -ss"
 alias tf=terraform
+
+alias -g rpsec=rspec
