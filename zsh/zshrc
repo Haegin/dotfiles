@@ -11,7 +11,7 @@ if [ -x /usr/libexec/path_helper ]; then
 fi
 export PATH=$HOME/bin:/opt/homebrew/bin:$FLYCTL_INSTALL/bin:$PATH
 
-source /opt/homebrew/Cellar/antidote/1.9.4/share/antidote/antidote.zsh
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
 antidote load $ZDOTDIR/plugins
 
 # Base 16 colour schemes {{{

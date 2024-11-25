@@ -1,9 +1,6 @@
 [package]
 disabled = true
 
-[character]
-use_symbol_for_status = true
-
 [git_status]
 conflicted = "🏳"
 ahead = "📤"
@@ -20,9 +17,6 @@ deleted = "📕"
 full_symbol = "🔋"
 charging_symbol = "⚡️"
 discharging_symbol = "💀"
-
-[memory]
-disabled = false
 
 [kubernetes]
 disabled = true
