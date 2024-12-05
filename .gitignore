@@ -20,3 +20,4 @@ coc-tabnine-data
 config/coc/extensions/coc-yank-data/yank
 config/coc/history.json
 config/coc/mru
+zsh/aliases/*_

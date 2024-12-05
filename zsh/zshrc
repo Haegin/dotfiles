@@ -19,8 +19,6 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 # }}}
 
-source $ZDOTDIR/aliases
-
 setopt dvorak
 setopt noclobber
 setopt autopushd pushdminus pushdsilent pushdtohome
@@ -67,3 +65,19 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 eval "$(starship init zsh)"
 
 autoload -Uz compinit && compinit
+
+source_files_in_directory() {
+  local dir="$1"
+
+  if [[ -d "$dir" ]]; then
+    for file in ${(o)dir}/*(N); do
+      if [[ -f $file ]]; then
+        source "$file"
+      fi
+    done
+  else
+    echo "Directory '$dir' does not exist."
+  fi
+}
+
+source_files_in_directory $ZDOTDIR/config
