@@ -10,7 +10,7 @@ if [ "$USER" = "bento" ] || [ -d "/Applications/Okta Verify.app" ]; then
   # This Line Added Automatically by Instacart Setup Script
   # The sourced file contains all of the instacart utilities and shell settings
   # To remove this functionality, leave the block, and enter "NO-TOUCH" in the BEGIN line, and comment the line below:
-  source $HOME/.instacart_shell_profile
+  [ -f $HOME/.instacart_shell_profile ] && source $HOME/.instacart_shell_profile
   ### END--Instacart Shell Settings.
 
   alias terraform=~/dev/instacart/tf-instacart/isc-terraform
