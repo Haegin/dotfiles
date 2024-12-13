@@ -1,0 +1,8 @@
+# vim: set ft=zsh:syntax=zsh:
+
+# Don't use our normal ZSH config in ~/.zsh
+rm ~/.zshenv
+
+# Kill the automatically created bento ~/.zshrc.d and replace it with our own
+rmdir ~/.zshrc.d
+ln -s ~/.zsh/zshrc.d ~/.zshrc.d

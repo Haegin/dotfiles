@@ -87,4 +87,3 @@ alias cssh="tmux-xpanes --ssh -ss"
 alias tf=terraform
 
 alias -g rpsec=rspec
-

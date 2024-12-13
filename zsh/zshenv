@@ -1,5 +1,8 @@
-export FLYCTL_INSTALL="/home/harry/.fly"
-export PATH=$HOME/bin:/opt/homebrew/bin:$FLYCTL_INSTALL/bin:$HOME/.bun/bin:$PATH
+source $HOME/.zsh/zshrc.d/05_path_setup.zsh
+source $HOME/.zsh/zshrc.d/20_brew.zsh
+source $HOME/.zsh/zshrc.d/30_fly.zsh
+source $HOME/.zsh/zshrc.d/90_path.zsh
+
 export TZ=/usr/share/zoneinfo/America/Toronto
 export GPG_TTY=$(tty)
 export PAGER="less -X"

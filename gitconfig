@@ -22,7 +22,7 @@
   ls = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate
   ll = log --pretty=format:"%C(magenta)%h%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --stat
   lb = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative main..HEAD
-  lm = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative main..HEAD
+  lm = log --graph --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative master..HEAD
   lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
   ld = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=relative
   lds = log --pretty=format:"%C(magenta)%h\\ %C(yellow)%ad%C(red)%d\\ %C(reset)%s%C(blue)\\ [%cn]" --decorate --date=short
@@ -60,20 +60,13 @@
   gcd = "checkout develop"
   dpr="pull-request -b develop -r relayplatform/engineers -p"
   mpr="pull-request -b main -p"
-  rpr="pull-request -b release -p"
   hotfix="pull-request -b main -p -l Hotfix"
 
-[url "ssh://git@github.com/"]
-  insteadOf = https://github.com/
-
 [url "git@github.com:"]
-  insteadOf = gh:
+	insteadOf = https://github.com/
 
-[url "git@github.com:HighlineBETA/"]
-  insteadOf = hlb:
-
-[url "git@github.com:relayplatform/"]
-  insteadOf = relay:
+[url "git@github.com:instacart/"]
+  insteadOf = ic:
 
 [url "git@bitbucket.org:"]
   insteadOf = bb:
@@ -82,6 +75,7 @@
   pager = delta
   trustctime = false
   excludesfile = ~/.config/git/ignore
+	whitespace = trailing-space,space-before-tab
 
 [interactive]
   diffFilter = delta --color-only
@@ -93,7 +87,7 @@
   ;syntax-theme = "Monokai Extended"
 
 [push]
-  default = current
+	default = simple
   autoSetupRemote = true
 
 [pull]
@@ -112,6 +106,7 @@
   colorMoved = default
   algorithm = histogram
   compactionHeuristic = true
+	mnemonicprefix = true
   ; tool = nvimdiff
 
 ; [difftool "nvimdiff"]
@@ -127,8 +122,12 @@
   conflictStyle = zdiff3
   ff = false
   log = true
+	stat = true
 
 [branch "main"]
+  mergeoptons = --no-ff
+
+[branch "master"]
   mergeoptons = --no-ff
 
 [rerere]
@@ -166,3 +165,11 @@
   whitespace = red reverse
 [diff "rails_credentials"]
 	textconv = bin/rails credentials:diff
+[http]
+	postBuffer = 524288000
+[mergetool]
+	keepBackup = false
+[credential]
+	helper = osxkeychain
+[feature]
+	manyFiles = 1

@@ -1,71 +1,3 @@
-bindkey -e
-
-export ZVARDIR=~/.var/zsh
-
-eval $(brew shellenv)
-
-export FLYCTL_INSTALL="/home/harry/.fly"
-if [ -x /usr/libexec/path_helper ]; then
-  PATH=""
-  eval $(/usr/libexec/path_helper -s)
-fi
-export PATH=$HOME/bin:/opt/homebrew/bin:$FLYCTL_INSTALL/bin:$PATH
-
-source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
-antidote load $ZDOTDIR/plugins
-
-# Base 16 colour schemes {{{
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-# }}}
-
-setopt dvorak
-setopt noclobber
-setopt autopushd pushdminus pushdsilent pushdtohome
-
-setopt braceccl
-
-setopt notify
-setopt no_bgnice
-setopt nohup
-setopt checkjobs
-
-setopt bsd_echo
-
-setopt nullglob
-setopt extended_glob
-setopt no_nomatch
-
-setopt no_beep
-
-setopt c_bases
-
-export WORDCHARS="${WORDCHARS//\/}"
-export EDITOR="nvim"
-export ERL_AFLAGS="-kernel shell_history enabled"
-export PURE_PROMPT_SYMBOL="|>"
-export GPG_TTY=$(tty)
-export GOBIN="${HOME}/bin"
-
-fzf-loc-widget() {
-  local selected
-  if selected=$(loc "$LBUFFER"); then
-    LBUFFER=$selected
-  fi
-  zle redisplay
-}
-zle     -N    fzf-loc-widget
-bindkey '\eL' fzf-loc-widget
-
-[ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
-
-gpgconf --launch gpg-agent
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-
-eval "$(starship init zsh)"
-
-autoload -Uz compinit && compinit
-
 source_files_in_directory() {
   local dir="$1"
 
@@ -80,4 +12,6 @@ source_files_in_directory() {
   fi
 }
 
-source_files_in_directory $ZDOTDIR/config
+source_files_in_directory $ZDOTDIR/zshrc.d
+
+[ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local

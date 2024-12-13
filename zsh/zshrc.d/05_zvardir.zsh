@@ -1,0 +1,1 @@
+export ZVARDIR=~/.var/zsh

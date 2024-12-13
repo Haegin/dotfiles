@@ -30,14 +30,6 @@ function setup_history() {
   mkdir -p "${ZVARDIR:-${HOME}/.var/zsh}"
 }
 
-function install_vscode_extensions() {
-  echo "Setting up VSCode"
-  code --install-extension 'dbaeumer.vscode-eslint'
-  code --install-extension 'ecmel.vscode-html-css'
-  code --install-extension 'esbenp.prettier-vscode'
-  code --install-extension 'dracula-theme.theme-dracula'
-}
-
 function run_custom_setup() {
   if [[ -x ./profiles/$USER ]]; then
     profile=$USER
@@ -67,8 +59,6 @@ if [[ -d "$HOME/.dotfiles" ]]; then
     echo "Running OS specific setup"
     "${DOTDIR}/bin/setup.${OS}"
   fi
-  install_vscode_extensions
-  install_js
   run_custom_setup
   echo "\nFinished!"
 else
