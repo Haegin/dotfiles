@@ -4,5 +4,8 @@
 rm ~/.zshenv
 
 # Kill the automatically created bento ~/.zshrc.d and replace it with our own
-rmdir ~/.zshrc.d
-ln -s ~/.zsh/zshrc.d ~/.zshrc.d
+# ls
+if [ -d ~/.zshrc.d ] && [ -z "$(ls -A ~/.zshrc.d)" ]; then
+  rmdir ~/.zshrc.d
+  ln -s ~/.zsh/zshrc.d ~/.zshrc.d
+fi
