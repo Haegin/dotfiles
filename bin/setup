@@ -7,13 +7,6 @@ cd "$DOTDIR"
 
 OS="$(uname -s)"
 
-function setup_submodules() {
-  # Set up the submodules now we're done so vim plugins are all working
-  echo "Setting up the git submodules."
-  git submodule init
-  git submodule update
-}
-
 function link_dotfiles() {
   # Only want to symlink the files, not the utility scripts
   echo "Linking files into ${HOME} from ${DOTDIR}:"
@@ -52,7 +45,6 @@ if [[ -d "$HOME/.dotfiles" ]]; then
   sudo -v
   # Keep-alive: update existing `sudo` time stamp until setup has finished
   while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-  setup_submodules
   link_dotfiles
   setup_history
   if [[ -e "${DOTDIR}/bin/setup.${OS}" ]]; then
