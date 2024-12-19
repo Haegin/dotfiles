@@ -144,9 +144,9 @@
   autosquash = true
 
 [user]
-	name = Harry Porter-Mills
+  name = Harry Porter-Mills
   signingkey = DE31544B9C530DD8
-  email = harry.porter-mills@instacart.com
+  email = "harry.porter-mills@instacart.com"
 
 [color "diff-highlight"]
   oldNormal = red bold
