@@ -13,13 +13,13 @@ alias lart='ls -lart'
 export LS_REPLACEMENT="eza"
 
 if (( ${+commands[$LS_REPLACEMENT]} )); then
-  alias ls='$LS_REPLACEMENT --icons '
-  alias ll='ls -la --git'
-  alias tree='ls -T'
-  alias lt='ls -l --sort newest'
-  alias lrt='ls -lr --sort newest'
-  alias lat='ll --sort newest'
-  alias lart='lat -r'
+  alias ls="$LS_REPLACEMENT --icons"
+  alias ll="ls -la --git"
+  alias tree="ls -T"
+  alias lt="ls -l --sort newest"
+  alias lrt="ls -lr --sort newest"
+  alias lat="ll --sort newest"
+  alias lart="lat -r"
 fi
 
 # Better programs if they're installed
@@ -28,6 +28,9 @@ if (( ${+commands[dfc]} )); then
 fi
 if (( ${+commands[htop]} )); then
   alias top='htop'
+fi
+if (( ${+commands[bat]} )); then
+  alias cat="bat"
 fi
 
 # Git spelling mistakes and shortcuts
