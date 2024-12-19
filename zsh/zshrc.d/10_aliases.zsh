@@ -12,7 +12,7 @@ alias lart='ls -lart'
 
 export LS_REPLACEMENT="eza"
 
-if [[ -x $(which $LS_REPLACEMENT) ]]; then
+if (( ${+commands[$LS_REPLACEMENT]} )); then
   alias ls='$LS_REPLACEMENT --icons '
   alias ll='ls -la --git'
   alias tree='ls -T'
@@ -23,22 +23,22 @@ if [[ -x $(which $LS_REPLACEMENT) ]]; then
 fi
 
 # Better programs if they're installed
-if [[ -x $(which dfc) ]]; then
+if (( ${+commands[dfc]} )); then
   alias df='dfc'
 fi
-if [[ -x $(which htop) ]]; then
+if (( ${+commands[htop]} )); then
   alias top='htop'
 fi
 
 # Git spelling mistakes and shortcuts
-if [[ -x $(which hub) ]]; then
+if (( ${+commands[hub]} )); then
   git () {
-  if [ "pr" = "$1" ]; then
-    hub pull-request
-  else
-    hub "$@"
-  fi
-}
+    if [ "pr" = "$1" ]; then
+      hub pull-request
+    else
+      hub "$@"
+    fi
+  }
 fi
 alias it=git
 alias ggit=git
@@ -54,7 +54,7 @@ function e() { $EDITOR "$@" }
 alias -g H='| head'
 alias -g T='| tail'
 alias -g G='| grep'
-if [[ -x $(which rg) ]]; then
+if (( ${+commands[rg]} )); then
   alias -g G='| rg'
 fi
 alias -g L='| less'
@@ -64,10 +64,10 @@ alias a='tmux attach'
 
 alias be='bundle exec'
 
-alias agenda='gcalcli --default-calendar harry.mills@highlinebeta.com agenda --details length --details description'
-alias week='gcalcli --default-calendar harry.mills@highlinebeta.com calw'
+alias agenda='gcalcli --default-calendar $(git config user.email) agenda --details length --details description'
+alias week='gcalcli --default-calendar $(git config user.email) calw'
 
-if [[ ! -x $(which pbcopy) ]]; then
+if (( ! ${+commands[pbcopy]} )); then
   alias pbcopy="xclip -selection clipboard"
   alias pbpaste="xclip -selection clippboard -o"
 fi

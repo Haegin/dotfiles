@@ -1,5 +1,3 @@
-; [user]
-;   signingkey = 4DA0A34D
 [alias]
   co = checkout
   cob = !"git branch -l --format '%(refname:short)' --sort=-committerdate | fzf --preview 'git log --oneline --decorate --color {}' | xargs -n1 git co"
@@ -146,9 +144,9 @@
   autosquash = true
 
 [user]
-  name = Harry Porter-Mills
+	name = Harry Porter-Mills
   signingkey = DE31544B9C530DD8
-  email = harry@portermills.net
+  email = harry.porter-mills@instacart.com
 
 [color "diff-highlight"]
   oldNormal = red bold
@@ -173,3 +171,12 @@
 	helper = osxkeychain
 [feature]
 	manyFiles = 1
+
+
+[includeif "gitdir: ~/dev/haegin/"]
+  path = "~/.config/git/personal"
+
+[includeif "gitdir: ~/dev/instacart/"]
+  path = "~/.config/git/instacart"
+[includeif "gitdir: /home/bento/"]
+  path = "~/.config/git/instacart"

@@ -1,3 +1,6 @@
+# # Uncomment this and the zprof call at the bottom to profile startup time
+# zmodload zsh/zprof
+
 source_files_in_directory() {
   local dir="$1"
 
@@ -15,3 +18,5 @@ source_files_in_directory() {
 source_files_in_directory $ZDOTDIR/zshrc.d
 
 [ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
+
+# zprof
