@@ -12,6 +12,7 @@ config/htop
 config/hub
 config/keybase
 config/yarn
+config/base16-shell
 .var/zsh/history-*
 zsh/zshrc.local
 
