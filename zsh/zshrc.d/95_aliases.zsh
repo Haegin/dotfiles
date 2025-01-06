@@ -90,3 +90,7 @@ alias cssh="tmux-xpanes --ssh -ss"
 alias tf=terraform
 
 alias -g rpsec=rspec
+
+if (( ${+command[aichat]} )); then
+  alias ai=aichat
+fi
