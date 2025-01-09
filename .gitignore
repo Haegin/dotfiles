@@ -15,6 +15,7 @@ config/yarn
 config/base16-shell
 .var/zsh/history-*
 zsh/zshrc.local
+zsh/plugins.zsh
 
 node_modules
 coc-tabnine-data
