@@ -1,5 +1,8 @@
 bindkey -e
 
+autoload -U compinit
+compinit
+
 setopt dvorak
 setopt noclobber
 setopt autopushd pushdminus pushdsilent pushdtohome

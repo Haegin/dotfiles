@@ -13,8 +13,8 @@ alias lart='ls -lart'
 export LS_REPLACEMENT="eza"
 
 if (( ${+commands[$LS_REPLACEMENT]} )); then
-  alias ls="$LS_REPLACEMENT --icons"
-  alias ll="ls -la --git"
+  alias ls="$LS_REPLACEMENT"
+  alias lg="ls -la --git"
   alias tree="ls -T"
   alias lt="ls -l --sort newest"
   alias lrt="ls -lr --sort newest"
@@ -31,6 +31,7 @@ if (( ${+commands[htop]} )); then
 fi
 if (( ${+commands[bat]} )); then
   alias cat="bat"
+  export BAT_THEME=gruvbox-dark
 fi
 
 # Git spelling mistakes and shortcuts

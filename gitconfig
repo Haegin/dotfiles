@@ -1,7 +1,7 @@
 [alias]
   co = checkout
   cob = !"git branch -l --format '%(refname:short)' --sort=-committerdate | fzf --preview 'git log --oneline --decorate --color {}' | xargs -n1 git co"
-  st = status -s
+  st = status -s -- .
   cm = commit --verbose
   dt = difftool
   lg1 = log --format=format:'%C(blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(white)— %C(bold cyan)%an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
@@ -59,6 +59,8 @@
   dpr="pull-request -b develop -r relayplatform/engineers -p"
   mpr="pull-request -b main -p"
   hotfix="pull-request -b main -p -l Hotfix"
+  hide="update-index --assume-unchanged"
+  unhide="update-index --no-assume-unchanged"
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
@@ -74,6 +76,7 @@
   trustctime = false
   excludesfile = ~/.config/git/ignore
 	whitespace = trailing-space,space-before-tab
+	commitGraph = true
 
 [interactive]
   diffFilter = delta --color-only
@@ -180,3 +183,11 @@
   path = "~/.config/git/instacart"
 [includeif "gitdir: /home/bento/"]
   path = "~/.config/git/instacart"
+[remote "origin"]
+	prune = true
+[gc]
+	writeCommitGraph = true
+[fetch]
+	writeCommitGraph = true
+[checkout]
+	workers = 0
