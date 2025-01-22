@@ -23,3 +23,5 @@ config/coc/extensions/coc-yank-data/yank
 config/coc/history.json
 config/coc/mru
 zsh/aliases/*_
+
+zsh/.antidote
