@@ -20,3 +20,5 @@ fi
 
 export FZF_DEFAULT_COMMAND='fd -H --type f --exclude ".git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export TZ=/usr/share/zoneinfo/America/Toronto

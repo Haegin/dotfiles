@@ -149,7 +149,7 @@
 [user]
   name = Harry Porter-Mills
   signingkey = DE31544B9C530DD8
-  email = "harry.porter-mills@instacart.com"
+	email = harry.porter-mills@instacart.com
 
 [color "diff-highlight"]
   oldNormal = red bold
@@ -181,7 +181,7 @@
 
 [includeif "gitdir: ~/dev/instacart/"]
   path = "~/.config/git/instacart"
-[includeif "gitdir: /home/bento/"]
+[includeif "gitdir: /home/bento/carrot"]
   path = "~/.config/git/instacart"
 [remote "origin"]
 	prune = true
