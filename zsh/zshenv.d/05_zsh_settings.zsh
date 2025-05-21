@@ -25,4 +25,3 @@ setopt no_beep
 setopt c_bases
 
 export WORDCHARS="${WORDCHARS//\/}"
-export EDITOR="nvim"

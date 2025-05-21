@@ -16,6 +16,11 @@ if [ "$USER" = "bento" ] || [ -d "/Applications/Okta Verify.app" ]; then
   alias terraform=~/dev/instacart/tf-instacart/isc-terraform
 
   alias cdc="cd $CARROT_DIR"
+
+  # NVM
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
 export FZF_DEFAULT_COMMAND='fd -H --type f --exclude ".git/*"'

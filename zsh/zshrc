@@ -1,22 +1,7 @@
 # # Uncomment this and the zprof call at the bottom to profile startup time
 # zmodload zsh/zprof
 
-source_files_in_directory() {
-  local dir="$1"
-
-  if [[ -d "$dir" ]]; then
-    for file in ${(o)dir}/*(N); do
-      if [[ -f $file ]]; then
-        source "$file"
-      fi
-    done
-  else
-    echo "Directory '$dir' does not exist."
-  fi
-}
-
+# defined in ~/.zsh/zshenv
 source_files_in_directory $ZDOTDIR/zshrc.d
 
 [ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local
-
-# zprof

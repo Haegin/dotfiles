@@ -1,7 +1,19 @@
-source $HOME/.zsh/zshrc.d/05_path_setup.zsh
-source $HOME/.zsh/zshrc.d/20_brew.zsh
-source $HOME/.zsh/zshrc.d/30_fly.zsh
-source $HOME/.zsh/zshrc.d/90_path.zsh
+source_files_in_directory() {
+  local dir="$1"
+  echo "Loading files in ${dir}..."
+
+  if [[ -d "$dir" ]]; then
+    for file in ${(o)dir}/*(N); do
+      if [[ -f $file ]]; then
+        source "$file"
+      fi
+    done
+  else
+    echo "Directory '$dir' does not exist."
+  fi
+}
+
+source_files_in_directory $ZDOTDIR/zshenv.d
 
 export TZ=/usr/share/zoneinfo/America/Toronto
 export GPG_TTY=$(tty)
