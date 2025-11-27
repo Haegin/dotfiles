@@ -1,0 +1,1 @@
+../zshenv.d/05_zvardir.zsh
