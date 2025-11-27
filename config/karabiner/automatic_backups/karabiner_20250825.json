@@ -19,16 +19,6 @@
                     }
                 ]
             },
-            "devices": [
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                    },
-                    "ignore_vendor_events": true
-                }
-            ],
             "fn_function_keys": [
                 {
                     "from": { "key_code": "f3" },

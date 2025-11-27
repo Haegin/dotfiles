@@ -95,3 +95,7 @@ alias -g rpsec=rspec
 if (( ${+command[aichat]} )); then
   alias ai=aichat
 fi
+
+alias t=todo.sh
+
+alias cl="export PATH=$PATH:$HOME/agent-tools && claude --dangerously-skip-permissions"

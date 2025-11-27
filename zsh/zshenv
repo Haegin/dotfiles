@@ -13,7 +13,10 @@ source_files_in_directory() {
   fi
 }
 
-source_files_in_directory $ZDOTDIR/zshenv.d
+# Load our ZSH config if we're not running in Cursor
+if [[ -z "$CURSOR_AGENT" ]]; then
+  source_files_in_directory $ZDOTDIR/zshenv.d
+fi
 
 export TZ=/usr/share/zoneinfo/America/Toronto
 export GPG_TTY=$(tty)

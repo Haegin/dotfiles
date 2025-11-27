@@ -1,7 +1,10 @@
 # # Uncomment this and the zprof call at the bottom to profile startup time
 # zmodload zsh/zprof
 
-# defined in ~/.zsh/zshenv
-source_files_in_directory $ZDOTDIR/zshrc.d
+# Load our ZSH config if we're not running in Cursor
+if [[ -z "$CURSOR_AGENT" || "$CLAUDECODE" != "1" ]]; then
+  # defined in ~/.zsh/zshenv
+  source_files_in_directory $ZDOTDIR/zshrc.d
+fi
 
 [ -f ~/.zsh/zshrc.local ] && source ~/.zsh/zshrc.local

@@ -1,0 +1,119 @@
+{
+  "worktrees": [
+    {
+      "name": "relay-architecture",
+      "path": "/Users/harry/dev/instacart/carrots/relay-architecture",
+      "project_path": "customers/customers-backend/domains/retailer_integrations_domain",
+      "workspace_paths": [
+        "customers/customers-backend/domains/retailer_integrations_domain"
+      ],
+      "git_branch": "haegin/relay-architecture"
+    },
+    {
+      "name": "relay-create-order",
+      "path": "/Users/harry/dev/instacart/carrots/relay-create-order",
+      "project_path": "enterprise/fulfillment_simulation_engine/",
+      "workspace_paths": [
+        "enterprise/fulfillment_simulation_engine/"
+      ],
+      "git_branch": "haegin/relay-create-order"
+    },
+    {
+      "name": "publix-weight-handling",
+      "path": "/Users/harry/dev/instacart/carrots/publix-weight-handling",
+      "project_path": "customers/customers-backend",
+      "workspace_paths": [
+        "customers/customers-backend"
+      ],
+      "git_branch": "haegin/publix-weight-handling"
+    },
+    {
+      "name": "fulsim-org-fix",
+      "path": "/Users/harry/dev/instacart/carrots/fulsim-org-fix",
+      "project_path": "enterprise/fulfillment_simulation_engine/",
+      "workspace_paths": [
+        "enterprise/fulfillment_simulation_engine/"
+      ],
+      "git_branch": "haegin/fulsim-org-fix"
+    },
+    {
+      "name": "publix-remove-null-modifiers",
+      "path": "/Users/harry/dev/instacart/carrots/publix-remove-null-modifiers",
+      "project_path": "customers/customers-backend",
+      "workspace_paths": [
+        "customers/customers-backend"
+      ],
+      "git_branch": "haegin/publix-remove-null-modifiers"
+    },
+    {
+      "name": "blazer-json",
+      "path": "/Users/harry/dev/instacart/carrots/blazer-json",
+      "project_path": "tools/blazer",
+      "workspace_paths": [
+        "tools/blazer"
+      ],
+      "git_branch": "haegin/blazer-json",
+      "is_sparse": true,
+      "sparse_dirs": [
+        "/shared",
+        "/.github",
+        "/pbgen",
+        "/cursor_rules_lib",
+        "/tools/blazer"
+      ]
+    },
+    {
+      "name": "test-sparse-working",
+      "path": "/Users/harry/dev/instacart/carrots/test-sparse-working",
+      "project_path": "customers/customers-backend",
+      "workspace_paths": [
+        "customers/customers-backend",
+        "customers/instacart"
+      ],
+      "git_branch": "haegin/test-sparse-working",
+      "is_sparse": true,
+      "sparse_dirs": [
+        "/shared",
+        "/.github",
+        "/pbgen",
+        "/cursor_rules_lib",
+        "/customers/customers-backend",
+        "/customers/instacart"
+      ]
+    },
+    {
+      "name": "checkr-canada",
+      "path": "/Users/harry/dev/instacart/carrots/checkr-canada",
+      "project_path": "shoppers/shoppers",
+      "workspace_paths": [
+        "shoppers/shoppers"
+      ],
+      "git_branch": "haegin/checkr-canada",
+      "is_sparse": true,
+      "sparse_dirs": [
+        "/shared",
+        "/.github",
+        "/pbgen",
+        "/cursor_rules_lib",
+        "/shoppers/shoppers"
+      ]
+    },
+    {
+      "name": "excon-error-badrequest",
+      "path": "/Users/harry/dev/instacart/carrots/excon-error-badrequest",
+      "project_path": "shoppers/shoppers",
+      "workspace_paths": [
+        "shoppers/shoppers"
+      ],
+      "git_branch": "haegin/excon-error-badrequest",
+      "is_sparse": true,
+      "sparse_dirs": [
+        "/shared",
+        "/.github",
+        "/pbgen",
+        "/cursor_rules_lib",
+        "/shoppers/shoppers"
+      ]
+    }
+  ]
+}

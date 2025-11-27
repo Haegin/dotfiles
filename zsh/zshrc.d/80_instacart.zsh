@@ -1,5 +1,3 @@
-echo "IC 1 EDITOR is set to: $EDITOR"
-
 if [ "$USER" = "bento" ] || [ -d "/Applications/Okta Verify.app" ]; then
   echo "Instacart machine detected - loading Instacart configuration 🥕"
 
@@ -30,4 +28,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export TZ=/usr/share/zoneinfo/America/Toronto
 
-echo "IC 2 EDITOR is set to: $EDITOR"
+# Gemini CLI
+export GOOGLE_CLOUD_PROJECT=instacart-gemini-cli

@@ -1,0 +1,1 @@
+../zshenv.d/25_antidote.zsh

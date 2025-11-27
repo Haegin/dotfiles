@@ -1,0 +1,21 @@
+{
+  "aliases": {
+    "api": "services/api",
+    "customers": [
+      "customers/customers-backend",
+      "customers/instacart"
+    ],
+    "fulsim": "enterprise/fulfillment_simulation_engine/",
+    "shoppers": "shoppers/shoppers",
+    "test-comma": "customers/instacart",
+    "test-multi": "web/instacart",
+    "test-workspace": [
+      "shoppers/shoppers",
+      "customers/instacart"
+    ],
+    "v3": "customers/instacart",
+    "v4": "customers/customers-backend",
+    "web": "frontend/web-app"
+  },
+  "branch_prefix": "haegin"
+}
