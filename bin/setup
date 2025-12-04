@@ -23,6 +23,25 @@ function setup_history() {
   mkdir -p "${ZVARDIR:-${HOME}/.var/zsh}"
 }
 
+function setup_base16_shell() {
+  local base16_dir="$HOME/.config/base16-shell"
+  if [[ ! -d "$base16_dir" ]]; then
+    echo "Installing base16-shell for terminal color schemes"
+    git clone https://github.com/chriskempson/base16-shell "$base16_dir"
+  fi
+}
+
+function setup_antidote() {
+  # Skip if installed via homebrew
+  if [[ -f /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]]; then
+    return
+  fi
+  if [[ ! -d "$HOME/.antidote" ]]; then
+    echo "Installing antidote plugin manager"
+    git clone --depth=1 https://github.com/mattmc3/antidote.git "$HOME/.antidote"
+  fi
+}
+
 function run_custom_setup() {
   if [[ -x ./profiles/$USER ]]; then
     profile=$USER
@@ -47,6 +66,8 @@ if [[ -d "$HOME/.dotfiles" ]]; then
   while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
   link_dotfiles
   setup_history
+  setup_antidote
+  setup_base16_shell
   if [[ -e "${DOTDIR}/bin/setup.${OS}" ]]; then
     echo "Running OS specific setup"
     "${DOTDIR}/bin/setup.${OS}"

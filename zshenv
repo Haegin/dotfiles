@@ -12,4 +12,4 @@ ZDOTDIR=$HOME/.zsh
 [ -f $ZDOTDIR/.zshenv ] && . $ZDOTDIR/.zshenv
 
 # bun completions
-[ -s "/Users/harry/.bun/_bun" ] && source "/Users/harry/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"

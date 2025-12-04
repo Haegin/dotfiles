@@ -1,6 +1,4 @@
 if [ "$USER" = "bento" ] || [ -d "/Applications/Okta Verify.app" ]; then
-  echo "Instacart machine detected - loading Instacart configuration 🥕"
-
   export INSTACART_SUPPRESS_NVM=true
   export INSTACART_SUPPRESS_PYENV=true
   export INSTACART_SUPPRESS_SETUP_COMPLETION=true
@@ -17,10 +15,34 @@ if [ "$USER" = "bento" ] || [ -d "/Applications/Okta Verify.app" ]; then
 
   alias cdc="cd $CARROT_DIR"
 
-  # NVM
+  # NVM - lazy loaded for faster shell startup
   export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+  # Create wrapper functions that load NVM on first use
+  nvm() {
+    unfunction nvm node npm npx 2>/dev/null
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    nvm "$@"
+  }
+
+  node() {
+    unfunction nvm node npm npx 2>/dev/null
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    node "$@"
+  }
+
+  npm() {
+    unfunction nvm node npm npx 2>/dev/null
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    npm "$@"
+  }
+
+  npx() {
+    unfunction nvm node npm npx 2>/dev/null
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    npx "$@"
+  }
 fi
 
 export FZF_DEFAULT_COMMAND='fd -H --type f --exclude ".git/*"'

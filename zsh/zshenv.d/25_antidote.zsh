@@ -1,14 +1,21 @@
 function load_antidote() {
-  if [ -f /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]; then
-    source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
-  elif [ -d ~/.antidote ]; then
-    source ~/.antidote/antidote.zsh
-  else
-    git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
-    source ~/.antidote/antidote.zsh
+  local plugins_file="${ZDOTDIR:-$HOME/.zsh}/plugins"
+  local static_file="${ZDOTDIR:-$HOME/.zsh}/plugins.zsh"
+
+  # Regenerate static file if plugins list changed or doesn't exist
+  if [[ ! -f "$static_file" || "$plugins_file" -nt "$static_file" ]]; then
+    if [[ -f /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]]; then
+      source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+    elif [[ -d ~/.antidote ]]; then
+      source ~/.antidote/antidote.zsh
+    else
+      echo "antidote not found - run bin/setup to install" >&2
+      return 1
+    fi
+    antidote bundle < "$plugins_file" > "$static_file"
   fi
 
-  antidote load ~/.zsh/plugins
+  source "$static_file"
 }
 
 if [[ "$-" == *i* ]]; then # Interactive shell

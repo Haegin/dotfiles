@@ -1,0 +1,1 @@
+../zshenv.d/05_zsh_settings.zsh

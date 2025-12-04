@@ -1,7 +1,7 @@
 function update_path() {
   . "$HOME/.cargo/env"
 
-  path=($HOME/bin $HOME/.local/bin $path)
+  path=($HOME/.local/bin $HOME/bin $path)
 
   export PATH
 }

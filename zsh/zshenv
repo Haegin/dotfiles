@@ -1,15 +1,9 @@
 source_files_in_directory() {
   local dir="$1"
-  echo "Loading files in ${dir}..."
-
   if [[ -d "$dir" ]]; then
     for file in ${(o)dir}/*(N); do
-      if [[ -f $file ]]; then
-        source "$file"
-      fi
+      [[ -f $file ]] && source "$file"
     done
-  else
-    echo "Directory '$dir' does not exist."
   fi
 }
 

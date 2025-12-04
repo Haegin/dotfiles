@@ -1,0 +1,126 @@
+#!/bin/zsh
+#
+# bento-clean - Optimize bento shell startup by fixing slow configs
+#
+# Run this after setting up a new bento box or if bento restores the default
+# configs. This script applies lazy-loading and caching to speed up shell startup.
+#
+# Changes made:
+#   - Removes eager NVM loading (we lazy-load in our own config)
+#   - Lazy-loads GitHub Copilot CLI
+#   - Lazy-loads pyenv
+#   - Caches devbox shellenv
+#   - Lazy-loads rbenv
+#   - Removes oh-my-zsh (we use antidote for plugins)
+#
+
+set -e
+
+SHELLRC_D="$HOME/.shellrc.d"
+
+if [[ ! -d "$SHELLRC_D" ]]; then
+  echo "No ~/.shellrc.d directory found - not a bento box?"
+  exit 1
+fi
+
+echo "Optimizing bento shell startup..."
+
+# Remove NVM eager loading - we handle NVM in our own config with lazy-loading
+echo "- Removing NVM eager loading..."
+rm -f "$SHELLRC_D/040_nvm.sh" "$SHELLRC_D/040_nvm_cd.zsh" "$SHELLRC_D/041_nvm_cd.bash"
+
+# Lazy-load GitHub Copilot CLI
+if [[ -f "$SHELLRC_D/043_copilot.sh" ]]; then
+  echo "- Lazy-loading GitHub Copilot CLI..."
+  cat > "$SHELLRC_D/043_copilot.sh" << 'EOF'
+# Lazy-load GitHub Copilot CLI aliases
+_load_copilot() {
+  unfunction _load_copilot ghcs 2>/dev/null
+  unalias '??' 'git?' 'gh?' 2>/dev/null
+  eval "$(github-copilot-cli alias -- zsh)"
+}
+ghcs() { _load_copilot; ghcs "$@"; }
+alias '??'='_load_copilot && ??'
+alias 'git?'='_load_copilot && git?'
+alias 'gh?'='_load_copilot && gh?'
+EOF
+fi
+
+# Lazy-load pyenv
+if [[ -f "$SHELLRC_D/050_pyenv.sh" ]]; then
+  echo "- Lazy-loading pyenv..."
+  # Preserve PYTHONPATH if it exists in the original file
+  pythonpath_line=$(grep "^export PYTHONPATH=" "$SHELLRC_D/050_pyenv.sh" 2>/dev/null || true)
+
+  cat > "$SHELLRC_D/050_pyenv.sh" << 'EOF'
+# shellcheck shell=bash
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+EOF
+
+  # Add back PYTHONPATH if it existed
+  if [[ -n "$pythonpath_line" ]]; then
+    echo "$pythonpath_line" >> "$SHELLRC_D/050_pyenv.sh"
+  fi
+
+  cat >> "$SHELLRC_D/050_pyenv.sh" << 'EOF'
+
+# Lazy-load pyenv - only initialize on first use
+_load_pyenv() {
+  unfunction _load_pyenv pyenv python python3 pip pip3 2>/dev/null
+  eval "$(command pyenv init --path)"
+  eval "$(command pyenv init -)"
+  eval "$(command pyenv virtualenv-init -)"
+}
+pyenv() { _load_pyenv; command pyenv "$@"; }
+python() { _load_pyenv; command python "$@"; }
+python3() { _load_pyenv; command python3 "$@"; }
+pip() { _load_pyenv; command pip "$@"; }
+pip3() { _load_pyenv; command pip3 "$@"; }
+EOF
+fi
+
+# Cache devbox shellenv
+if [[ -f "$SHELLRC_D/004_devbox.sh" ]]; then
+  echo "- Caching devbox shellenv..."
+  cat > "$SHELLRC_D/004_devbox.sh" << 'EOF'
+# shellcheck shell=bash
+# Cache devbox shellenv - only recompute if config changed
+_devbox_cache="$HOME/.cache/devbox-shellenv"
+_devbox_config="$HOME/.local/share/devbox/global/default/devbox.json"
+
+mkdir -p "$HOME/.cache"
+if [[ ! -f "$_devbox_cache" || "$_devbox_config" -nt "$_devbox_cache" ]]; then
+  devbox global shellenv > "$_devbox_cache" 2>/dev/null
+fi
+[[ -f "$_devbox_cache" ]] && source "$_devbox_cache"
+unset _devbox_cache _devbox_config
+EOF
+fi
+
+# Lazy-load rbenv
+if [[ -f "$SHELLRC_D/055_rbenv.sh" ]]; then
+  echo "- Lazy-loading rbenv..."
+  cat > "$SHELLRC_D/055_rbenv.sh" << 'EOF'
+# shellcheck shell=bash
+# Lazy-load rbenv - only initialize on first use
+_load_rbenv() {
+  unfunction _load_rbenv rbenv ruby gem bundle 2>/dev/null
+  eval "$(command rbenv init -)"
+}
+rbenv() { _load_rbenv; command rbenv "$@"; }
+ruby() { _load_rbenv; command ruby "$@"; }
+gem() { _load_rbenv; command gem "$@"; }
+bundle() { _load_rbenv; command bundle "$@"; }
+EOF
+fi
+
+# Remove oh-my-zsh - we use antidote for plugins
+if [[ -f "$SHELLRC_D/005_oh-my-zshrc.zsh" ]]; then
+  echo "- Removing oh-my-zsh..."
+  rm -f "$SHELLRC_D/005_oh-my-zshrc.zsh"
+fi
+
+echo ""
+echo "Done! Shell startup should now be ~400ms instead of ~2.5s"
+echo "Start a new shell to see the improvement."
