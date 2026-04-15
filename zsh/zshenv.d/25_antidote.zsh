@@ -1,3 +1,7 @@
+# Prevent recursive antidote loading from subshells spawned by antidote
+[[ -n "$ANTIDOTE_LOADING" ]] && return
+export ANTIDOTE_LOADING=1
+
 function load_antidote() {
   local plugins_file="${ZDOTDIR:-$HOME/.zsh}/plugins"
   local static_file="${ZDOTDIR:-$HOME/.zsh}/plugins.zsh"

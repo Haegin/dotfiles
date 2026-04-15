@@ -3,6 +3,8 @@
 *.zwc
 vim/.netrwhist
 zsh/.zcalc_history
+zsh/.zsh_history
+.var/zsh/history-*
 zsh/.zcompdump
 config/configstore
 config/direnv
@@ -13,7 +15,6 @@ config/hub
 config/keybase
 config/yarn
 config/base16-shell
-.var/zsh/history-*
 zsh/zshrc.local
 zsh/plugins.zsh
 

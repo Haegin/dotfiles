@@ -3,6 +3,8 @@ function update_path() {
 
   path=($HOME/.local/bin $HOME/bin $path)
 
+  [[ -d "$HOME/.local/share/mise/shims" ]] && path=($HOME/.local/share/mise/shims $path)
+
   export PATH
 }
 

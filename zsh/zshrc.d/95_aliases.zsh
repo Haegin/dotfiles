@@ -64,6 +64,7 @@ fi
 alias -g L='| less'
 
 alias \#='tmux attach'
+alias %='ssh -t bento tmux attach'
 alias a='tmux attach'
 
 alias be='bundle exec'
