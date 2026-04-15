@@ -1,3 +1,3 @@
 if [ "$USER" = "bento" ]; then
-  mise deactivate
+  command -v mise &>/dev/null && mise deactivate
 fi
