@@ -16,7 +16,7 @@ function load_antidote() {
       echo "antidote not found - run bin/setup to install" >&2
       return 1
     fi
-    antidote bundle < "$plugins_file" > "$static_file"
+    antidote bundle < "$plugins_file" >| "$static_file"
   fi
 
   source "$static_file"
