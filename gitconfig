@@ -62,10 +62,6 @@
   hide="update-index --assume-unchanged"
   unhide="update-index --no-assume-unchanged"
   suck="pull origin '+refs/heads/haegin*:refs/remotes/origin/haegin*'"
-
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-
 [url "git@github.com:instacart/"]
   insteadOf = ic:
 
@@ -199,3 +195,13 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[safe]
+	directory = /var/app
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/bento/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/bento/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/gh auth git-credential
+[url "git@github.com:"]
+	insteadOf = https://github.com/

@@ -12,6 +12,11 @@ if [[ -z "$CURSOR_AGENT" && "$CLAUDECODE" != "1" ]]; then
   source_files_in_directory $ZDOTDIR/zshenv.d
 fi
 
+# SSH agent - always needed (including for AI agents doing git push)
+if [[ -n "$SSH_CONNECTION" && -S "$HOME/.ssh/auth_sock" ]]; then
+  export SSH_AUTH_SOCK=$HOME/.ssh/auth_sock
+fi
+
 export TZ=/usr/share/zoneinfo/America/Toronto
 export GPG_TTY=$(tty)
 export PAGER="less -X"

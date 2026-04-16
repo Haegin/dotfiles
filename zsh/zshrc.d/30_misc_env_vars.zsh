@@ -5,3 +5,5 @@ export GOBIN="${HOME}/bin"
 if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
   export TERM=xterm-256color
 fi
+
+export FZF_DEFAULT_OPTS="-m"
