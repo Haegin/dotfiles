@@ -10,10 +10,21 @@ OS="$(uname -s)"
 function link_dotfiles() {
   # Only want to symlink the files, not the utility scripts
   echo "Linking files into ${HOME} from ${DOTDIR}:"
-  for item in *~(bin|utils|docs|profiles); do
+  for item in *~(bin|utils|docs|profiles|config); do
     if [ ! -e "${HOME}/.${item}" ]; then
       echo "- .${item}"
       ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
+    fi
+  done
+
+  # For config/, symlink each item individually so we don't clobber ~/.config
+  echo "Linking config items into ${HOME}/.config from ${DOTDIR}/config:"
+  mkdir -p "${HOME}/.config"
+  for item in "${DOTDIR}"/config/*; do
+    local name="${item:t}"
+    if [ ! -e "${HOME}/.config/${name}" ]; then
+      echo "- .config/${name}"
+      ln -s "${item}" "${HOME}/.config/${name}"
     fi
   done
 }
