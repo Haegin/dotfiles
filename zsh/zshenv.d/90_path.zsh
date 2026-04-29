@@ -4,6 +4,7 @@ function update_path() {
   path=($HOME/.local/bin $HOME/bin $path)
 
   [[ -d "$HOME/.local/share/mise/shims" ]] && path=($HOME/.local/share/mise/shims $path)
+  [[ -d "$HOME/.local/share/nvim/mason/bin" ]] && path=($HOME/.local/share/nvim/mason/bin $path)
 
   export PATH
 }
