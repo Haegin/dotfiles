@@ -44,8 +44,8 @@
   git = !"exec git"
   up = pull --rebase --autostash
   ap = add --patch
-  prs = !"hub pr list -f '%Cmagenta%i%Creset : [%Cyellow%au%Creset] %sC%t%Creset (%Cblue%U%Creset)\n'"
-  pr-url = !"hub pr list -h $(git rev-parse --abbrev-ref HEAD) -f '%U\n'"
+	prs = "!gh pr list --json number,title,url,author --template '{{range .}}{{printf \"#%d\" .number | autocolor \"magenta\"}} : [{{.author.login | autocolor \"yellow\"}}] {{.title}} ({{.url | autocolor \"blue\"}}){{\"\\n\"}}{{end}}'"
+	pr-url = !gh pr view --json url -q .url 2>/dev/null
   work-email = !"git config user.email harry.porter-mills@relayplatform.com && git commit --amend --no-edit --reset-author"
   my-email = "config user.email harry@portermills.net"
   ; recent-branches = !"git reflog | sed -E -e \"/checkout/!d\" -e \"/rebase/d\" -e \"s/.*moving from (.*) to .*/\\1/\" | head -n 5 | sort -u"
