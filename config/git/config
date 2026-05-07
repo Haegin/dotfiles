@@ -197,6 +197,8 @@
 	smudge = git-lfs smudge -- %f
 [safe]
 	directory = /var/app
+	directory = /var/app
+	directory = /var/app
 [credential "https://github.com"]
 	helper = 
 	helper = !/home/bento/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/gh auth git-credential
