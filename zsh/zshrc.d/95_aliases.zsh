@@ -100,3 +100,7 @@ fi
 alias t=todo.sh
 
 alias cl="export PATH=$PATH:$HOME/agent-tools && claude --dangerously-skip-permissions"
+
+function repo {
+  cd ~/repos/$1
+}
