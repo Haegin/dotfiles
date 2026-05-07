@@ -5,6 +5,7 @@ function update_path() {
 
   [[ -d "$HOME/.local/share/mise/shims" ]] && path=($HOME/.local/share/mise/shims $path)
   [[ -d "$HOME/.local/share/nvim/mason/bin" ]] && path=($HOME/.local/share/nvim/mason/bin $path)
+  [[ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/shims" ]] && path=("${ASDF_DATA_DIR:-$HOME/.asdf}/shims" $path)
 
   export PATH
 }

@@ -1,3 +1,5 @@
+export INSTACART_EMAIL=harry.porter-mills@instacart.com
+
 if [ "$USER" = "bento" ] || [ -d "/Applications/Okta Verify.app" ]; then
   export INSTACART_SUPPRESS_NVM=true
   export INSTACART_SUPPRESS_PYENV=true
