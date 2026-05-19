@@ -85,7 +85,7 @@
   ;syntax-theme = "Monokai Extended"
 
 [push]
-	default = simple
+	default = current
   autoSetupRemote = true
 
 [pull]
@@ -201,9 +201,9 @@
 	directory = /var/app
 [credential "https://github.com"]
 	helper = 
-	helper = !/home/bento/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/gh auth git-credential
+	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/home/bento/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/gh auth git-credential
+	helper = !/usr/bin/gh auth git-credential
 [url "git@github.com:"]
 	insteadOf = https://github.com/
