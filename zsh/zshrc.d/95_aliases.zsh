@@ -100,6 +100,11 @@ fi
 alias t=todo.sh
 
 alias cl="export PATH=$PATH:$HOME/agent-tools && claude --dangerously-skip-permissions"
+alias oc="export PATH=$PATH:$HOME/agent-tools && opencode -m fireworks-kimi/kimi-k2-6-priority"
+alias glm="export PATH=$PATH:$HOME/agent-tools && opencode -m fireworks-ai/accounts/fireworks/models/glm-5p1"
+alias kimi="export PATH=$PATH:$HOME/agent-tools && opencode -m fireworks-kimi/kimi-k2-6-priority"
+alias qwen="export PATH=$PATH:$HOME/agent-tools && opencode -m fireworks-ai/accounts/fireworks/models/qwen3p6-plus"
+alias dpsk="export PATH=$PATH:$HOME/agent-tools && opencode -m fireworks-ai/accounts/fireworks/models/deepseek-v4-pro"
 
 function repo {
   cd ~/repos/$1
