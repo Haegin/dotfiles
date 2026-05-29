@@ -1,91 +1,38 @@
-#!/bin/zsh
-setopt extendedglob
+#!/bin/bash
+set -euo pipefail
 
 DOTDIR="${HOME}/.dotfiles"
 
-cd "$DOTDIR"
-
-OS="$(uname -s)"
-
-function link_dotfiles() {
-  # Only want to symlink the files, not the utility scripts
-  echo "Linking files into ${HOME} from ${DOTDIR}:"
-  for item in *~(bin|utils|docs|profiles|config); do
-    if [ ! -e "${HOME}/.${item}" ]; then
-      echo "- .${item}"
-      ln -s "${DOTDIR}/${item}" "${HOME}/.${item}"
-    fi
-  done
-
-  # For config/, symlink each item individually so we don't clobber ~/.config
-  echo "Linking config items into ${HOME}/.config from ${DOTDIR}/config:"
-  mkdir -p "${HOME}/.config"
-  for item in "${DOTDIR}"/config/*; do
-    local name="${item:t}"
-    if [ ! -e "${HOME}/.config/${name}" ]; then
-      echo "- .config/${name}"
-      ln -s "${item}" "${HOME}/.config/${name}"
-    fi
-  done
-}
-
-function setup_history() {
-  echo "Making history"
-  mkdir -p "${ZVARDIR:-${HOME}/.var/zsh}"
-}
-
-function setup_base16_shell() {
-  local base16_dir="$HOME/.config/base16-shell"
-  if [[ ! -d "$base16_dir" ]]; then
-    echo "Installing base16-shell for terminal color schemes"
-    git clone https://github.com/chriskempson/base16-shell "$base16_dir"
-  fi
-}
-
-function setup_antidote() {
-  # Skip if installed via homebrew
-  if [[ -f /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]]; then
-    return
-  fi
-  if [[ ! -d "$HOME/.antidote" ]]; then
-    echo "Installing antidote plugin manager"
-    git clone --depth=1 https://github.com/mattmc3/antidote.git "$HOME/.antidote"
-  fi
-}
-
-function run_custom_setup() {
-  if [[ -x ./profiles/$USER ]]; then
-    profile=$USER
-  else
-    profile=$(ls profiles | fzf --height=10% --prompt="Select a profile to further customise your install or press Ctrl+C to cancel > ")
-  fi
-  if [[ -v profile ]]; then
-    echo "Running ${profile}'s custom setup script'"
-    if [[ -d ./profiles/$profile ]]; then
-      ./profiles/$profile/setup
-    else
-      ./profiles/$profile
-    fi
-  fi
-}
-
-if [[ -d "$HOME/.dotfiles" ]]; then
-  echo "Setting up your machine...\n"
-  # Ask for the administrator password upfront
-  sudo -v
-  # Keep-alive: update existing `sudo` time stamp until setup has finished
-  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-  link_dotfiles
-  setup_history
-  setup_antidote
-  setup_base16_shell
-  if [[ -e "${DOTDIR}/bin/setup.${OS}" ]]; then
-    echo "Running OS specific setup"
-    "${DOTDIR}/bin/setup.${OS}"
-  fi
-  run_custom_setup
-  echo "\nFinished!"
-else
-  echo "Dotfiles don't seem to be correctly set up."
-  echo "Ensure you've cloned github.com/haegin/dotfiles into $HOME/.dotfiles."
+# Install asdf if not present
+if [[ ! -d "$HOME/.asdf" ]]; then
+  echo "Installing asdf..."
+  git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.14.0
 fi
+
+# Source asdf
+export ASDF_DIR="$HOME/.asdf"
+. "$ASDF_DIR/asdf.sh"
+
+# Add racket plugin if not present
+if ! asdf plugin list | grep -q '^racket$'; then
+  echo "Adding asdf racket plugin..."
+  asdf plugin add racket https://github.com/asdf-community/asdf-racket.git
+fi
+
+# Install latest racket if not present
+if ! asdf list racket &>/dev/null; then
+  echo "Installing latest racket..."
+  latest=$(asdf list-all racket | grep -E '^[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
+  asdf install racket "$latest"
+  asdf global racket "$latest"
+fi
+
+# Ensure racket is available
+if ! command -v racket &>/dev/null; then
+  echo "Racket not found in PATH after installation."
+  echo "Please restart your shell or add asdf shims to your PATH."
+  exit 1
+fi
+
+# Run the racket setup script
+exec racket "${DOTDIR}/bin/setup.rkt"
