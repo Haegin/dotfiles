@@ -105,33 +105,50 @@
        (echo "Installing antidote plugin manager")
        (run* "git" "clone" "--depth=1" "https://github.com/mattmc3/antidote.git" antidote-dir))]))
 
-(define (run-custom-setup)
+(define (available-profiles)
   (define profiles-dir (build-path DOTDIR "profiles"))
-  (define user-profile (build-path profiles-dir (getenv "USER")))
+  (define entries (directory-list profiles-dir))
+
+  (define dir-profiles
+    (for/list ([entry entries]
+               #:when (directory-exists? (build-path profiles-dir entry))
+               #:when (file-exists? (build-path profiles-dir entry "setup.rkt")))
+      (path->string entry)))
+
+  (define file-profiles
+    (for/list ([entry entries]
+               #:when (file-exists? (build-path profiles-dir entry))
+               #:when (regexp-match? #rx"\\.rkt$" (path->string entry)))
+      (regexp-replace #rx"\\.rkt$" (path->string entry) "")))
+
+  (append dir-profiles file-profiles))
+
+(define (load-profile name)
+  (define profiles-dir (build-path DOTDIR "profiles"))
+  (define dir-mod (build-path profiles-dir name "setup.rkt"))
+  (define file-mod (build-path profiles-dir (string-append name ".rkt")))
+  (define mod-path
+    (cond
+      [(file-exists? dir-mod) dir-mod]
+      [(file-exists? file-mod) file-mod]
+      [else (error (format "Profile ~a not found" name))]))
+  (echo (format "Running ~a's custom setup script" name))
+  ((dynamic-require mod-path 'setup)))
+
+(define (run-custom-setup)
+  (define user (getenv "USER"))
+  (define profiles (available-profiles))
+
   (define profile
     (cond
-      [(and (directory-exists? user-profile)
-            (file-exists? (build-path user-profile "setup")))
-       (getenv "USER")]
-      [(and (file-exists? user-profile)
-            (not (directory-exists? user-profile)))
-       (getenv "USER")]
+      [(member user profiles) user]
+      [(null? profiles) #f]
       [else
-       (define choices
-         (filter (lambda (p)
-                   (or (file-exists? (build-path profiles-dir p))
-                       (directory-exists? (build-path profiles-dir p))))
-                 (map path->string (directory-list profiles-dir))))
        (fzf-select "Select a profile to further customise your install or press Ctrl+C to cancel"
-                   choices)]))
+                   profiles)]))
+
   (when profile
-    (echo (format "Running ~a's custom setup script" profile))
-    (define profile-path (build-path profiles-dir profile))
-    (cond
-      [(directory-exists? profile-path)
-       (run* (path->string (build-path profile-path "setup")))]
-      [(file-exists? profile-path)
-       (run* (path->string profile-path))])))
+    (load-profile profile)))
 
 ;; --- main ---
 
