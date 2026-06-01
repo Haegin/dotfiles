@@ -6,6 +6,12 @@ zsh/.zcalc_history
 zsh/.zsh_history
 .var/zsh/history-*
 zsh/.zcompdump
+zsh/.zcompdump.*
+zsh/.zcompcache/
+zsh/.zsh_sessions/
+config/ghostty/*.bak
+config/karabiner/automatic_backups/
+ncmpcpp/error.log
 config/configstore
 config/direnv
 config/dotenv/allow
