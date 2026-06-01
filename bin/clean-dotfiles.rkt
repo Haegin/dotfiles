@@ -3,19 +3,10 @@
 
 (require racket/file
          racket/path
-         racket/string)
+         racket/string
+         "../lib/dotfiles.rkt")
 
 (define DOTDIR (build-path (getenv "HOME") ".dotfiles"))
-
-(define (echo msg)
-  (displayln msg))
-
-(define (symlink-exists? path)
-  (and (file-exists? path) (link-exists? path)))
-
-(define (remove-symlink path)
-  (when (symlink-exists? path)
-    (delete-file path)))
 
 (define (main)
   (echo (format "Removing linked files in ~a from ~a:" (getenv "HOME") DOTDIR))

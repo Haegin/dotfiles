@@ -68,3 +68,16 @@
 (define (git-clone-depth url dir depth)
   (unless (directory-exists? dir)
     (run* "git" "clone" (format "--depth=~a" depth) url dir)))
+
+;; --- file helpers ---
+
+(define (file->lines path)
+  (if (file-exists? path)
+      (string-split (file->string path) "\n")
+      '()))
+
+(define (lines->file path lines)
+  (display-to-file (string-join lines "\n") path #:exists 'replace))
+
+(define (grep-line pattern lines)
+  (findf (lambda (line) (regexp-match? (regexp pattern) line)) lines))

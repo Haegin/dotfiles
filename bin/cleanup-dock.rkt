@@ -3,16 +3,8 @@
 
 (require racket/system
          racket/file
-         racket/string)
-
-(define (run* cmd . args)
-  (define cmd-str
-    (if (null? args)
-        cmd
-        (string-join (cons cmd (map ~a args)) " ")))
-  (displayln (format "$ ~a" cmd-str))
-  (unless (system cmd-str)
-    (error (format "Command failed: ~a" cmd-str))))
+         racket/string
+         "../lib/dotfiles.rkt")
 
 (define (dock-item app-path)
   (format "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>~a</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"

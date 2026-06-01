@@ -3,22 +3,8 @@
 (provide setup)
 
 (require racket/system
-         racket/string)
-
-(define (run* cmd . args)
-  (define cmd-str
-    (if (null? args)
-        cmd
-        (string-join (cons cmd (map ~a args)) " ")))
-  (displayln (format "$ ~a" cmd-str))
-  (unless (system cmd-str)
-    (error (format "Command failed: ~a" cmd-str))))
-
-(define (echo msg)
-  (displayln msg))
-
-(define (command-exists? cmd)
-  (system (format "command -v ~a > /dev/null 2>&1" cmd)))
+         racket/string
+         "../../lib/dotfiles.rkt")
 
 (define (install-lang lang [version #f])
   (echo (format "Installing ~a using ASDF" lang))

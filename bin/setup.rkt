@@ -4,58 +4,10 @@
 (require racket/file
          racket/path
          racket/string
-         racket/system)
+         racket/system
+         "../lib/dotfiles.rkt")
 
 (define DOTDIR (build-path (getenv "HOME") ".dotfiles"))
-
-;; --- helpers ---
-
-(define (run cmd . args)
-  (define cmd-str
-    (if (null? args)
-        cmd
-        (string-join (cons cmd (map ~a args)) " ")))
-  (displayln (format "$ ~a" cmd-str))
-  (system cmd-str))
-
-(define (run* cmd . args)
-  (define cmd-str
-    (if (null? args)
-        cmd
-        (string-join (cons cmd (map ~a args)) " ")))
-  (displayln (format "$ ~a" cmd-str))
-  (unless (system cmd-str)
-    (error (format "Command failed: ~a" cmd-str))))
-
-(define (echo msg)
-  (displayln msg))
-
-(define (command-exists? cmd)
-  (system (format "command -v ~a > /dev/null 2>&1" cmd)))
-
-(define (make-symlink target linkpath)
-  (make-parent-directory* linkpath)
-  (make-file-or-directory-link target linkpath))
-
-(define (symlink-exists? path)
-  (and (file-exists? path) (link-exists? path)))
-
-(define (os-type)
-  (let ([uname (with-output-to-string (lambda () (system "uname -s")))])
-    (string-trim uname)))
-
-(define (fzf-select prompt choices)
-  (define input (string-join choices "\n"))
-  (define output
-    (with-output-to-string
-      (lambda ()
-        (with-input-from-string input
-          (lambda ()
-            (system (format "fzf --height=10% --prompt='~a > '" prompt)))))))
-  (define result (string-trim output))
-  (if (string=? result "")
-      #f
-      result))
 
 ;; --- setup functions ---
 

@@ -4,23 +4,8 @@
 (require racket/file
          racket/path
          racket/string
-         racket/port)
-
-;; --- helpers ---
-
-(define (echo msg)
-  (displayln msg))
-
-(define (file->lines path)
-  (if (file-exists? path)
-      (string-split (file->string path) "\n")
-      '()))
-
-(define (lines->file path lines)
-  (display-to-file (string-join lines "\n") path #:exists 'replace))
-
-(define (grep-line pattern lines)
-  (findf (lambda (line) (regexp-match? (regexp pattern) line)) lines))
+         racket/port
+         "../lib/dotfiles.rkt")
 
 ;; --- main ---
 
